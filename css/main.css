@@ -1,0 +1,47 @@
+body{ 
+    font-family: 'Montserrat',sans-serif;
+    background: url(../images/regsiter-img.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+}
+::-webkit-scrollbar{
+    display: none;
+}
+.tour-page {
+
+ animation:  fadeIn 1.5s  ease-in;
+}
+@keyframes fadeIn { 
+    0% { 
+        opacity: 0; 
+    }
+    100% {
+        opacity: 1;
+    } 
+  }
+
+.tour-page  .all-elements{
+    background-color: #fff;
+    opacity: 0.8;
+    width: 95%;
+    box-shadow: 5px 10px #888888;
+    margin-left: 10px !important;
+}
+.tour-page  .all-elements .head-line{
+    color: #f55A6A;
+}
+
+
+.tour-page  .all-elements .fields-info #exampleInputPassword1{
+    font-size: 13px;
+}
+.tour-page  .all-elements  .labels-names{
+    color: #8C85AE;
+    font-size: 15px;
+}
+.tour-page  .all-elements .form-check-label{
+    font-size: 14px;
+}
+.tour-page  .all-elements  .form-check-label .terms-policy{
+    color: #f55A6A;
+}
