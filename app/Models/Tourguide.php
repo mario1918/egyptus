@@ -13,13 +13,14 @@ use Illuminate\Database\Eloquent\Model;
  * @property $languages
  * @property $bio
  * @property $activities
- * @property $rate
+ * @property $priceRate
  * @property $video
- * @property $activity_id
+ * @property $cities
+ * @property $personalRate
  * @property $created_at
  * @property $updated_at
  *
- * @property Activity $activity
+ * @property Review[] $reviews
  * @property User $user
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
@@ -32,7 +33,9 @@ class Tourguide extends Model
 		'languages' => 'required',
 		'bio' => 'required',
 		'activities' => 'required',
-		'rate' => 'required',
+		'priceRate' => 'required',
+		'cities' => 'required',
+		'personalRate' => 'required',
     ];
 
     protected $perPage = 20;
@@ -42,15 +45,15 @@ class Tourguide extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id','profileImg','languages','bio','activities','rate','video','activity_id'];
+    protected $fillable = ['user_id','profileImg','languages','bio','activities','priceRate','video','cities','personalRate'];
 
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function activity()
+    public function reviews()
     {
-        return $this->hasOne('App\Models\Activity', 'id', 'activity_id');
+        return $this->hasMany('App\Models\Review', 'tourguide_id', 'id');
     }
     
     /**

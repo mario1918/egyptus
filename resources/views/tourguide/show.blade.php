@@ -41,16 +41,20 @@
                             {{ $tourguide->activities }}
                         </div>
                         <div class="form-group">
-                            <strong>Rate:</strong>
-                            {{ $tourguide->rate }}
+                            <strong>Pricerate:</strong>
+                            {{ $tourguide->priceRate }}
                         </div>
                         <div class="form-group">
                             <strong>Video:</strong>
                             {{ $tourguide->video }}
                         </div>
                         <div class="form-group">
-                            <strong>Activity Id:</strong>
-                            {{ $tourguide->activity_id }}
+                            <strong>Cities:</strong>
+                            {{ $tourguide->cities }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Personalrate:</strong>
+                            {{ $tourguide->personalRate }}
                         </div>
 
                     </div>

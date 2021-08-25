@@ -15,10 +15,12 @@ use App\Http\Controllers as con;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+//Auth::routes();
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource("tourguides",con\TourguideController::class);
+Route::resource("tourists",con\TouristController::class);
+Route::get("signup", [con\TourguideController::class, 'create'])->name("tourguideSignup");
+Route::get("register", [con\TouristController::class, 'create'])->name("touristSignup");
+

@@ -13,6 +13,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call([
+            languagesSeeder::class,
+            citiesSeeder::class,
+        ]);
         // \App\Models\User::factory(10)->create();
     }
 }

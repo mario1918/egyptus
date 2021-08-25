@@ -27,9 +27,9 @@
             {!! $errors->first('activities', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('rate') }}
-            {{ Form::text('rate', $tourguide->rate, ['class' => 'form-control' . ($errors->has('rate') ? ' is-invalid' : ''), 'placeholder' => 'Rate']) }}
-            {!! $errors->first('rate', '<div class="invalid-feedback">:message</p>') !!}
+            {{ Form::label('priceRate') }}
+            {{ Form::text('priceRate', $tourguide->priceRate, ['class' => 'form-control' . ($errors->has('priceRate') ? ' is-invalid' : ''), 'placeholder' => 'Pricerate']) }}
+            {!! $errors->first('priceRate', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('video') }}
@@ -37,9 +37,14 @@
             {!! $errors->first('video', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('activity_id') }}
-            {{ Form::text('activity_id', $tourguide->activity_id, ['class' => 'form-control' . ($errors->has('activity_id') ? ' is-invalid' : ''), 'placeholder' => 'Activity Id']) }}
-            {!! $errors->first('activity_id', '<div class="invalid-feedback">:message</p>') !!}
+            {{ Form::label('cities') }}
+            {{ Form::text('cities', $tourguide->cities, ['class' => 'form-control' . ($errors->has('cities') ? ' is-invalid' : ''), 'placeholder' => 'Cities']) }}
+            {!! $errors->first('cities', '<div class="invalid-feedback">:message</p>') !!}
+        </div>
+        <div class="form-group">
+            {{ Form::label('personalRate') }}
+            {{ Form::text('personalRate', $tourguide->personalRate, ['class' => 'form-control' . ($errors->has('personalRate') ? ' is-invalid' : ''), 'placeholder' => 'Personalrate']) }}
+            {!! $errors->first('personalRate', '<div class="invalid-feedback">:message</p>') !!}
         </div>
 
     </div>
