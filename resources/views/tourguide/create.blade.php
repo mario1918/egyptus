@@ -27,6 +27,7 @@
                                         <div class="form-group">
                                             <label class="labels-names" for="FirstName">First Name</label>
                                             <input type="text" class="form-control" id="FirstName" name="firstName"
+                                                   value="{{old("firstName")}}"
                                                    placeholder="Enter Your First Name">
                                             @error('firstName')
                                             <div class="alert alert-danger">{{ $message }}</div>
@@ -36,28 +37,34 @@
 
                                         <div class="form-group">
                                             <label class="labels-names" for="lastName">Last Name</label>
-                                            <input type="text" class="form-control" id="lastNmae" name="lastName" placeholder="Enter Your Last Name">
+                                            <input type="text" class="form-control" id="lastNmae" name="lastName"
+                                                   value="{{old("lastName")}}"
+                                                   placeholder="Enter Your Last Name">
                                             @error('lastName')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="form-group">
                                             <label class="labels-names" for="username">Username</label>
-                                            <input type="text" class="form-control" id="username" name="username" placeholder="Enter Your Username">
+                                            <input type="text" class="form-control" id="username" name="username"
+                                                   value="{{old("username")}}"
+                                                   placeholder="Enter Your Username">
                                             @error('username')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="form-group">
                                             <label class="labels-names" for="fb">Facebook link</label>
-                                            <input type="text" class="form-control" id="fb" name="fb-link" placeholder="Please enter your Facebook Profile">
+                                            <input type="text" class="form-control" id="fb" name="fb-link"
+                                                   value="{{old("fb-link")}}"
+                                                   placeholder="Please enter your Facebook Profile">
                                             @error('fb-link')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="form-group">
                                             <label class="labels-names" for="bio">Bio</label>
-                                            <textarea class="form-control" id="bio" name="bio" rows="3"></textarea>
+                                            <textarea class="form-control" id="bio"  value="{{old("bio")}}" name="bio" rows="3"></textarea>
                                             @error('bio')
                                             <div class="alert alert-danger">The Bio field is required.</div>
                                             @enderror
@@ -78,7 +85,9 @@
                                 <div class="col col-md-5 col-xs-12">
                                     <div class="form-group">
                                         <label class="labels-names" for="email">Email</label>
-                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                                        <input type="email" class="form-control" id="email" name="email"
+                                               value="{{old("email")}}"
+                                               placeholder="Email" required>
                                         @error('email')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
@@ -96,37 +105,48 @@
                                         <input type="password" class="form-control" id="confirm-password" name="confirmpassword" placeholder="Password">
                                         {!! $errors->first('confirm-password', '<div class="invalid-feedback">:message</p>') !!}
                                     </div>
-                                    <div class="form-group ">
-                                        <label class="labels-names" for="language-picker-select1">Select Your First Language</label>
-                                        <select required class=" selectpicker mr-sm-2" id="language-picker-select1" name="1stlanguage" data-live-search="true">
-                                            <option selected disabled>Choose a Language</option>
+                                    <div class="form-group 1st">
+                                        <label class="labels-names" for="1stlang">Select Your First Language</label>
+                                        <select required class=" selectpicker mr-sm-2" id="1stlang" name="1stlanguage" data-live-search="true">
+                                            <option   selected disabled>
+                                                    Choose a Language
+                                            </option>
                                         @foreach($languages as $key => $lang)
-                                                <option value="{{$lang->id}}"> {{$lang->name}}</option>
+                                                <option class="option" value="{{$lang->id}}"> {{$lang->name}}</option>
                                                 @endforeach
 
                                         </select>
-                                        @error('1stlanguage')
-                                        <div class="alert alert-danger">The First Lnaguage field is required.</div>
+                                        @error('1stlang')
+                                        <div class="alert alert-danger">The First Language field is required.</div>
                                         @enderror
+                                        <div id="result1">
+                                            <input type="hidden" name="1stlang" value="">
+                                        </div>
                                     </div>
 
                                     <div class="form-group ">
                                         <label class="labels-names" for="2ndlang">Select Your Second language</label>
                                         <select required class=" selectpicker mr-sm-2" id="2ndlang" name="2ndlanguage" data-live-search="true">
-                                            <option selected disabled>Choose a Language</option>
+                                            <option   selected disabled>
+                                                    Choose a Language
+                                            </option>
                                             @foreach($languages as $key => $lang)
                                                 <option value="{{$lang->id}}"> {{$lang->name}}</option>
                                             @endforeach
                                         </select>
-                                        @error('2ndlanguage')
-                                        <div class="alert alert-danger">The Second Lnaguage field is required.
+                                        @error('2ndlang')
+                                        <div class="alert alert-danger">The Second Language field is required.
                                         </div>
                                         @enderror
+                                        <div id="result2">
+                                            <input type="hidden" name="2ndlang" value="">
+
+                                        </div>
                                     </div>
                                     <div class="form-group">
 
                                         <label class="labels-names" for="city"> Please Choose the cities you can work in </label>
-                                        <input type="Location" name="city"  class="form-control" id="city" placeholder="Aswan , Cairo" required>
+                                        <input type="Location" name="cities"  value="{{old("cities")}}" class="form-control" id="city" placeholder="Aswan , Cairo" required>
                                         <small>If you want to add more than one.Put , between them</small>
                                         @error('cities')
                                         <div class="alert alert-danger">{{ $message }}</div>
@@ -136,7 +156,7 @@
                                         <label class="labels-names" for="price">Pricing rates</label>
                                         <div class="row">
                                             <div class=" col col-md-3">
-                                                <input type="number" name="priceRate" min="1" class="form-control" id="price" required >
+                                                <input type="number" name="priceRate" value="{{old("priceRate")}}" min="1" class="form-control" id="price" required >
                                                 @error('priceRate')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                                 @enderror                                              </div>
@@ -147,9 +167,9 @@
                                         </div>
                                     </div>
 
-                                    <button type="submit" class="btn btn-info sign-up-button mt-5">Sign Up</button>
+                                    <button type="submit" id="submitForm" class="btn btn-info sign-up-button mt-5">Sign Up</button>
                                     <div class="form-check mt-3 mb-5">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck1" name="accept_terms">
+                                        <input type="checkbox" class="form-check-input" required id="exampleCheck1" name="accept_terms">
                                         <label class="form-check-label labels-names "for="exampleCheck1">I agree to the <span class="terms-policy">Terms of Service</span> and <span class="terms-policy">Privacy Policy</span>  </label>
                                     </div>
                                 </div>
@@ -164,13 +184,23 @@
     </div>
 
     <script>
-        $('#submitForm').click(function () {
-            let rdd = $('#2ndlang').val();
-            if (rdd == ""){
-                //Send user back to Go
-                $("#2ndlang").append('<div class="alert alert-danger">Please Choose Second Language</div>')
-            }
+        // $('.option').click(function(){
+        //     alert("yes")
+        //     let rdd = $(this);
+        //     $("#result").append('<input type="hidden" name="1stlang" value="' + rdd + '">');
+        //     // ...
+        // });
+        $("#1stlang").change(function () {
+            let rdd = $("#1stlang").val();
+                $("#result1 input").val( rdd);
+
         });
+        $("#2ndlang").change(function () {
+            let rdd = $("#2ndlang").val();
+            $("#result2 input").val( rdd);
+
+        });
+
         // $(document).ready(function(){
         //     $("#city").change(function(){
         //         var selectedCountry = $(this).children("option:selected").val();

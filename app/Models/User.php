@@ -10,16 +10,32 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
-
+    public function type()
+    {
+        switch ($this->type) {
+            case '1':
+                return $this->hasOne('App\Tourguide','user_id');
+                break;
+            case '2':
+                return $this->hasOne('App\Tourist','user_id');
+                break;
+        }
+    }
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name',
+        'firstName',
+        'lastName',
+        'username',
+        'type',
+        'isAdmin',
+        'profileImg',
         'email',
         'password',
+        'status',
     ];
 
     /**

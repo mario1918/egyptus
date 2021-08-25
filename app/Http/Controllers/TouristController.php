@@ -36,7 +36,7 @@ class TouristController extends Controller
     {
 //        $tourist = new Tourist();
 //        $languages = DB::table("languages")->orderBy("name","asc")->get();
-        return view('tourist.create', compact('tourist'));
+        return view('tourist.create');
     }
 
     /**
@@ -53,17 +53,25 @@ class TouristController extends Controller
             "lastName" =>"min:5|max:50|required",
             "username" => "required",
             "email" => "required|email|unique:users",
-            'password' => 'min:6|required_with:confirm_password|same:confirm_password',
-            'accept_terms' => 'required|accepted',
-            'fb-link' => 'url|required',
+            'profileImg' => 'image|mimes:jpg,png,jpeg,gif,svg',
+            'password' => 'min:6|required_with:confirm_password',
         ]);
+        if($request->hasFile('profileImg')) {
+            $filenameWithExt= $request->file('profileImg')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('profileImg')->getClientOriginalExtension();
+            $fileImgName = $filename. '_'.time().'.'.$extension;
+            $pathImg = $request->file('profileImg')->storeAs('public/profileImgs',$fileImgName);
+        }
+
         $user =  User::create([
             'firstName' => $request->post("firstName"),
             'lastName' => $request->post("lastName"),
             'username' => $request->post("username"),
-            'email' => $request->post['email'],
-            'password' => Hash::make($request->post['password']),
+            'email' => $request->post("email"),
+            'password' => Hash::make($request->post("password")),
             'fb-link' => $request->post("fb-link"),
+            'profileImg' => $pathImg,
             'isAdmin' => 0,
             'type' => 2,
             "status" => "inactive",
