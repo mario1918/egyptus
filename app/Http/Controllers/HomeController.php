@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tourguide;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,7 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except('home');
     }
 
     /**
@@ -21,8 +23,23 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function home()
     {
-        return view('home');
+        $users = User::where('status', 'active')->where('type', 1)->get();
+        return view('home',compact('users'));
+    }
+    public function verification($user_id)
+    {
+        $user = User::where('id',$user_id)->first();
+        $user->status = "active";
+        $user->save();
+        if ($user->type == 1)
+        {
+            return view("/");
+        }
+        elseif($user->type == 2)
+        {
+            return "Profile of This tourist";
+        }
     }
 }

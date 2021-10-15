@@ -2,22 +2,22 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
-    public function type()
+    public function hasType()
     {
         switch ($this->type) {
             case '1':
-                return $this->hasOne('App\Tourguide','user_id');
+                return $this->hasOne('App\Models\Tourguide','user_id','id');
                 break;
             case '2':
-                return $this->hasOne('App\Tourist','user_id');
+                return $this->hasOne('App\Models\Tourist','user_id');
                 break;
         }
     }

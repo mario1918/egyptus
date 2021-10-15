@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\MailController;
+use Illuminate\Support\Facades\Mail;
 
 /**
  * Class TouristController
@@ -61,7 +63,10 @@ class TouristController extends Controller
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('profileImg')->getClientOriginalExtension();
             $fileImgName = $filename. '_'.time().'.'.$extension;
-            $pathImg = $request->file('profileImg')->storeAs('public/profileImgs',$fileImgName);
+            $pathImg = $request->file('profileImg')->storeAs('profileImgs',$fileImgName);
+        }
+        else{
+            $pathImg = "images/boy.png";
         }
 
         $user =  User::create([
@@ -80,9 +85,12 @@ class TouristController extends Controller
         $tourist = Tourist::create([
             'user_id' => $user->id,
         ]);
+        $mail = new MailController;
 
-        return redirect()->route('tourists.index')
-            ->with('success', 'Tourist created successfully.');
+        $mail->verifyMail($user);
+
+        return redirect()->route('home')
+            ->with('success', 'Please check your email for to verify the account.');
     }
 
     /**
@@ -135,7 +143,9 @@ class TouristController extends Controller
      */
     public function destroy($id)
     {
-        $tourist = Tourist::find($id)->delete();
+        $tourist = Tourist::find($id);
+        $user = User::find($tourist->user_id)->delete();
+        $tourist->delete();
 
         return redirect()->route('tourists.index')
             ->with('success', 'Tourist deleted successfully');

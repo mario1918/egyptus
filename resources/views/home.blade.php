@@ -3,49 +3,36 @@
     Egyptus
 @endsection
 @section('content')
-<div class="registration contact-form mx-auto">
-
-    <div class = "container">
-        <div class="justify-content-center">
-
-            <div class="contant-shadow"> </div>
-
-            <h2 class=" text-center  mb-3 register-txt "> Register as...</h2>
-
-            <div class="row d-flex justify-content-center">
-                <a href="{{route("tourguideSignup")}}" class="col-lg-4 col-9 register mx-3 mt-4 d-flex justify-content-center"> <span class="words-in-register">Tour Guide</span></a>
-                <a href ="{{route("touristSignup")}}" class="col-lg-4 col-9 register mx-3 mt-4 d-flex justify-content-center"><span class="words-in-register">Tourist</span></a>
-            </div>
+@include('layout.navbar')
+<div class="container m-2">
+  @if ($errors->any())
+  <div class="m-2 alert alert-danger">
+     <strong> {{$errors->first()}}</strong>
+  </div>
+@endif
+    <div class="jumbotron" style="background-color: rgb(227, 230, 231)">
+        <h3 class="p-">Eyptus</h3>
+        <p class="lead">This is a Platform for booking with the best tourguides</p>
+        <hr class="my-4">
+        <h3>Featured Tourguides</h3>
+        <!-- foreach tourguides  -->
+        <div class="row">
+        @foreach ($users as $user)
+        <div class="col-md-4">
+        <div class="card m-2" style="width: 15rem;">
+          <img class="card-img-top" width="60" height="150" src="{{asset('storage/' . $user->profileImg  )}}" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{$user->firstName . " " . $user->lastName}}</h5>
+            <p class="card-text">
+              <h4>Activities: {{$user->hasType->activities}}</h4> 
+              <h4> <strong>Cities:</strong> {{$user->hasType->cities}}</h4> 
+            <a href="#" class="btn btn-primary">Book With Me</a>
+          </div>
         </div>
+      </div>
+        @endforeach
+        </div>
+        <!-- end foreach tourguides  -->
     </div>
 </div>
-
-<!-- Start loading page-->
-{{--<div class="loading">--}}
-{{--    <div id="preloder">--}}
-{{--        <div class="loader"></div>--}}
-{{--    </div>--}}
-{{--</div>--}}
-<!--End Loading page -->
-
-
-{{--<div class="container">--}}
-{{--    <div class="row justify-content-center">--}}
-{{--        <div class="col-md-8">--}}
-{{--            <div class="card">--}}
-{{--                <div class="card-header">{{ __('Dashboard') }}</div>--}}
-
-{{--                <div class="card-body">--}}
-{{--                    @if (session('status'))--}}
-{{--                        <div class="alert alert-success" role="alert">--}}
-{{--                            {{ session('status') }}--}}
-{{--                        </div>--}}
-{{--                    @endif--}}
-
-{{--                    {{ __('You are logged in!') }}--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--</div>--}}
 @endsection

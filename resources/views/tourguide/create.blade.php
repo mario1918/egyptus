@@ -5,13 +5,6 @@
 @endsection
 
 @section('content')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
-
-
-
     <div class="col-md-12">
         <div class="tour-page d-flex justify-content-center">
             <div class="container">
@@ -53,15 +46,25 @@
                                             <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                        <div class="form-group">
-                                            <label class="labels-names" for="fb">Facebook link</label>
-                                            <input type="text" class="form-control" id="fb" name="fb-link"
-                                                   value="{{old("fb-link")}}"
-                                                   placeholder="Please enter your Facebook Profile">
-                                            @error('fb-link')
-                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        <div class="form-group 1st">
+                                            <label class="labels-names" for="1stlang">Select Your First Language</label>
+                                            <select required class=" selectpicker mr-sm-2" id="1stlang" name="1stlanguage" data-live-search="true">
+                                                <option   selected disabled>
+                                                        Choose a Language
+                                                </option>
+                                            @foreach($languages as $key => $lang)
+                                                    <option class="option" value="{{$lang->id}}"> {{$lang->name}}</option>
+                                                    @endforeach
+    
+                                            </select>
+                                            @error('1stlang')
+                                            <div class="alert alert-danger">The First Language field is required.</div>
                                             @enderror
+                                            <div id="result1">
+                                                <input type="hidden" name="1stlang" value="">
+                                            </div>
                                         </div>
+                                        
                                         <div class="form-group">
                                             <label class="labels-names" for="bio">Bio</label>
                                             <textarea class="form-control" id="bio"  value="{{old("bio")}}" name="bio" rows="3"></textarea>
@@ -76,7 +79,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="labels-names" for="profileImg">Upload Your Personal Photo</label>
-                                            <input type="file" required id="profileImg" name="profileImg" accept="image/*">
+                                            <input type="file"  id="profileImg" name="profileImg" accept="image/*">
                                             @error('profileImg')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
@@ -105,25 +108,7 @@
                                         <input type="password" class="form-control" id="confirm-password" name="confirmpassword" placeholder="Password">
                                         {!! $errors->first('confirm-password', '<div class="invalid-feedback">:message</p>') !!}
                                     </div>
-                                    <div class="form-group 1st">
-                                        <label class="labels-names" for="1stlang">Select Your First Language</label>
-                                        <select required class=" selectpicker mr-sm-2" id="1stlang" name="1stlanguage" data-live-search="true">
-                                            <option   selected disabled>
-                                                    Choose a Language
-                                            </option>
-                                        @foreach($languages as $key => $lang)
-                                                <option class="option" value="{{$lang->id}}"> {{$lang->name}}</option>
-                                                @endforeach
-
-                                        </select>
-                                        @error('1stlang')
-                                        <div class="alert alert-danger">The First Language field is required.</div>
-                                        @enderror
-                                        <div id="result1">
-                                            <input type="hidden" name="1stlang" value="">
-                                        </div>
-                                    </div>
-
+                                    
                                     <div class="form-group ">
                                         <label class="labels-names" for="2ndlang">Select Your Second language</label>
                                         <select required class=" selectpicker mr-sm-2" id="2ndlang" name="2ndlanguage" data-live-search="true">

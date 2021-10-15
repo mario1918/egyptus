@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tourguide;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -34,7 +35,6 @@ class TourguideController extends Controller
      */
     public function create()
     {
-//        $tourguide = new Tourguide();
         $languages = DB::table("languages")->orderBy("name","asc")->get();
         return view('tourguide.create', compact('languages'));
     }
@@ -55,12 +55,11 @@ class TourguideController extends Controller
             "email" => "required|email|unique:users",
             'password' => 'min:6|required_with:confirm_password',
             'accept_terms' => 'required|accepted',
-            'fb-link' => 'required',
             'bio' => "required|min:5|max:1000",
             "1stlang" =>'required',
             "2ndlang" =>'required',
             'cities' => "required|string|min:3",
-            'profileImg' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
+            'profileImg' => 'image|mimes:jpg,png,jpeg,gif,svg',
             'video' => 'mimes:mp4,mov,ogg | max:20000'
 
 
@@ -70,7 +69,10 @@ class TourguideController extends Controller
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('profileImg')->getClientOriginalExtension();
             $fileImgName = $filename. '_'.time().'.'.$extension;
-            $pathImg = $request->file('profileImg')->storeAs('public/profileImgs',$fileImgName);
+            $pathImg = $request->file('profileImg')->storeAs('profileImgs',$fileImgName);
+        }
+        else{
+            $pathImg = "profileImgs/boy.png";
         }
 
         $user =  User::create([
@@ -112,8 +114,9 @@ class TourguideController extends Controller
                 'cities' => $request->post('cities'),
             ]
         );
-        return redirect()->route('tourguides.index')
-            ->with('success', 'Tourguide created successfully.');
+        // $mail = new MailController;
+        // $mail->verifyMail($user);
+        return redirect()->route('home');
     }
 
     /**
@@ -170,5 +173,11 @@ class TourguideController extends Controller
 
         return redirect()->route('tourguides.index')
             ->with('success', 'Tourguide deleted successfully');
+    }
+    public function profile()
+    {
+        $tourguide = "";
+        $tourguide = Tourguide::findOrFail(auth()->user()->hasType->id);
+        return view('tourguide.profile',compact('tourguide'));
     }
 }

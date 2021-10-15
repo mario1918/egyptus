@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Mail\VerifyMail;
 use Illuminate\Support\Facades\Mail;
 
 class MailController extends Controller
 {
-    public function verify(Request $request)
+    public function verifyMail(User $user)
     {
         $data['title'] = "Welcome To Egyptus";
         $data["p"] = "Please Verify Your Account";
-        Mail::send('emails.verify', $data, function($message) use($user) {
+        Mail::send('emails.verify', compact(['data','user']), function($message) use($user) {
 
             $message->to($user->email)
 
@@ -21,10 +22,7 @@ class MailController extends Controller
         });
 
         if (Mail::failures()) {
-           dd("no");
-        }else{
-            dd("yes");
+            return "Please try again later";
         }
-
 }
 }

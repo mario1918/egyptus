@@ -14,13 +14,18 @@ use App\Http\Controllers as con;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
-//Auth::routes();
+Route::get('/', [con\HomeController::class, 'home'])->name('home');
 
+//Auth::routes();
+Route::middleware(['auth'])->group( function()  {
+    Route::get('/tourguideprofile', [con\TourguideController::class,'profile'])->name("toruguideProfile");
+});
 Route::resource("tourguides",con\TourguideController::class);
 Route::resource("tourists",con\TouristController::class);
-Route::get("signup", [con\TourguideController::class, 'create'])->name("tourguideSignup");
-Route::get("register", [con\TouristController::class, 'create'])->name("touristSignup");
+Route::get("register", [con\TourguideController::class, 'create'])->name("tourguideSignup");
+Route::get("signup", [con\TouristController::class, 'create'])->name("touristSignup");
+Route::get("verify/{user_id}", [con\HomeController::class, 'verification'])->name("verif");
+Route::get("login", [App\Http\Controllers\Auth\LoginController::class, 'loginPage'])->name("loginPage");
+Route::post("login", [con\Auth\LoginController::class, 'authenticate'])->name("login");
+Route::get("logout", [con\Auth\LoginController::class, 'logout'])->name("logout");
 

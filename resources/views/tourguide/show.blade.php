@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('template_title')
     {{ $tourguide->name ?? 'Show Tourguide' }}
 @endsection
@@ -19,7 +18,6 @@
                     </div>
 
                     <div class="card-body">
-                        
                         <div class="form-group">
                             <strong>User Id:</strong>
                             {{ $tourguide->user_id }}

@@ -80,7 +80,7 @@
                                 </div>
                                     <div class="form-group">
                                         <label class="labels-names" for="profileImg">Upload Your Personal Photo</label>
-                                        <input type="file" required id="profileImg" name="profileImg" accept="image/*" value="{{old("profileImg")}}">
+                                        <input type="file"  id="profileImg" name="profileImg" accept="image/*" value="{{old("profileImg")}}">
                                         @error('profileImg')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
