@@ -18,7 +18,6 @@ Route::get('/', [con\HomeController::class, 'home'])->name('home');
 
 //Auth::routes();
 Route::middleware(['auth'])->group( function()  {
-    Route::get('/tourguide/{name}/profile', [con\TourguideController::class,'profile'])->name("toruguideProfile");
 });
 Route::middleware(['admin'])->group(function()
 {
@@ -36,6 +35,10 @@ Route::get("verify/{user_id}", [con\HomeController::class, 'verification'])->nam
 Route::get("login", [App\Http\Controllers\Auth\LoginController::class, 'loginPage'])->name("loginPage");
 Route::post("login", [con\Auth\LoginController::class, 'authenticate'])->name("login");
 Route::get("logout", [con\Auth\LoginController::class, 'logout'])->name("logout");
+
+
+Route::get('/tourguide/{name}/profile', [con\TourguideController::class,'profile'])->name("toruguideProfile");
+
 
 
 
