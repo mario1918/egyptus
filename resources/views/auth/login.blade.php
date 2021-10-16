@@ -5,8 +5,8 @@
 @endsection
 
 @section('content')
-    <div class="col-md-6">
-        <div class="tour-page d-flex justify-content-center">
+    <div class="">
+        <div class="tour-page">
             <div class="container">
                 <div class="row">
                     <div class="all-elements mt-5 ">
@@ -17,15 +17,13 @@
                         </div>
                     @endif
             <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
 
             <div class="form-group row">
                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
-                <div class="col-md-6">
+                <div class="">
                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                     @error('email')

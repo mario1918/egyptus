@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Crypt;
+
 
 /**
  * Class TourguideController
@@ -174,10 +176,11 @@ class TourguideController extends Controller
         return redirect()->route('tourguides.index')
             ->with('success', 'Tourguide deleted successfully');
     }
-    public function profile()
+    public function profile($id)
     {
-        $tourguide = "";
-        $tourguide = Tourguide::findOrFail(auth()->user()->hasType->id);
+        $tourguide = Tourguide::findOrFail(Crypt::decryptString($id));
+
+
         return view('tourguide.profile',compact('tourguide'));
     }
 }

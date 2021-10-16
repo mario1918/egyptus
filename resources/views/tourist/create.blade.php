@@ -5,23 +5,16 @@
 @endsection
 
 @section('content')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
-
-    @includeif('partials.errors')
 
     <div class="col-md-12">
         <div class="tour-page d-flex justify-content-center">
             <div class="container">
                 <div class="row">
                     <div class="all-elements mt-5 ">
-                        <h2 class="head-line mt-3 ml-2">Sign Up As Tourist</h2>
 
                         <div class="container">
                             <div class="row">
-                                <div class="col-md-5 col-xs-12 ml-lg-4">
+                                <div class="col-md-6 col-xs-12 ml-lg-5">
                                     <form method="POST" action="{{ route('tourists.store') }}"  role="form" enctype="multipart/form-data">
                                         @csrf
                                         <div class="form-group">

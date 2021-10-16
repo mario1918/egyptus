@@ -1,34 +1,52 @@
-<div class="container">
-<nav class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand" href="#">Egyptus</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="{{ route('home') }}">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">About Us</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Services</a>
-        </li>
-      </ul>
-      
-    </div>
-    <form class="form-inline">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      @auth
-      <a class="btn btn-success" href="{{ route('logout') }}">Logout</a>
-      
-      @else
-      <a href="{{ route('tourguideSignup') }}" class="btn btn-success" style="">Be a tourguide</a>
-      <a href="{{ route('touristSignup') }}" class="btn btn-outline-success m-2">Sign Up</a>
-      <a href="{{ route('login') }}" class="btn btn-outline-success m-2">Login</a>
+<!--start navbar -->
+
+<nav class=" second-nav navbar navbar-expand-lg navbar-mainbg">
+  <p class=" navbar-brand navbar-logo">EgyptUs<p>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <i class="fa fa-bars text-white"></i>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+          <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
+
+          <!--
+          <li class="nav-item">
+              <a class="nav-link" href="#">Reviews</a>
+          </li>-->
+
+          <li class="nav-item active pr-4">
+              <a class="nav-link" href="#tour-guides-cards-section" style="additive-symbols: "> Meet a tour guide</a>
+          </li>
+
+      <li class="nav-item pr-4">
+        <a class="nav-link" href="{{route('home')}}"> Home </a>
+    </li>
   
-      @endauth
-    </form>
-  </nav>
-</div>
+      <li class="nav-item pr-4">
+        <a class="nav-link" href="#">About </a>
+    </li>
+  @auth
+    <li class="nav-item pr-4">
+      <form class="form-inline">
+        
+        <a class="" href="{{ route('logout') }}">Logout</a>
+      </form>
+    </li>
+        @else
+        <li class="nav-item pr-4">
+          <a class="nav-link" href="{{route('touristSignup')}}">Sign Up</a>
+      </li>
+      <li>
+        <a href="{{ route('login') }}" class="">Login</a>
+      </li>
+        @endauth
+  </li>
+
+     
+      </ul>
+  </div>
+</nav>
+
+<!-- End navbar-->

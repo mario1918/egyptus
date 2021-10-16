@@ -1,47 +1,589 @@
 body{
-    font-family: 'Montserrat',sans-serif;
-    background: url(../images/regsiter-img.jpg);
-    background-size: cover;
-    background-attachment: fixed;
+	font-family: 'Oswald', sans-serif;
 }
-::-webkit-scrollbar{
-    display: none;
-}
-.tour-page {
 
- animation:  fadeIn 1.5s  ease-in;
+
+.navbar {
+    border: 0 !important;
 }
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
+a{
+	text-decoration: none;
+	color: #fff;
+}
+a:hover {
+	text-decoration:none;
+ }
+
+/* scroll bar*/
+::-webkit-scrollbar {
+	width: 13px;
   }
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #EE7A2E; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #EE7A2E; 
+  }
+/*end scroll bar*/
 
-.tour-page  .all-elements{
-    background-color: #fff;
-    opacity: 0.8;
-    width: 95%;
-    box-shadow: 5px 10px #888888;
-    margin-left: 10px !important;
+
+/*Start Navbar*/
+.navbar-logo{
+    color: #fff;
+	font-size: 30px;
+	padding: 0;
+	margin: 0;
+	margin-left: 10px;
 }
-.tour-page  .all-elements .head-line{
-    color: #f55A6A;
+.navbar-mainbg{
+	background-color: #EE7A2E;
+	padding: 0px;
+}
+#navbarSupportedContent{
+	overflow: hidden;
+	position: relative;
+}
+#navbarSupportedContent ul{
+	padding: 0px;
+	margin: 0px;
+}
+#navbarSupportedContent ul li a i{
+	margin-right: 10px;
+}
+#navbarSupportedContent li {
+	list-style-type: none;
+	float: left;
+}
+#navbarSupportedContent ul li a{
+	color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    font-size: 20px;
+    display: block;
+    padding: 20px 20px;
+    transition-duration:0.6s;
+	transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    position: relative;
+}
+#navbarSupportedContent>ul>li.active>a{
+	color: #EE7A2E;
+	background-color: transparent;
+	transition: all 0.7s;
+}
+#navbarSupportedContent a:not(:only-child):after {
+	content: "\f105";
+	position: absolute;
+	right: 20px;
+	top: 10px;
+	font-size: 14px;
+	font-family: "Font Awesome 5 Free";
+	display: inline-block;
+	padding-right: 3px;
+	vertical-align: middle;
+	font-weight: 900;
+	transition: 0.5s;
+}
+#navbarSupportedContent .active>a:not(:only-child):after {
+	transform: rotate(90deg);
+}
+.hori-selector{
+	display:inline-block;
+	position:absolute;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	transition-duration:0.6s;
+	transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+	background-color: #fff;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+	margin-top: 10px;
+}
+.hori-selector .right,
+.hori-selector .left{
+	position: absolute;
+	width: 25px;
+	height: 25px;
+	background-color: #fff;
+	bottom: 10px;
+}
+.hori-selector .right{
+	right: -25px;
+}
+.hori-selector .left{
+	left: -25px;
+}
+.hori-selector .right:before,
+.hori-selector .left:before{
+	content: '';
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #EE7A2E;
+}
+.hori-selector .right:before{
+	bottom: 0;
+    right: -25px;
+}
+.hori-selector .left:before{
+	bottom: 0;
+    left: -25px;
+}
+@media (max-width: 991px){
+	#navbarSupportedContent ul li a{
+		padding: 12px 30px;
+	}
+	.hori-selector{
+		margin-top: 0px;
+		margin-left: 10px;
+		border-radius: 0;
+		border-top-left-radius: 25px;
+		border-bottom-left-radius: 25px;
+	}
+	.hori-selector .left,
+	.hori-selector .right{
+		right: 10px;
+	}
+	.hori-selector .left{
+		top: -25px;
+		left: auto;
+	}
+	.hori-selector .right{
+		bottom: -25px;
+	}
+	.hori-selector .left:before{
+		left: -25px;
+		top: -25px;
+	}
+	.hori-selector .right:before{
+		bottom: -25px;
+		left: -25px;
+	}
+}
+/*End Navbar*/
+
+
+
+/*Start Slider*/
+
+.slider .carousel-inner{
+    display: flex;
+    align-items: center;
+	justify-content: left;
+}
+.slider .carousel-inner .card-over-slider{
+    position: absolute;
+    color: #000;
+    z-index: 3;
+    max-width: 900px;
+    left: 50px;
+    background-color: rgba(255,255,255,.85) !important;
+    box-shadow: 0 0 2rem 0 rgb(0 0 0 / 29%) !important;
+	border-radius: 4px;
+}
+@media (max-width: 768px ){
+    .slider .carousel-inner .card-over-slider{
+        left: auto;
+		top: 2;
+        text-align: center;
+        font-size: 20px !important;
+        max-width: 80% ;
+        margin-left: 50px;
+	}
+}
+.card-over-slider .card-over-slider-headline {
+	line-height: 1.5;
+	font-weight: 700;
+	font-size: 30px;
+	color: #EE7A2E;
 }
 
 
-.tour-page  .all-elements .fields-info #exampleInputPassword1{
-    font-size: 13px;
+.search input {
+    text-indent: 25px;
+	width:  505px;
+    border: 2px solid #d6d4d4
 }
-.tour-page  .all-elements  .labels-names{
-    color: #8C85AE;
+@media (max-width: 768px ){
+   
+.search input {
+	width:  280px;
+}
+}
+.search input:focus {
+    box-shadow: none;
+    border: 2px solid blue
+}
+
+.search .fa-search {
+    position: absolute;
+    top: 12px;
+    left: 20px
+}
+
+.btton-booking-hyper{
+	background-color: #EE7A2E;
+	border: #EE7A2E;
+	border-radius: 4px;
+	color: #fff;
+	font-weight: 700;
+}
+.btton-booking-hyper:hover{
+	background-color: #EE7A2E;
+	color: #fff;
+	border: #EE7A2E;
+	opacity: 1.5;
+}
+
+.date input {
+    text-indent: 25px;
+	width:  330px;
+    border: 2px solid #d6d4d4
+}
+
+
+@media (max-width: 768px ){
+   
+.date input {
+	width:  260px;
+}
+.search input{
+	width:  260px;
+}
+.btton-booking{
+	margin-left: 15px;
+	margin-top: 10px;
+}
+}
+
+@media (max-width: 360px ){
+   
+	.date input {
+		width:  200px;
+	}
+	.search input{
+		width:  200px;
+	}
+	.btton-booking{
+		margin-left: 15px;
+		margin-top: 10px;
+	}
+	}
+
+	@media (max-width: 300px ){
+   
+		.date input {
+			width:  180px;
+		}
+		.search input{
+			width:  180px;
+		}
+		.btton-booking{
+			margin-left: 15px;
+			margin-top: 10px;
+		}
+		}
+		
+
+.date input:focus {
+    box-shadow: none;
+    border: 2px solid blue
+}
+
+.date .fa-calendar {
+    position: absolute;
+    top: 12px;
+    left: 20px
+}
+
+
+.slider .carousel-inner .overlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top:0;
+    background-color: rgba(0, 0, 0, .2) ;
+    z-index: 2;
+}
+
+.slider .carousel-indicators li{
+    height: 8px;
+    cursor: pointer;
+}
+
+
+
+@media(max-width:780px){
+.carousel-item > img{
+	width: 100% !important;
+	height: 100% !important;
+}	
+}
+
+/*End Slider*/
+
+
+/*Start why us*/
+.why-us .why-us-headline{
+	font: bold;
+	font-size: 40px;
+}
+.why-us .features-headline{
+	font-size: 20px;
+}
+.why-us .features-para{
+	font-size: 16px;
+	font-weight: 400;
+}
+/*End why us*/
+
+/*Start tour guides cards */
+.tour-guides-cards{
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+.tour-guides-cards .tour-guides-cards-headline{
+	margin-bottom: 20px;
+}
+.tour-guides-cards .second-row-tour-guide-section{
+	margin-top: 20px;
+}
+
+#team .card {
+    background: #ffffff;
+}
+
+.label-top {
+    position: absolute;
+    background-color: #EE7A2E;
+    color: #fff;
+    top: 8px;
+    right: 8px;
+    padding: 5px 10px 5px 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 3px;
+    text-transform: uppercase
+}
+
+.image-flip:hover .backside,
+.image-flip.hover .backside {
+    -webkit-transform: rotateY(0deg);
+    -moz-transform: rotateY(0deg);
+    -o-transform: rotateY(0deg);
+    -ms-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+    border-radius: .25rem;
+}
+
+.image-flip:hover .frontside,
+.image-flip.hover .frontside {
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+
+.mainflip {
+    -webkit-transition: 1s;
+    -webkit-transform-style: preserve-3d;
+    -ms-transition: 1s;
+    -moz-transition: 1s;
+    -moz-transform: perspective(1000px);
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transition: 1s;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+.frontside {
+    position: relative;
+    -webkit-transform: rotateY(0deg);
+    -ms-transform: rotateY(0deg);
+    z-index: 2;
+    margin-bottom: 30px;
+}
+
+.backside {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: white;
+    -webkit-transform: rotateY(-180deg);
+    -moz-transform: rotateY(-180deg);
+    -o-transform: rotateY(-180deg);
+    -ms-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+    -webkit-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+    -moz-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+    box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+}
+
+.frontside,
+.backside {
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transition: 1s;
+    -webkit-transform-style: preserve-3d;
+    -moz-transition: 1s;
+    -moz-transform-style: preserve-3d;
+    -o-transition: 1s;
+    -o-transform-style: preserve-3d;
+    -ms-transition: 1s;
+    -ms-transform-style: preserve-3d;
+    transition: 1s;
+    transform-style: preserve-3d;
+}
+
+.frontside .card,
+.backside .card {
+    min-height: 312px;
+}
+
+.frontside .card .card-title,
+.backside .card .card-title {
+    color: #EE7A2E !important;
+}
+
+.frontside .card .card-body img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+/*End tour guides section*/
+
+
+
+
+/*Start cancelation
+
+.cancelation{
+	background-color: #EFF6f6;
+}
+.cancelation .cancelation-headline{
+	line-height: 1.4;
+	font-size: 50px;
+	font-weight: bold;
+}*/
+/*End Cancelation*/
+
+
+
+
+
+
+
+
+
+/*Start Footer */
+.footer {
+    padding: 100px 0;
+	background-color: #333;
+	color: #fff;
+}
+.footer .site-info  h2{
+    font-size: 50px;
+    margin-bottom: 35px;
+}
+.footer .site-info h2 span:first-child{
+    color: #EE7A2E;
+    font-weight: bold;
+}
+
+.footer .site-info h2 span:last-child{
+    color: #EE7A2E;
+}
+.footer .site-info p{
+    line-height: 1.8;
+    color: #fff;
+}
+.footer .site-info a{
+    color: #08526d;
     font-size: 15px;
+    font-weight: bold;
+
 }
-.tour-page  .all-elements .form-check-label{
-    font-size: 14px;
+.footer .site-info a:before{
+    font-family: 'FontAwesome';
+    content: "\f138";
+    display: inline-block;
+    margin-right: 5px;
+
 }
-.tour-page  .all-elements  .form-check-label .terms-policy{
-    color: #f55A6A;
+
+.footer  .contact h2{
+    color: #EE7A2E;
+    font-size: 22px;
+    margin-bottom: 68px;
+
 }
+
+.footer  .contact ul li {
+    margin-bottom: 24px;
+}
+
+@media (max-width:992px){
+
+.footer .helpful-links h2,
+.footer  .contact h2{
+    margin-bottom: 20px;
+    margin-top: 20px;
+
+}
+.footer  .contact ul li{
+    margin-bottom: 5px;
+}
+
+}
+
+/*End Footer*/
+/* Start copright*/
+
+.copyright{
+    border-top: 1px solid #c0c0c0;
+    padding: 20px;
+	background-color: #333 ;
+	color: #fff;
+}
+
+.copyright ul{
+    margin: 0;
+}
+.copyright ul li:nth-child(1) :hover{
+
+	color: #4267B2;
+}
+.copyright ul li:nth-child(2) :hover{
+	color: #212529;
+
+}
+.copyright ul li{
+
+    display: inline-block;
+    
+}
+
+.copyright ul li a{
+    color: #fff;
+    display: inline-block;
+    margin-left: 20px;
+    font-size: 18px;
+}
+
+
+/*end copyright*/

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tourguide;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -25,8 +26,20 @@ class HomeController extends Controller
      */
     public function home()
     {
-        $users = User::where('status', 'active')->where('type', 1)->get();
-        return view('home',compact('users'));
+        // if(Auth::check())
+        // {
+        //     if(Auth::user()->isAdmin == 1)
+        //     {
+        //         return view('admin.dashboard');
+
+        //     }
+        
+        // }
+        // else{
+            $users = User::where('status', 'active')->where('type', 1)->get();
+            return view('home',compact('users'));
+        // }
+       
     }
     public function verification($user_id)
     {
