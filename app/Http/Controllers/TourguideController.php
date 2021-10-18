@@ -88,7 +88,7 @@ class TourguideController extends Controller
             'email' => $request->post('email'),
             'password' => Hash::make($request->post('password')),
             'profileImg' => $pathImg,
-            'fb_link' => "www.facebook.com/" . $request->post("fb_link"),
+            'fb_link' => $request->post("fb_link"),
             'portfolio' => $request->post("portfolio"),
             'isAdmin' => 0,
             'type' => 1,
