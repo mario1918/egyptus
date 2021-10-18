@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Validator;
 use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Mail;
 
@@ -56,8 +57,10 @@ class TouristController extends Controller
             "username" => "required",
             "email" => "required|email|unique:users",
             'profileImg' => 'image|mimes:jpg,png,jpeg,gif,svg',
-            'password' => 'min:6|required_with:confirm_password',
+            'password' => 'required_with:confirmpassword|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/',
+           
         ]);
+       
         if($request->hasFile('profileImg')) {
             $filenameWithExt= $request->file('profileImg')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
@@ -68,7 +71,6 @@ class TouristController extends Controller
         else{
             $pathImg = "images/boy.png";
         }
-
         $user =  User::create([
             'firstName' => $request->post("firstName"),
             'lastName' => $request->post("lastName"),

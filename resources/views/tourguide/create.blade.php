@@ -1,7 +1,7 @@
 @extends('layout.header')
 
 @section('template_title')
-    Create Tourguide
+    Sign Up As Tourguide
 @endsection
 
 @section('content')
@@ -72,14 +72,30 @@
                                             <div class="alert alert-danger">The Bio field is required.</div>
                                             @enderror
                                         </div>
-                                        <div class="form-group">
-                                            <label class="labels-names" for="video">Upload a video: describing yourself(optional) max: 3 min</label>
-                                            <input  type="file" id="video" name="video" accept="video/*">
-
+                                        <div class="row col-md-12">                                    
+                                        <div class="form-group col-md-6">
+                                            <label class="labels-names" for="fb_link">Facebook Name</label>
+                                            <input class="form-control"  type="text" id="fb_link" name="fb_link" 
+                                            value="{{old("fb_link")}}"
+                                                   placeholder="/example">
+                                            @error('fb_link')
+                                            <div class="alert alert-danger">{{$message}}</div>
+                                            @enderror
                                         </div>
+                                        <div class="form-group col-md-6">
+                                            <label class="labels-names" for="portfolio">Your Website (optional)</label>
+                                            <input class="form-control"  type="text" id="portfolio" name="portfolio" 
+                                            value="{{old("portfolio")}}"
+                                                   placeholder="www.egyptus.com">
+                                            @error('portfolio')
+                                            <div class="alert alert-danger">{{$message}}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                
                                         <div class="form-group">
                                             <label class="labels-names" for="profileImg">Upload Your Personal Photo</label>
-                                            <input type="file"  id="profileImg" name="profileImg" accept="image/*">
+                                            <input class="form-control" type="file"  id="profileImg" name="profileImg" accept="image/*">
                                             @error('profileImg')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
@@ -137,6 +153,7 @@
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
+                                    <br>
                                     <div class="form-group">
                                         <label class="labels-names" for="price">Pricing rates</label>
                                         <div class="row">
@@ -150,6 +167,11 @@
 
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="labels-names" for="video">Upload a video: describing yourself(optional) max: 3 min</label>
+                                        <input  type="file" id="video" name="video" accept="video/*">
+
                                     </div>
 
                                     <button type="submit" id="submitForm" class="btn btn-info sign-up-button mt-5">Sign Up</button>

@@ -3,6 +3,11 @@
     {{$tourguide->user->firstName }} Profile
 @endsection
 @section('content')
+@if ($errors->any())
+<div class="m-2 alert alert-info">
+   <strong> {{$errors->first()}}</strong>
+</div>
+@endif
 <div class="profile-page">
     <div class="container">
         <div class="main-body">
@@ -26,13 +31,8 @@
                     <ul class="list-group list-group-flush">
                       <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                         <h6 class="mb-0"> <i class="fa fa-google mr-3" aria-hidden="true"></i>Website</h6>
-                        <span class="text-secondary">his website link</span>
-                      </li>
-
-                      <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                        <h6 class="mb-0"><i class="fa fa-instagram mr-3" aria-hidden="true"></i>Instagram</h6>
-                        <span class="text-secondary">@Mairo_35</span>
-                      </li>
+                        <span class="text-secondary">{{$tourguide->user->portfolio}}</span>
+                      </li> 
                       <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                         <h6 class="mb-0"><i class="fa fa-facebook mr-3" aria-hidden="true"></i>Facebook</h6>
                         <span class="text-secondary">{{$tourguide->user->fb_link}}</span>
@@ -81,8 +81,7 @@
                       <div class="card h-100">
                         <div class="card-body">
                             <h2 class="d-flex justify-content-center mb-3">About</h2>
-                            <div> Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur tenetur cumque numquam recusandae quas 
-                                officia esse maiores omnis reiciendis illum incidunt minus sapiente deleniti quibusdam ea, laudantium beatae eveniet molestiae?</div>
+                            <div> {{$tourguide->bio}}</div>
     
                         </div>
                       </div>

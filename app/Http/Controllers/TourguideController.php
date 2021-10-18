@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Tourguide;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Crypt;
 
 
@@ -50,12 +50,16 @@ class TourguideController extends Controller
     public function store(Request $request)
     {
 
-        $validate = $request->validate([
+        $validate = Validator::make($request->all(), [
             "firstName" => "min:5|max:50|required",
             "lastName" =>"min:5|max:50|required",
             "username" => "required",
             "email" => "required|email|unique:users",
-            'password' => 'min:6|required_with:confirm_password',
+            'password' => 'required_with:confirm_password|
+            regex:/^
+            (?=[^a-z]*[a-z]) # ensure one lower case letter
+            (?=[^A-Z]*[A-Z]) # ensure one upper case letter
+            (?=.*?[0-9]).{6,}$/        # ensure a number',
             'accept_terms' => 'required|accepted',
             'bio' => "required|min:5|max:1000",
             "1stlang" =>'required',
@@ -84,7 +88,8 @@ class TourguideController extends Controller
             'email' => $request->post('email'),
             'password' => Hash::make($request->post('password')),
             'profileImg' => $pathImg,
-            'fb-link' => $request->post("fb-link"),
+            'fb_link' => "www.facebook.com/" . $request->post("fb_link"),
+            'portfolio' => $request->post("portfolio"),
             'isAdmin' => 0,
             'type' => 1,
             "status" => "inactive",
@@ -95,7 +100,7 @@ class TourguideController extends Controller
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('video')->getClientOriginalExtension();
             $fileVideoName = $filename. '_'.time().'.'.$extension;
-            $pathVideo = $request->file('video')->storeAs('public/BioVideos',$fileVideoName);
+            $pathVideo = $request->file('video')->storeAs('BioVideos',$fileVideoName);
         }
         else{
             $pathVideo = null;
@@ -118,7 +123,8 @@ class TourguideController extends Controller
         );
         // $mail = new MailController;
         // $mail->verifyMail($user);
-        return redirect()->route('home');
+        return redirect()->route('toruguideProfile',$tourguide->id)->withErrors(['msg' => "We will send you a mail when the admin
+        verify your account"]); 
     }
 
     /**

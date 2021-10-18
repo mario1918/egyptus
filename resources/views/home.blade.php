@@ -4,7 +4,11 @@
 @endsection
 @section('content')
 <!-- Start Slider-->
-
+@if ($errors->any())
+<div class="m-2 alert alert-info">
+   <strong> {{$errors->first()}}</strong>
+</div>
+@endif
 <div class="slider" id="slider">
   <div id="main-slider" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
@@ -150,6 +154,7 @@
   <div class="container">
       <div class="row">
           <!-- Tour guide Start-->
+          @if(count($users) > 0)
           @foreach($users as $user)
           <div class="col-xs-12 col-sm-6 col-md-4">
 
@@ -198,6 +203,7 @@
 
         </div>
         @endforeach
+        @endif
         
 
         </div>

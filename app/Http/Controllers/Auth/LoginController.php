@@ -26,7 +26,8 @@ class LoginController extends Controller
     
         $credentials = $request->only('email', 'password');
         $user = User::where("email", $request->email)->first();
-        
+        if(!empty($user))
+        {
         if($user->isadmin == 1 || $user->type == 2)
         {
             if (Auth::attempt($credentials)) {
@@ -62,7 +63,7 @@ class LoginController extends Controller
         {
             if ( Auth::attempt($credentials)) {
                 // if success login => redirect to profile tourguide
-                return redirect('/')->withErrors(['msg' => "We will send you a mail when the admin
+                return redirect('')->withErrors(['msg' => "We will send you a mail when the admin
                 verify your account"]); 
             }
             else{
@@ -70,6 +71,7 @@ class LoginController extends Controller
             }
                
         }
+    }
     }
 
     public function logout(Request $request)
