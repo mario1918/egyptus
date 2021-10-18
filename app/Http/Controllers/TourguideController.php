@@ -123,7 +123,7 @@ class TourguideController extends Controller
         );
         // $mail = new MailController;
         // $mail->verifyMail($user);
-        return redirect()->route('toruguideProfile',$tourguide->id)->withErrors(['msg' => "We will send you a mail when the admin
+        return redirect()->route('toruguideProfile',Crypt::encryptString($user->hasType->id))->withErrors(['msg' => "We will send you a mail when the admin
         verify your account"]); 
     }
 

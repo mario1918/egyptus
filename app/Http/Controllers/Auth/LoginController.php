@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Crypt;
 
 
 
@@ -52,7 +53,7 @@ class LoginController extends Controller
         {
             if (Auth::attempt($credentials)) {
                 // if success login => redirect to profile tourguide
-                return redirect()->route('toruguideProfile');
+                return redirect()->route('toruguideProfile',Crypt::encryptString($user->hasType->id));
             }
             else{
                 //wait for the admin to verify the tourguide account in admiin dashboard
