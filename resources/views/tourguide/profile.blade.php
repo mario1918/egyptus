@@ -21,7 +21,8 @@
                         <div class="mt-3">
                           <h4>{{$tourguide->user->firstName}}</h4>
                           <p class="text-muted font-size-sm">{{$tourguide->bio}}</p>
-                          <button class="btn btn-outline-warning">Message</button>
+                          <button class="btn btn-outline-warning btn-block">Message</button>
+                          <button class="btn btn-outline-primary btn-block btn-lg ">Request guide</button>
                         </div>
                       </div>
                     </div>
@@ -65,10 +66,10 @@
                       <hr>
                       <div class="row">
                         <div class="col-sm-3">
-                          <h6 class="mb-0">Mobile</h6>
+                          <h6 class="mb-0">Price rate</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                          +20 0101898962223
+                          <strong>${{$tourguide->priceRate}}</strong>/hour
                         </div>
                       </div>
 
@@ -80,7 +81,7 @@
                     <div class="col-sm-6 mb-3">
                       <div class="card h-100">
                         <div class="card-body">
-                            <h2 class="d-flex justify-content-center mb-3">About</h2>
+                            <h2 class="d-flex justify-content-center mb-3">About me</h2>
                             <div> {{$tourguide->bio}}</div>
     
                         </div>
@@ -90,7 +91,7 @@
                     <div class="col-sm-6 mb-3">
                       <div class="card h-100">
                         <div class="card-body">
-                          <h2 class="d-flex justify-content-center mb-3">Explore with </h2>
+                          <h2 class="d-flex justify-content-center mb-3">I will show you </h2>
                           <div> Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur tenetur cumque numquam recusandae quas 
                               officia esse maiores omnis reiciendis illum incidunt minus sapiente deleniti quibusdam ea, laudantium beatae eveniet molestiae?</div>
                         </div>

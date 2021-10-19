@@ -15,7 +15,7 @@
           <li class="nav-item">
               <a class="nav-link" href="#">Reviews</a>
           </li>-->
-
+        
           <li class="nav-item active pr-4">
               <a class="nav-link" href="#tour-guides-cards-section" style="additive-symbols: "> Meet a tour guide</a>
           </li>
