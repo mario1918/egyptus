@@ -36,7 +36,7 @@
                       </li> 
                       <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                         <h6 class="mb-0"><i class="fa fa-facebook mr-3" aria-hidden="true"></i>Facebook</h6>
-                        <span class="text-secondary">{{$tourguide->user->fb_link}}</span>
+                        <a href="https://www.facebook.com/{{$tourguide->user->fb_link}}"><span class="text-secondary">{{$tourguide->user->fb_link}}</span></a>
                       </li>
                     </ul>
                   </div>
