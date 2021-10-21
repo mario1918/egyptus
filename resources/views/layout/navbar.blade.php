@@ -1,13 +1,13 @@
 <!--start navbar -->
 
 <nav class=" second-nav navbar navbar-expand-lg navbar-mainbg">
-  <p class=" navbar-brand navbar-logo">EgyptUs<p>
+  <p class=" navbar-brand navbar-logo" style="margin-left: 8%;">Egyptus<p>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
   <i class="fa fa-bars text-white"></i>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-right: 8%;">
       <ul class="navbar-nav ml-auto">
           <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
 
@@ -15,18 +15,19 @@
           <li class="nav-item">
               <a class="nav-link" href="#">Reviews</a>
           </li>-->
-        
-          <li class="nav-item active pr-4">
-              <a class="nav-link" href="#tour-guides-cards-section" style="additive-symbols: "> Meet a tour guide</a>
-          </li>
+
+      <li class="nav-item pr-4 active">
+        <a class="nav-link" href="{{route('home')}}"> Home </a>
+      </li>
 
       <li class="nav-item pr-4">
-        <a class="nav-link" href="{{route('home')}}"> Home </a>
-    </li>
+              <a class="nav-link" href="#tour-guides-cards-section" style="additive-symbols: ">Meet a tour guide</a>
+      </li>
   
       <li class="nav-item pr-4">
         <a class="nav-link" href="#">About </a>
-    </li>
+      </li>
+
   @auth
     <li class="nav-item pr-4">
       <form class="form-inline">
@@ -46,7 +47,9 @@
 
      
       </ul>
+      
   </div>
+  
 </nav>
 
 <!-- End navbar-->
