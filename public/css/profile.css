@@ -3,6 +3,7 @@
 
 /*Start Navbar*/
 
+
 .navbar-logo{
     color: #fff;
 	font-size: 25px;
@@ -10,6 +11,11 @@
 	margin: 0;
 	margin-left: 10px;
 }
+
+.navbar-logo a:hover {
+	color: white;
+}
+
 .navbar-mainbg{
 	background-color: #EE7A2E;
 	padding: 0px;
@@ -143,7 +149,40 @@
 		left: -25px;
 	}
 }
+
+/*Account buttons*/
+
+
+.account-btn:hover
+{
+	color: #EE7A2E !important;
+	background-color: white;
+	
+}
+
+
+.account-btn
+{
+	color: white;
+	border-color: white;
+	text-decoration: none;
+	outline: none;
+}
+
+
+.account-btn:focus
+{
+	box-shadow: none;
+	
+}
+
+a:link{
+	text-decoration: none;
+}
+/*End of account buttons*/
+
 /*End Navbar*/
+
 
 /*Start profile page*/
 
