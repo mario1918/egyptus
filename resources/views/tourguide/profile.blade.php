@@ -83,11 +83,7 @@
                           <h6 class="mb-0">Languages</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                          @for($i=0;$i<=1;$i++)
-                          <li>
-                            {{$languages[$i]}} 
-                          </li>
-                        @endfor
+                        <p>{{$tourguide->languages}}</p>
                         </div>
                       </div>
 
@@ -112,7 +108,7 @@
                           <h2 class="d-flex justify-content-center mb-3">Activities </h2>
                           <div> 
                             <ul>
-                              @foreach(explode("|",$tourguide->activities) as $activity)
+                              @foreach(explode(",",$tourguide->activities) as $activity)
                               <li>{{$activity}}</li>
                               @endforeach
                             </ul>
@@ -128,16 +124,74 @@
     
     
                 </div>
+              </div> 
+              <hr>
+              {{-- review cards --}}
+              <div class="container m-2">
+                @if ($errors->any())
+                <div class="m-2 alert alert-success">
+                  <strong> {{$errors->first()}}</strong>
+                </div>
+                @endif
+                <h2>Some Reviews</h2>
+                <div class="row col-md-12">
+                  @if (!empty($tourguide->reviews) )
+                      @foreach ($tourguide->reviews as $review)
+                      <div class="card col-md-4 mx-1" style="width: 20rem;">
+                        <div class="card-body">
+                          <h5 class="card-title"></h5>
+                          <div class="text-center m-2">
+                            <p>{{$review->reviewername->firstName}}</p>
+                            <small>{{date('d-m-Y', strtotime($review->created_at))}}</small>
+                           </div>
+                           <hr>
+                          <q class="card-text">{{$review->review}}</q>
+                        </div>
+                      </div>
+                      @endforeach
+                  @endif
+
+                
+                
               </div>
-              <div class="container m-2" style="border: ">
-                <div class="card" style="width: 18rem;">
+              <br>
+
+                <div class="card col-md-8">
                   <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <h5 class="card-title">Add new review</h5>
+                    <form action="{{route('addReviews')}}" role="form" method="POST">
+                      @csrf
+                      <div class="form-group">
+                        <input type="hidden" name="tourguide" value="{{Crypt::encryptString($tourguide->id)}}">
+                        <textarea class="form-control" id="review"  name="review" rows="3"></textarea>
+                      </div>  
+                      <button type="submit" id="submitForm"  class="btn btn-info sign-up-button mx-2">Add</button>
+                    </form>
                   </div>
                 </div>
-              </div>
     
             </div>
         </div>
+
+        {{-- <script>
+          function addReview() {
+
+            $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+            jQuery.ajax({
+                url: "/addReview",
+                method: 'GET',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    trans,
+                },
+                error: function(error)
+                {
+                    console.log(error.responseJSON);
+                },
+                success:function(data){
+                    
+                }
+            });
+}
+        </script> --}}
 @endsection

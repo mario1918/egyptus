@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tourguide;
 use App\Models\User;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -112,11 +113,11 @@ class TourguideController extends Controller
         $tourguide = Tourguide::create(
             [
                 'user_id' => $user->id,
-                'languages' => implode("|",$request->post('languages')),
+                'languages' => implode(",",$request->post('languages')),
                 'bio' =>$request->post('bio'),
                 "priceRate" => $request->post('priceRate'),
                 'video' => $pathVideo,
-                'activities' => implode("|",$request->post('activities')),
+                'activities' => implode(",",$request->post('activities')),
                 'cities' => $request->post('cities'),
             ]
         );
@@ -184,8 +185,22 @@ class TourguideController extends Controller
     public function profile($id)
     {
         $tourguide = Tourguide::findOrFail(Crypt::decryptString($id));
-       $languages = explode("|", $tourguide->languages);
+      
 
-        return view('tourguide.profile',compact('tourguide',"languages"));
+        return view('tourguide.profile',compact('tourguide'));
     }
+
+     public function addReviews(Request $request)
+    {
+        $tourguide = Crypt::decryptString($request->post('tourguide'));
+        $newReview = new Review();
+        $newReview->review =$request->post('review');
+        $newReview->tourguide_id = $tourguide;
+        $newReview->reviewer = auth()->user()->id;
+        $newReview->save();
+
+            return redirect()->back()->withErrors('msg','Review has been successfully created');
+        }
+        // $reviews = DB::table('reviews')->where('tourguide_id', $request->tourguide)->get();
+        
 }

@@ -18,6 +18,7 @@ Route::get('/', [con\HomeController::class, 'home'])->name('home');
 
 //Auth::routes();
 Route::middleware(['auth'])->group( function()  {
+        Route::post('addRreview', [con\TourguideController::class, "addReviews"])->name('addReviews');
 });
 
 

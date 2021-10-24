@@ -21,6 +21,11 @@ class CreateReviewsTable extends Migration
                 ->references('id')
                 ->on('tourguides')
                 ->onUpdate('cascade');
+                $table->unsignedBigInteger('reviewer')->nullable();
+            $table->foreign('reviewer')
+                ->references('id')
+                ->on('users')
+                ->onUpdate('cascade')->onDelete("cascade");
             $table->timestamps();
         });
     }
