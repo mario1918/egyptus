@@ -49,7 +49,6 @@ class TourguideController extends Controller
      */
     public function store(Request $request)
     {
-
         $validate = Validator::make($request->all(), [
             "firstName" => "min:5|max:50|required",
             "lastName" =>"min:5|max:50|required",
@@ -62,8 +61,8 @@ class TourguideController extends Controller
             (?=.*?[0-9]).{6,}$/        # ensure a number',
             'accept_terms' => 'required|accepted',
             'bio' => "required|min:5|max:1000",
-            "1stlang" =>'required',
-            "2ndlang" =>'required',
+            "languages" =>'required',
+            "activities" =>'required',
             'cities' => "required|string|min:3",
             'profileImg' => 'image|mimes:jpg,png,jpeg,gif,svg',
             'video' => 'mimes:mp4,mov,ogg | max:20000'
@@ -89,6 +88,7 @@ class TourguideController extends Controller
             'password' => Hash::make($request->post('password')),
             'profileImg' => $pathImg,
             'fb_link' => $request->post("fb_link"),
+          
             'portfolio' => $request->post("portfolio"),
             'isAdmin' => 0,
             'type' => 1,
@@ -106,18 +106,17 @@ class TourguideController extends Controller
             $pathVideo = null;
         }
 
-        $lang = [$request->post('1stlang'), $request->post('2ndlang')];
-        $languages = implode(",", $lang);
         $tourguide = new Tourguide();
         $tourguide->user_id = $user->id;
 
         $tourguide = Tourguide::create(
             [
                 'user_id' => $user->id,
-                'languages' => $languages,
+                'languages' => implode("|",$request->post('languages')),
                 'bio' =>$request->post('bio'),
                 "priceRate" => $request->post('priceRate'),
                 'video' => $pathVideo,
+                'activities' => implode("|",$request->post('activities')),
                 'cities' => $request->post('cities'),
             ]
         );
@@ -185,8 +184,8 @@ class TourguideController extends Controller
     public function profile($id)
     {
         $tourguide = Tourguide::findOrFail(Crypt::decryptString($id));
+       $languages = explode("|", $tourguide->languages);
 
-
-        return view('tourguide.profile',compact('tourguide'));
+        return view('tourguide.profile',compact('tourguide',"languages"));
     }
 }

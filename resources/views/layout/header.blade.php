@@ -15,10 +15,10 @@
 <!-- Styles -->
     <link rel="icon"       href="{{asset("images/logo.png")}}">
     <link rel="stylesheet" href="{{asset("css/font-awesome.min.css")}}">
-    <link rel="stylesheet" href="{{asset("css/bootstrap.min.css")}}">
     <link rel="stylesheet" href="{{asset("css/main.css")}}">
     <link rel="stylesheet" href="{{asset("css/profile.css")}}">
     <link rel="stylesheet" href="{{asset("css/Front_Page.css")}}">
+    <link href="{{asset("css/bootstrap.min.css")}}" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -31,8 +31,6 @@
           @yield('content')
       
 </main>
-<footer>
-</footer>
 @include('layout.footer')
 </body>
 </html>

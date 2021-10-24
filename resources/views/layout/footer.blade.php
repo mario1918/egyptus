@@ -79,5 +79,8 @@
         <script src="{{asset('js/bootstrap.min.js')}}"></script> 
         <script src="{{asset('js/main.js')}}"></script>
         <script src="{{asset('js/profile.js')}}"></script>
+        <script src="{{asset("js/plugins.bundle.js")}}"></script>
+        <script src="{{asset("js/prismjs.bundle.js")}}"></script>
+        <script src="{{asset("js/scripts.bundle.js")}}"></script>
 
 </html>

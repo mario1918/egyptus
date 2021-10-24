@@ -5,6 +5,11 @@
 @endsection
 
 @section('content')
+<link href="{{asset("css/plugins.bundle.css")}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset("css/prismjs.bundle.css")}}" rel="stylesheet" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <div class="col-md-12">
         <div class="tour-page d-flex justify-content-center">
             <div class="container">
@@ -46,25 +51,28 @@
                                             <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                        <div class="form-group 1st">
-                                            <label class="labels-names" for="1stlang">Select Your First Language</label>
-                                            <select required class=" selectpicker mr-sm-2" id="1stlang" name="1stlanguage" data-live-search="true">
-                                                <option   selected disabled>
-                                                        Choose a Language
-                                                </option>
-                                            @foreach($languages as $key => $lang)
-                                                    <option class="option" value="{{$lang->id}}"> {{$lang->name}}</option>
-                                                    @endforeach
-    
-                                            </select>
-                                            @error('1stlang')
-                                            <div class="alert alert-danger">The First Language field is required.</div>
-                                            @enderror
-                                            <div id="result1">
-                                                <input type="hidden" name="1stlang" value="">
-                                            </div>
-                                        </div>
                                         
+                                        <div class="form-group activity dropdown bootstrap-select show-tick show" multiple="multiple" tabindex="null">
+                                            <label class="labels-names" for="activities">Select Activities You Can do</label>
+                                            <select required class=" selectpicker mr-sm-2 form-control" id="activities" name="activities[]"multiple="multiple" tabindex="null">
+                                        
+                                                <option class="option" value="History & Culture"> History & Culture</option>
+                                                <option class="option" value="Art & Museums">Art & Museums</option>
+                                                <option class="option" value=">Shopping">Shopping</option>
+                                                <option class="option" value="Pick up & Driving Tours">Pick up & Driving Tours</option>                                                </option>
+                                                <option class="option" value="Nighclub & Bars">Nighclub & Bars</option>
+                                                <option class="option" value="Exploration & Sightseeing">Exploration & Sightseeing</option>
+                                                <option class="option" value="Food & Restaurants">Food & Restaurants</option>
+                                                <option class="option" value="Sports">Sports</option>
+                                                <option class="option" value="Translation & Interpretation">Translation & Interpretation</option>
+                                            </select>
+                                            @error('activities')
+                                            <div class="alert alert-danger">Select at least one activity</div>
+                                            @enderror
+                                            {{-- <div id="result3">
+                                                <input type="hidden" name="activity[]" value="">
+                                            </div> --}}
+                                        </div>
                                         <div class="form-group">
                                             <label class="labels-names" for="bio">Bio</label>
                                             <textarea class="form-control" id="bio"  value="{{old("bio")}}" name="bio" rows="3"></textarea>
@@ -124,26 +132,36 @@
                                         <input type="password" class="form-control" id="confirm-password" name="confirmpassword" placeholder="Password">
                                         {!! $errors->first('confirm-password', '<div class="invalid-feedback">:message</p>') !!}
                                     </div>
-                                    
-                                    <div class="form-group ">
-                                        <label class="labels-names" for="2ndlang">Select Your Second language</label>
-                                        <select required class=" selectpicker mr-sm-2" id="2ndlang" name="2ndlanguage" data-live-search="true">
-                                            <option   selected disabled>
-                                                    Choose a Language
-                                            </option>
-                                            @foreach($languages as $key => $lang)
-                                                <option value="{{$lang->id}}"> {{$lang->name}}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('2ndlang')
-                                        <div class="alert alert-danger">The Second Language field is required.
-                                        </div>
-                                        @enderror
-                                        <div id="result2">
-                                            <input type="hidden" name="2ndlang" value="">
 
-                                        </div>
+                                    <div class="form-group language dropdown bootstrap-select show-tick show" multiple="multiple" tabindex="null">
+                                        <label class="labels-names" for="langauges">Select Your 2 langauges</label>
+                                        <select required class=" selectpicker mr-sm-2 form-control" id="langauges" name="languages[]"multiple="multiple" tabindex="null">
+                                            <option class="option" value="Arabic">Arabic</option>
+                                            <option class="option" value="Chinese">Chinese</option>
+                                            <option class="option" value="English">English</option>
+                                            <option class="option" value="French">French</option>                                                <option class="option" value="en">English</option>
+                                            <option class="option" value="German">German</option>
+                                            <option class="option" value="Hebrew">Hebrew</option>
+                                            <option class="option" value="Hindi">Hindi</option>
+                                            <option class="option" value="Irish">Irish</option>
+                                            <option class="option" value="Italian">Italian</option>
+                                            <option class="option" value="Japanese">Japanese</option>
+                                            <option class="option" value="Korean">Korean</option>
+                                            <option class="option" value="Portuguese">Portuguese</option>
+                                            <option class="option" value="Romanian">Romanian</option>
+                                            <option class="option" value="Russian">Russian</option>
+                                            <option class="option" value="Spanish">Spanish</option>
+                                            <option class="option" value="Sundanese">Sundanese</option>
+                                            <option class="option" value="Swedish">Swedish </option>
+                                            <option class="option" value="Turkish">Turkish</option>
+                                            <option class="option" value="Ukrainian">Ukrainian</option>
+                                        </select>
+                                        @error('languages')
+                                        <div class="alert alert-danger">Please select 2 langauges.</div>
+                                        @enderror
                                     </div>
+                                    
+                                   
                                     <div class="form-group">
 
                                         <label class="labels-names" for="city"> Please Choose the cities you can work in </label>
@@ -153,6 +171,7 @@
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
+                                    
                                     <br>
                                     <div class="form-group">
                                         <label class="labels-names" for="price">Pricing rates</label>
@@ -191,6 +210,15 @@
     </div>
 
     <script>
+     $(document).ready(function() {
+        $('#activities').multiselect({
+            includeSelectAllOption: true,
+            enableFiltering: true,
+            enableCaseInsensitiveFiltering: true,
+            filterPlaceholder:'Search Here..'
+            });
+            });
+
         // $('.option').click(function(){
         //     alert("yes")
         //     let rdd = $(this);
@@ -205,6 +233,11 @@
         $("#2ndlang").change(function () {
             let rdd = $("#2ndlang").val();
             $("#result2 input").val( rdd);
+
+        });
+        $("#activities").select(function () {
+            let rdd = $("#activities").val();
+            $("#result3 input").val( rdd);
 
         });
 
@@ -241,4 +274,5 @@
     {{--            </div>--}}
     {{--        </div>--}}
     {{--    </section>--}}
+    
 @endsection

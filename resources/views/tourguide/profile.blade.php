@@ -21,6 +21,11 @@
                         <div class="mt-3">
                           <h4>{{$tourguide->user->firstName}}</h4>
                           <p class="text-muted font-size-sm">{{$tourguide->bio}}</p>
+                          <div class="clearfix mb-1"> <span class="float-start">
+                            @for ($i = 0; $i < $tourguide->personalRate; $i++)
+                            <i class="fa fa-star text-warning"></i>
+                            @endfor
+                            </span></div>
                           <button class="btn btn-outline-warning btn-block">Message</button>
                           <button class="btn btn-outline-primary btn-block btn-lg ">Request guide</button>
                         </div>
@@ -78,7 +83,11 @@
                           <h6 class="mb-0">Languages</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                          {{$tourguide->languages}}
+                          @for($i=0;$i<=1;$i++)
+                          <li>
+                            {{$languages[$i]}} 
+                          </li>
+                        @endfor
                         </div>
                       </div>
 
@@ -100,9 +109,14 @@
                     <div class="col-sm-6 mb-3">
                       <div class="card h-100">
                         <div class="card-body">
-                          <h2 class="d-flex justify-content-center mb-3">I will show you </h2>
-                          <div> Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur tenetur cumque numquam recusandae quas 
-                              officia esse maiores omnis reiciendis illum incidunt minus sapiente deleniti quibusdam ea, laudantium beatae eveniet molestiae?</div>
+                          <h2 class="d-flex justify-content-center mb-3">Activities </h2>
+                          <div> 
+                            <ul>
+                              @foreach(explode("|",$tourguide->activities) as $activity)
+                              <li>{{$activity}}</li>
+                              @endforeach
+                            </ul>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -113,6 +127,14 @@
     
     
     
+                </div>
+              </div>
+              <div class="container m-2" style="border: ">
+                <div class="card" style="width: 18rem;">
+                  <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  </div>
                 </div>
               </div>
     
