@@ -126,13 +126,17 @@
                 </div>
               </div> 
               <hr>
+              <!--
               {{-- review cards --}}
-              <div class="container m-2">
+              <div class="container"> -->
+                <!-- If there is any error -->
+                <!--
                 @if ($errors->any())
                 <div class="m-2 alert alert-success">
                   <strong> {{$errors->first()}}</strong>
                 </div>
-                @endif
+                @endif-->
+                <!--------The posted review-----
                 <h2>Some Reviews</h2>
                 <div class="row col-md-12">
                   @if (!empty($tourguide->reviews) )
@@ -151,24 +155,108 @@
                       @endforeach
                   @endif
 
-                
-                
               </div>
-              <br>
+              -->
 
-                <div class="card col-md-8">
+              <!-- CARD TEST -->
+            <div class="containter">
+            <!-- If there is any error -->
+            @if ($errors->any())
+                <div class="m-2 alert alert-success">
+                  <strong> {{$errors->first()}}</strong>
+                </div>
+            @endif
+            <!--------The posted review----->
+            <h2 style="font-size: 30px;">Some reviews</h2>
+
+            <!-- The text area for submiting a new review -->
+            <div class="card col-md-7 add-review-card border-0">
                   <div class="card-body">
-                    <h5 class="card-title">Add new review</h5>
+                    <h5 class="card-title"></h5>
                     <form action="{{route('addReviews')}}" role="form" method="POST">
                       @csrf
                       <div class="form-group">
                         <input type="hidden" name="tourguide" value="{{Crypt::encryptString($tourguide->id)}}">
-                        <textarea class="form-control" id="review"  name="review" rows="3"></textarea>
-                      </div>  
-                      <button type="submit" id="submitForm"  class="btn btn-info sign-up-button mx-2">Add</button>
+                        <textarea placeholder="Enter your review here .." class="form-control review-textarea" id="review"  name="review" rows="3"></textarea>
+                      </div>
+                       
+                        <div class="col-md-12 text-sm-right">
+                        <button type="submit" id="submitForm"  class="btn btn-warning submit-review-button">Add a new review</button>
+                        </div>
+  
                     </form>
                   </div>
                 </div>
+            <!-- END SUBMITING REVIEW -->
+
+              <div class="container-fluid px-1">
+              @if (!empty($tourguide->reviews) )
+                      @foreach ($tourguide->reviews as $review)
+                <div class="row justify-content-start">
+                  <div class="col-xl-7 col-lg-8 col-md-10 col-12 text-center">
+	
+                    <div class="card review-card border-0">
+                      <div class="row d-flex">
+                        <div class=""> <img class="review-profile-pic rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar7.png"> </div>
+                          <div class="d-flex flex-column">
+                            <h3 class="mt-2 mb-0 reviewer-name">{{$review->reviewername->firstName}}  {{$review->reviewername->lastName}}</h3>
+                            <div>
+                              <p class="text-left"><span class="text-muted">Tourist</span> <!--<span class="fa fa-star star-active ml-3"></span> <span class="fa fa-star star-active"></span>--></p>
+                            </div>
+                          </div>
+
+                          <div class="ml-auto">
+                              <p class="text-muted pt-5 pt-sm-3">{{date('d-m-Y', strtotime($review->created_at))}}</p>
+                          </div>
+                        </div>
+                        <div class="row text-left">
+                            <h4 class="review-headline mt-3">"An awesome activity to experience"</h4>
+                            <p class="review-body mt-2">{{$review->review}}.</p>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              @endforeach
+              @endif
+            </div>
+
+              <!-- END CARD TEST -->
+
+              <!-- CARD TEST -->
+              <div class="container-fluid px-1 ">
+                <div class="row justify-content-start">
+                  <div class="col-xl-7 col-lg-8 col-md-10 col-12 text-center">
+	
+                    <div class="card review-card border-0">
+                      <div class="row d-flex">
+                        <div class=""> <img class="review-profile-pic rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar7.png"> </div>
+                          <div class="d-flex flex-column">
+                            <h3 class="mt-2 mb-0 reviewer-name">Abla Afaf</h3>
+                            <div>
+                              <p class="text-left"><span class="text-muted">Tourist</span> <!--<span class="fa fa-star star-active ml-3"></span> <span class="fa fa-star star-active"></span>--></p>
+                            </div>
+                          </div>
+
+                          <div class="ml-auto">
+                              <p class="text-muted pt-5 pt-sm-3">10 Sept</p>
+                          </div>
+                        </div>
+                        <div class="row text-left">
+                            <h4 class="review-headline mt-3">"An awesome activity to experience"</h4>
+                            <p class="review-body mt-2">If you really enjoy spending your vacation 'on water' or would like to try something new and exciting for the first time.</p>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- END CARD TEST -->
+
+
+              <br>
+
+                
     
             </div>
         </div>

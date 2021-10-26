@@ -189,4 +189,54 @@ a:link{
 .profile-page{
     margin-top: 30px ;
 }
+
+/* Review system */
+.review-card{
+    border-radius: 5px;
+    background-color:#FAFAFA;
+    padding-left: 60px;
+    padding-right: 60px;
+    margin-top: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px
+	
+}
+
+.reviewer-name {
+	font-size: 20px;
+}
+
+.review-body {
+    font-size: 14px
+}
+
+.review-profile-pic {
+    width: 65px;
+    height: 65px;
+    border-radius: 100%;
+    margin-right: 30px
+}
+
+.review-headline {
+	font-size: 18px;
+    color: #EE7A2E
+}
+
+.submit-review-button {
+	background-color: #EE7A2E !important;
+	color: white !important;
+}
+
+/*
+.submit-review-button:hover {
+	background-color:white !important; 
+	color: #EE7A2E !important;
+	outline-color: #EE7A2E;
+}*/
+
+.review-textarea {
+	resize: none;
+	border-bottom: solid 5px;
+}
+
 /*End profile page*/
