@@ -149,7 +149,7 @@
                             <small>{{date('d-m-Y', strtotime($review->created_at))}}</small>
                            </div>
                            <hr>
-                          <q class="card-text">{{$review->review}}</q>
+                          <p class="card-text">{{$review->review}}</p>
                         </div>
                       </div>
                       @endforeach
@@ -197,7 +197,7 @@
 	
                     <div class="card review-card border-0">
                       <div class="row d-flex">
-                        <div class=""> <img class="review-profile-pic rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar7.png"> </div>
+                        <div class="card-title"> <img class="review-profile-pic rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar7.png"> </div>
                           <div class="d-flex flex-column">
                             <h3 class="mt-2 mb-0 reviewer-name">{{$review->reviewername->firstName}}  {{$review->reviewername->lastName}}</h3>
                             <div>
@@ -209,10 +209,12 @@
                               <p class="text-muted pt-5 pt-sm-3">{{date('d-m-Y', strtotime($review->created_at))}}</p>
                           </div>
                         </div>
-                        <div class="row text-left">
-                            <h4 class="review-headline mt-3">"An awesome activity to experience"</h4>
-                            <p class="review-body mt-2">{{$review->review}}.</p>
-                        </div>
+                        <div class="card-body text-left">
+                            <h4 class="review-headline text-left">"An awesome activity to experience"</h4>
+                            <p class="card-text" style="padding-left:10px">{{$review->review}}</p>
+
+                          </div>
+
                     </div>
                   </div>
                 </div>
