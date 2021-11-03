@@ -38,8 +38,7 @@ class TourguideController extends Controller
      */
     public function create()
     {
-        $languages = DB::table("languages")->orderBy("name","asc")->get();
-        return view('tourguide.create', compact('languages'));
+        return view('tourguide.create');
     }
 
     /**

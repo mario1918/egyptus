@@ -18,16 +18,17 @@ class CreateUsersTable extends Migration
             $table->string('firstName');
             $table->string('lastName');
             $table->string('username');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
             $table->string("profileImg");
             $table->boolean('isAdmin');
             $table->string('status');
             $table->integer('type');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('location');  //region for tourguide //country 
+            $table->date('birthdate');
+            $table->bigInteger('phoneNo')->nullable();
             $table->string("fb_link")->nullable();
-            $table->string("instagram")->nullable();
-            $table->string("portfolio")->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

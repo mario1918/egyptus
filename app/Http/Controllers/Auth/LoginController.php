@@ -29,11 +29,11 @@ class LoginController extends Controller
         $user = User::where("email", $request->email)->first();
         if(!empty($user))
         {
-        if($user->isadmin == 1 || $user->type == 2)
+        if($user->isAdmin == 1 || $user->type == 2)
         {
             if (Auth::attempt($credentials)) {
                //if user is admin => redirect on admin dashboard 
-                if($user->isadmin ==1)
+                if($user->isAdmin ==1)
                 {
                     return redirect('/');
                 }

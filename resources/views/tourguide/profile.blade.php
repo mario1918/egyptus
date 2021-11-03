@@ -126,37 +126,7 @@
                 </div>
               </div> 
               <hr>
-              <!--
-              {{-- review cards --}}
-              <div class="container"> -->
-                <!-- If there is any error -->
-                <!--
-                @if ($errors->any())
-                <div class="m-2 alert alert-success">
-                  <strong> {{$errors->first()}}</strong>
-                </div>
-                @endif-->
-                <!--------The posted review-----
-                <h2>Some Reviews</h2>
-                <div class="row col-md-12">
-                  @if (!empty($tourguide->reviews) )
-                      @foreach ($tourguide->reviews as $review)
-                      <div class="card col-md-4 mx-1" style="width: 20rem;">
-                        <div class="card-body">
-                          <h5 class="card-title"></h5>
-                          <div class="text-center m-2">
-                            <p>{{$review->reviewername->firstName}}</p>
-                            <small>{{date('d-m-Y', strtotime($review->created_at))}}</small>
-                           </div>
-                           <hr>
-                          <p class="card-text">{{$review->review}}</p>
-                        </div>
-                      </div>
-                      @endforeach
-                  @endif
-
-              </div>
-              -->
+             
 
               <!-- CARD TEST -->
             <div class="containter">

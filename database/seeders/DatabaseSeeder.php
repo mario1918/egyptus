@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -14,8 +15,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            languagesSeeder::class,
-            citiesSeeder::class,
+            AdminSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
     }

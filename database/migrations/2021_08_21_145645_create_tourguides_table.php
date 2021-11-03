@@ -20,8 +20,10 @@ class CreateTourguidesTable extends Migration
                 ->references('id')
                 ->on('users')
                 ->onUpdate('cascade')->onDelete("cascade");
-            $table->string("languages");
             $table->string("bio",500);
+            $table->string("work_exprience",2000);
+            $table->string("education");
+            $table->string("languages"); //["english" =>["spoken" => fluent , "wrriten" =>]
             $table->string("activities",300)->nullable();
             $table->integer("priceRate");
             $table->string("video",200)->nullable();

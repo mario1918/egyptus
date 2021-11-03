@@ -13,31 +13,31 @@
     <div class="col-md-12">
         <div class="tour-page d-flex justify-content-center">
             <div class="container">
-                <div class="row">
                     <div class="all-elements mt-5 ">
                         <h2 class="head-line mt-3 ml-2">Sign Up As Tour Guide</h2>
-
+                        <form method="POST" action="{{ route('tourguides.store') }}"  role="form" enctype="multipart/form-data">
+                            @csrf
                         <div class="container">
-                            <div class="row">
-                                <div class="col-md-5 col-xs-12 ml-lg-4">
-                                    <form method="POST" action="{{ route('tourguides.store') }}"  role="form" enctype="multipart/form-data">
-                                        @csrf
+                            
+                                <div class="step1" id="step1">
+                                    <div class="row">
+                                    <div class="  col-md-4 col-xs-12">
                                         <div class="form-group">
                                             <label class="labels-names" for="FirstName">First Name</label>
                                             <input type="text" class="form-control" id="FirstName" name="firstName"
-                                                   value="{{old("firstName")}}"
-                                                   placeholder="Enter Your First Name">
+                                                    value="{{old("firstName")}}"
+                                                    placeholder="Enter Your First Name">
                                             @error('firstName')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
 
                                         </div>
-
+    
                                         <div class="form-group">
                                             <label class="labels-names" for="lastName">Last Name</label>
                                             <input type="text" class="form-control" id="lastNmae" name="lastName"
-                                                   value="{{old("lastName")}}"
-                                                   placeholder="Enter Your Last Name">
+                                                    value="{{old("lastName")}}"
+                                                    placeholder="Enter Your Last Name">
                                             @error('lastName')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
@@ -45,13 +45,59 @@
                                         <div class="form-group">
                                             <label class="labels-names" for="username">Username</label>
                                             <input type="text" class="form-control" id="username" name="username"
-                                                   value="{{old("username")}}"
-                                                   placeholder="Enter Your Username">
+                                                    value="{{old("username")}}"
+                                                    placeholder="Enter Your Username">
                                             @error('username')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
+                                        <div class="form-group">
+                                            <label class="labels-names" for="username">location</label>
+                                            <input type="text" class="form-control" id="username" name="username"
+                                                    value="{{old("username")}}"
+                                                    placeholder="Enter Your Username">
+                                            @error('username')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class=" col-md-4 col-xs-12" style="margin-left: 15rem">
+                                        <div class="form-group">
+                                            <label class="labels-names" for="phoneNo">Phone Number</label>
+                                            <input type="number" class="form-control" id="number" name="phoneNo"
+                                                    value="{{old("phoneNo")}}"
+                                                    >
+                                            @error('phoneNo')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="labels-names" for="email">Email</label>
+                                            <input type="email" class="form-control" id="email" name="email"
+                                                    value="{{old("email")}}"
+                                                    placeholder="Email" required>
+                                            @error('email')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+    
+                                        <div class="form-group">
+                                            <label class="labels-names" for="password">Password</label>
+                                            <input type="password" class="form-control" id="password" name="password" required placeholder="Password">
+                                            @error('password')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="labels-names" for="confirm-password">Repeat your password</label>
+                                            <input type="password" class="form-control" id="confirm-password" name="confirmpassword" placeholder="Password">
+                                            {!! $errors->first('confirm-password', '<div class="invalid-feedback">:message</p>') !!}
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
                                         
+                                       <!-- 
                                         <div class="form-group activity dropdown bootstrap-select show-tick show" multiple="multiple" tabindex="null">
                                             <label class="labels-names" for="activities">Select Activities You Can do</label>
                                             <select required class=" selectpicker mr-sm-2 form-control" id="activities" name="activities[]"multiple="multiple" tabindex="null">
@@ -109,29 +155,7 @@
                                             @enderror
                                         </div>
                                 </div>
-                                <div class="col col-md-5 col-xs-12">
-                                    <div class="form-group">
-                                        <label class="labels-names" for="email">Email</label>
-                                        <input type="email" class="form-control" id="email" name="email"
-                                               value="{{old("email")}}"
-                                               placeholder="Email" required>
-                                        @error('email')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="labels-names" for="password">Password</label>
-                                        <input type="password" class="form-control" id="password" name="password" required placeholder="Password">
-                                        @error('password')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="labels-names" for="confirm-password">Repeat your password</label>
-                                        <input type="password" class="form-control" id="confirm-password" name="confirmpassword" placeholder="Password">
-                                        {!! $errors->first('confirm-password', '<div class="invalid-feedback">:message</p>') !!}
-                                    </div>
+                                
 
                                     <div class="form-group language dropdown bootstrap-select show-tick show" multiple="multiple" tabindex="null">
                                         <label class="labels-names" for="langauges">Select Your 2 langauges</label>
@@ -191,18 +215,20 @@
                                         <label class="labels-names" for="video">Upload a video: describing yourself(optional) max: 3 min</label>
                                         <input  type="file" id="video" name="video" accept="video/*">
 
-                                    </div>
-
+                                    </div> 
                                     <button type="submit" id="submitForm" class="btn btn-info sign-up-button mt-5">Sign Up</button>
                                     <div class="form-check mt-3 mb-5">
                                         <input type="checkbox" class="form-check-input" required id="exampleCheck1" name="accept_terms">
                                         <label class="form-check-label labels-names "for="exampleCheck1">I agree to the <span class="terms-policy">Terms of Service</span> and <span class="terms-policy">Privacy Policy</span>  </label>
                                     </div>
-                                </div>
-                                </form>
+                                -->
 
+                                    
+                                </div>
                             </div>
-                        </div>
+                        </form>
+
+                            
                     </div>
                 </div>
             </div>
