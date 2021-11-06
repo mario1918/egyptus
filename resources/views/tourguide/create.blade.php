@@ -15,11 +15,28 @@
             <div class="container">
                     <div class="all-elements mt-5 ">
                         <h2 class="head-line mt-3 ml-2">Sign Up As Tour Guide</h2>
+                        <ul class="nav nav-tabs nav-tabs-line">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#step1">Personal Information</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#step2">Work Experience</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#step3" tabindex="-1" aria-disabled="true">Educational Background</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#step4" tabindex="-1" aria-disabled="true">Langauges Fluency</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#step5" tabindex="-1" aria-disabled="true">Documents Uplaod</a>
+                            </li>
+                        </ul>
                         <form method="POST" action="{{ route('tourguides.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
-                        <div class="container">
-                            
-                                <div class="step1" id="step1">
+                        <div class="container tab-content mt-5" id="myTabContent">
+                            {{-- TAB 1: PERSONAL INFO --}}
+                                <div class="tab-pane fade show active" id="step1" role="tabpanel" aria-labelledby="step2" style="margin: 10px">
                                     <div class="row">
                                     <div class="  col-md-4 col-xs-12">
                                         <div class="form-group">
@@ -51,15 +68,28 @@
                                             <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                        <div class="form-group">
-                                            <label class="labels-names" for="username">location</label>
-                                            <input type="text" class="form-control" id="username" name="username"
-                                                    value="{{old("username")}}"
-                                                    placeholder="Enter Your Username">
-                                            @error('username')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
+
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <label class="labels-names" for="region">Region</label>
+                                                <input type="text" class="form-control" id="region" name="region"
+                                                        value="{{old("region")}}"
+                                                        placeholder="Enter Your Region">
+                                                @error('region')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label class="labels-names" for="country">Country</label>
+                                                <input type="text" class="form-control" id="country" name="country"
+                                                        value="{{old("country")}}"
+                                                        placeholder="Enter Your country">
+                                                @error('country')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
                                         </div>
+                                        
                                     </div>
                                     <div class=" col-md-4 col-xs-12" style="margin-left: 15rem">
                                         <div class="form-group">
@@ -95,7 +125,199 @@
                                         </div>
                                     </div>
                                     </div>
+                                    <button class="btn btn-success text-center">Next</button>
                                 </div>
+                            {{-- TAB 2: Work Experience --}}
+                                <div class="tab-pane fade" id="step2" role="tabpanel" aria-labelledby="step3" style="margin: 10px">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="form-group">
+                                                <label class="labels-names" for="work_experience"><b>1) Your Work Exprience</b></label>
+                                                <textarea class="form-control" id="work_experience"   name="work_experience" rows="5">{{old("work_experience")}}</textarea>
+                                                @error('work_experience')
+                                                <div class="alert alert-danger">The Work experience field is required.</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="form-group">
+                                                <label class="labels-names" for="bio"><b>2) Write description about yourself (200 words)</b></label>
+                                                <textarea class="form-control" id="bio"   name="bio" rows="3">{{old("bio")}}</textarea>
+                                                @error('work_experience')
+                                                <div class="alert alert-danger">The Bio field is required.</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {{-- TAB 3: Educational Background --}}
+                                <div class="tab-pane fade" id="step3" role="tabpanel" aria-labelledby="step4" style="margin: 10px">
+                                    <div class="row">
+                                        <table class="table table-striped  table-bordered">
+                                            <thead class="table-dark ">
+                                                <tr>
+                                                    <th>Degree</th>
+                                                    <th>University</th>
+                                                    <th>Graduation Year</th>
+                                                    <th>#</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                <td><input class="form-control" type="text" id="degree"   name="degree[]" /></td> 
+                                                <td><input class="form-control" type="text" id="uni"   name="uni[]" /></td>
+                                                <td><input class="form-control" type="date" id="gradYear"   name="gradYear[]" /></td>
+                                                <td><button class="btn btn-info">Add Another Education</button></td>
+                                                {{-- add other tr in the table ajax --}}
+                                                </tr>
+                                            </tbody>
+                                        </table> 
+                                    </div> 
+                                </div>
+                            {{-- TAB 4: Languages Fluency --}}
+                                <div class="tab-pane fade" id="step4" role="tabpanel" aria-labelledby="step5" style="margin: 10px">
+                                    <div class="row col-md-12">
+                                        <div class="form-group d-flex col-md-8">
+                                            <label class="labels-names " for="langName">Language Name  </label>
+                                            <input type="text" style="margin-left: 10px" class=" col-md-4 form-control" id="langName" name="langName[]">
+                                            @error('langName')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <button class=" col-md-2 btn btn-info right" style="margin-left:10rem">Add another Language</button>
+
+                                    </div>
+
+                                    <div style="margin-left: 10px">
+                                        <ul style="list-style-type: circle">
+                                            <li>
+                                                <div class="form-group">
+                                                    <label>Spoken</label>
+                                                    <div class="radio-inline">
+                                                        <label class="radio">
+                                                        <input type="radio" checked="checked" name="spoken">
+                                                        <span></span>Beginner</label>
+                                                        <label class="radio">
+                                                        <input type="radio" name="spoken">
+                                                        <span></span>Intermediate</label>
+                                                        <label class="radio">
+                                                        <input type="radio"  name="spoken">
+                                                        <span></span>Advanced</label>
+                                                        <label class="radio">
+                                                            <input type="radio"  name="spoken">
+                                                            <span></span>Fluent</label>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="form-group">
+                                                    <label>Written</label>
+                                                    <div class="radio-inline">
+                                                        <label class="radio">
+                                                        <input type="radio" checked="checked" name="written">
+                                                        <span></span>Beginner</label>
+                                                        <label class="radio">
+                                                        <input type="radio" name="written">
+                                                        <span></span>Intermediate</label>
+                                                        <label class="radio">
+                                                        <input type="radio" name="written">
+                                                        <span></span>Advanced</label>
+                                                        <label class="radio">
+                                                            <input type="radio"  name="written">
+                                                            <span></span>Fluent</label>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="form-group">
+                                                    <label>Comperhension</label>
+                                                    <div class="radio-inline">
+                                                        <label class="radio">
+                                                        <input type="radio" checked="checked" name="comperhension">
+                                                        <span></span>Beginner</label>
+                                                        <label class="radio">
+                                                        <input type="radio" name="comperhension">
+                                                        <span></span>Intermediate</label>
+                                                        <label class="radio">
+                                                        <input type="radio"  name="comperhension">
+                                                        <span></span>Advanced</label>
+                                                        <label class="radio">
+                                                            <input type="radio"  name="comperhension">
+                                                            <span></span>Fluent</label>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            {{-- TAB 5: Documents Uplaod --}}
+                                <div class="tab-pane fade" id="step5" role="tabpanel" aria-labelledby="" style="margin: 10px">
+                                    <div class="container">
+                                        <h3>1) National Id</h3>
+                                        <div class="row col-md-12">
+                                            <div class="form-group col-md-4">
+                                                <label class="labels-names" for="frontNation">Front</label>
+                                                <input type="file" class="form-control" id="frontNation" name="frontNation">
+                                                        
+                                                @error('frontNation')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+            
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label class="labels-names" for="backNation">Back</label>
+                                                <input type="file" class="form-control" id="backNation" name="backNation">
+                    
+                                                @error('backNation')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+            
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="container">
+                                        <h3>2) Tour Guiding License</h3>
+
+                                        <div class="row col-md-12">
+                                            <div class="form-group col-md-4">
+                                                <label class="labels-names" for="frontLicense">Front</label>
+                                                <input type="file" class="form-control" id="frontLicense" name="frontLicense">
+                                                        
+                                                @error('frontLicense')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+            
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label class="labels-names" for="backLicense">Back</label>
+                                                <input type="file" class="form-control" id="backLicense" name="backLicense">
+                    
+                                                @error('backLicense')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="container">
+                                        <h3>3) Personal Photo</h3>
+                                        <div class="form-group col-md-4">
+                                            <label class="labels-names" for="personPhoto">Personal Photo</label>
+                                            <input type="file" class="form-control" id="personPhoto" name="personPhoto">
+        
+                                            @error('personPhoto')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                        </div>
+                            
+
                                         
                                        <!-- 
                                         <div class="form-group activity dropdown bootstrap-select show-tick show" multiple="multiple" tabindex="null">
