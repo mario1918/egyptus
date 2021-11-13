@@ -47,3 +47,5 @@ Route::middleware(['admin'])->group(function()
 
 Route::group(['prefix' => 'admin'], function () {
 });
+
+// Route::get('/storeTrip',[con\TourguideController::class,'storeTrip']);

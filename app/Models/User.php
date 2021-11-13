@@ -21,6 +21,7 @@ class User extends Authenticatable
                 break;
         }
     }
+    
     /**
      * The attributes that are mass assignable.
      *

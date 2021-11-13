@@ -24,10 +24,10 @@ class CreateTourguidesTable extends Migration
             $table->string("work_exprience",2000);
             $table->string("education");
             $table->string("languages"); //["english" =>["spoken" => fluent , "wrriten" =>]
-            $table->string("activities",300)->nullable();
             $table->integer("priceRate");
+            $table->string('nationalId');
+            $table->string('tourLicense');
             $table->string("video",200)->nullable();
-            $table->string("cities");
             $table->integer("personalRate")->nullable();
             $table->timestamps();
         });

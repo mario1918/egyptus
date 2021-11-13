@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property $id
  * @property $name
+ * @property $price
  * @property $created_at
  * @property $updated_at
  *
@@ -29,7 +30,7 @@ class Activity extends Model
      *
      * @var array
      */
-    protected $fillable = ['name'];
+    protected $fillable = ['name','price'];
 
 
 

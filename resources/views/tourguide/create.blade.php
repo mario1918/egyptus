@@ -31,12 +31,25 @@
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#step5" tabindex="-1" aria-disabled="true">Documents Uplaod</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#step6" tabindex="-1" aria-disabled="true">Trips</a>
+                            </li>
                         </ul>
+                       
                         <form method="POST" action="{{ route('tourguides.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
                         <div class="container tab-content mt-5" id="myTabContent">
+                            {{-- @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif --}}
                             {{-- TAB 1: PERSONAL INFO --}}
-                                <div class="tab-pane fade show active" id="step1" role="tabpanel" aria-labelledby="step2" style="margin: 10px">
+                                {{-- <div style="display: none" class="tab-pane fade show active" id="step1" role="tabpanel" aria-labelledby="step2" style="margin: 10px">
                                     <div class="row">
                                     <div class="  col-md-4 col-xs-12">
                                         <div class="form-group">
@@ -88,8 +101,17 @@
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                                 @enderror
                                             </div>
+                                            
                                         </div>
-                                        
+                                        <div class="form-group">
+                                            <label class="labels-names" for="birthdate">Birthdate</label>
+                                            <input type="date" class="form-control" id="birthdate" required name="birthdate"
+                                                    value="{{old("birthdate")}}"
+                                                    >
+                                            @error('birthdate')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
                                     </div>
                                     <div class=" col-md-4 col-xs-12" style="margin-left: 15rem">
                                         <div class="form-group">
@@ -114,28 +136,28 @@
                                         <div class="form-group">
                                             <label class="labels-names" for="password">Password</label>
                                             <input type="password" class="form-control" id="password" name="password" required placeholder="Password">
+                                            <small>The password must contain: 
+                                                at least One <b>upper letter</b> , One <b>special character</b> and One <b>number</b> </small>
                                             @error('password')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="form-group">
                                             <label class="labels-names" for="confirm-password">Repeat your password</label>
-                                            <input type="password" class="form-control" id="confirm-password" name="confirmpassword" placeholder="Password">
-                                            {!! $errors->first('confirm-password', '<div class="invalid-feedback">:message</p>') !!}
+                                            <input type="password" class="form-control" id="confirm-password" name="password_confirmation" placeholder="Password">
                                         </div>
                                     </div>
                                     </div>
-                                    <button class="btn btn-success text-center">Next</button>
-                                </div>
+                                </div> --}}
                             {{-- TAB 2: Work Experience --}}
-                                <div class="tab-pane fade" id="step2" role="tabpanel" aria-labelledby="step3" style="margin: 10px">
+                                {{-- <div class="tab-pane fade d-none" id="step2" role="tabpanel" aria-labelledby="step3" style="margin: 10px">
                                     <div class="row">
                                         <div class="col-md-8">
                                             <div class="form-group">
                                                 <label class="labels-names" for="work_experience"><b>1) Your Work Exprience</b></label>
                                                 <textarea class="form-control" id="work_experience"   name="work_experience" rows="5">{{old("work_experience")}}</textarea>
                                                 @error('work_experience')
-                                                <div class="alert alert-danger">The Work experience field is required.</div>
+                                                <div class="alert alert-danger">{{$message}}</div>
                                                 @enderror
                                             </div>
                                         </div>
@@ -145,15 +167,16 @@
                                             <div class="form-group">
                                                 <label class="labels-names" for="bio"><b>2) Write description about yourself (200 words)</b></label>
                                                 <textarea class="form-control" id="bio"   name="bio" rows="3">{{old("bio")}}</textarea>
-                                                @error('work_experience')
-                                                <div class="alert alert-danger">The Bio field is required.</div>
+                                                @error('bio')
+                                                <div class="alert alert-danger">{{$message}}</div>
                                                 @enderror
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
+
                             {{-- TAB 3: Educational Background --}}
-                                <div class="tab-pane fade" id="step3" role="tabpanel" aria-labelledby="step4" style="margin: 10px">
+                                {{-- <div class="tab-pane fade" id="step3" role="tabpanel" aria-labelledby="step4" style="margin: 10px">
                                     <div class="row">
                                         <table class="table table-striped  table-bordered">
                                             <thead class="table-dark ">
@@ -166,22 +189,24 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                <td><input class="form-control" type="text" id="degree"   name="degree[]" /></td> 
-                                                <td><input class="form-control" type="text" id="uni"   name="uni[]" /></td>
-                                                <td><input class="form-control" type="date" id="gradYear"   name="gradYear[]" /></td>
+                                                <td><input class="form-control" type="text" id="degree" value="{{old('degree.0')}}"   name="degree[]" /></td> 
+                                                <td><input class="form-control" type="text" id="uni" value="{{old('uni.0')}}"   name="uni[]" /></td>
+                                                <td><input class="form-control" type="date" id="gradYear"  value="{{old('gradYear.0')}}"  name="gradYear[]" /></td>
                                                 <td><button class="btn btn-info">Add Another Education</button></td>
-                                                {{-- add other tr in the table ajax --}}
                                                 </tr>
+                                               
                                             </tbody>
                                         </table> 
                                     </div> 
-                                </div>
+
+                                </div> --}}
                             {{-- TAB 4: Languages Fluency --}}
-                                <div class="tab-pane fade" id="step4" role="tabpanel" aria-labelledby="step5" style="margin: 10px">
+                                {{-- <div class="tab-pane fade" id="step4" role="tabpanel" aria-labelledby="step5" style="margin: 10px">
                                     <div class="row col-md-12">
                                         <div class="form-group d-flex col-md-8">
                                             <label class="labels-names " for="langName">Language Name  </label>
-                                            <input type="text" style="margin-left: 10px" class=" col-md-4 form-control" id="langName" name="langName[]">
+                                            <input type="text" style="margin-left: 10px" class=" col-md-4 form-control" id="langName" 
+                                            value="{{old('langName.0')}}" name="langName[]">
                                             @error('langName')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
@@ -197,16 +222,16 @@
                                                     <label>Spoken</label>
                                                     <div class="radio-inline">
                                                         <label class="radio">
-                                                        <input type="radio" checked="checked" name="spoken">
+                                                        <input type="radio" checked="checked" value="beginner" name="spoken[]">
                                                         <span></span>Beginner</label>
                                                         <label class="radio">
-                                                        <input type="radio" name="spoken">
+                                                        <input type="radio" value="intermediate"  name="spoken[]">
                                                         <span></span>Intermediate</label>
                                                         <label class="radio">
-                                                        <input type="radio"  name="spoken">
+                                                        <input type="radio" value="advaned" name="spoken[]">
                                                         <span></span>Advanced</label>
                                                         <label class="radio">
-                                                            <input type="radio"  name="spoken">
+                                                            <input type="radio" value="fluent" name="spoken[]">
                                                             <span></span>Fluent</label>
                                                     </div>
                                                 </div>
@@ -216,16 +241,16 @@
                                                     <label>Written</label>
                                                     <div class="radio-inline">
                                                         <label class="radio">
-                                                        <input type="radio" checked="checked" name="written">
+                                                        <input type="radio" checked="checked" value="beginner" name="written[]">
                                                         <span></span>Beginner</label>
                                                         <label class="radio">
-                                                        <input type="radio" name="written">
+                                                        <input type="radio" value="intermediate"  name="written[]">
                                                         <span></span>Intermediate</label>
                                                         <label class="radio">
-                                                        <input type="radio" name="written">
+                                                        <input type="radio" value="advaned" name="written[]">
                                                         <span></span>Advanced</label>
                                                         <label class="radio">
-                                                            <input type="radio"  name="written">
+                                                            <input type="radio" value="fluent" name="written[]">
                                                             <span></span>Fluent</label>
                                                     </div>
                                                 </div>
@@ -235,31 +260,33 @@
                                                     <label>Comperhension</label>
                                                     <div class="radio-inline">
                                                         <label class="radio">
-                                                        <input type="radio" checked="checked" name="comperhension">
+                                                        <input type="radio" checked="checked" value="beginner" name="comperhension[]">
                                                         <span></span>Beginner</label>
                                                         <label class="radio">
-                                                        <input type="radio" name="comperhension">
+                                                        <input type="radio" value="intermediate" name="comperhension[]">
                                                         <span></span>Intermediate</label>
                                                         <label class="radio">
-                                                        <input type="radio"  name="comperhension">
+                                                        <input type="radio" value="advaned" name="comperhension[]">
                                                         <span></span>Advanced</label>
                                                         <label class="radio">
-                                                            <input type="radio"  name="comperhension">
+                                                            <input type="radio" value="fluent" name="comperhension[]">
                                                             <span></span>Fluent</label>
                                                     </div>
                                                 </div>
                                             </li>
                                         </ul>
-                                    </div>
-                                </div>
+                                    </div> --}}
+
+                                    
+                                {{-- </div> --}}
                             {{-- TAB 5: Documents Uplaod --}}
-                                <div class="tab-pane fade" id="step5" role="tabpanel" aria-labelledby="" style="margin: 10px">
+                                {{-- <div class="tab-pane fade" id="step5" role="tabpanel" aria-labelledby="" style="margin: 10px">
                                     <div class="container">
                                         <h3>1) National Id</h3>
                                         <div class="row col-md-12">
                                             <div class="form-group col-md-4">
                                                 <label class="labels-names" for="frontNation">Front</label>
-                                                <input type="file" class="form-control" id="frontNation" name="frontNation">
+                                                <input type="file" class="form-control" id="frontNation" value="{{old('frontNation')}}" name="frontNation">
                                                         
                                                 @error('frontNation')
                                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -268,7 +295,7 @@
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label class="labels-names" for="backNation">Back</label>
-                                                <input type="file" class="form-control" id="backNation" name="backNation">
+                                                <input type="file" class="form-control" value="{{old('backNation')}}" id="backNation" name="backNation">
                     
                                                 @error('backNation')
                                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -284,7 +311,7 @@
                                         <div class="row col-md-12">
                                             <div class="form-group col-md-4">
                                                 <label class="labels-names" for="frontLicense">Front</label>
-                                                <input type="file" class="form-control" id="frontLicense" name="frontLicense">
+                                                <input type="file" class="form-control" value="{{old('frontLicense')}}" id="frontLicense" name="frontLicense">
                                                         
                                                 @error('frontLicense')
                                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -293,7 +320,7 @@
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label class="labels-names" for="backLicense">Back</label>
-                                                <input type="file" class="form-control" id="backLicense" name="backLicense">
+                                                <input type="file" class="form-control" value="{{old('backLicense')}}" id="backLicense" name="backLicense">
                     
                                                 @error('backLicense')
                                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -305,16 +332,27 @@
                                     <div class="container">
                                         <h3>3) Personal Photo</h3>
                                         <div class="form-group col-md-4">
-                                            <label class="labels-names" for="personPhoto">Personal Photo</label>
-                                            <input type="file" class="form-control" id="personPhoto" name="personPhoto">
+                                            <label class="labels-names" for="profileImg">Personal Photo</label>
+                                            <input type="file" class="form-control" id="profileImg" value="{{old('profileImg')}}" name="profileImg">
         
                                             @error('personPhoto')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
-                                </div>
-                                
+                                </div> --}}
+                               
+                                <div class="tab-pane fade" id="step6" role="tabpanel" aria-labelledby="" style="margin: 10px">
+                                    <div class="form-group">
+                                        <label class="labels-names" for="frontNation">Front</label>
+                                        <input type="file" class="form-control" id="frontNation" value="{{old('frontNation')}}" name="frontNation">
+                                                
+                                        @error('frontNation')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+    
+                                    </div>
+                                    {{-- <input type="submit" name="submit" value="Submit"> --}}
                         </div>
                             
 
@@ -448,9 +486,9 @@
                                     
                                 </div>
                             </div>
+
                         </form>
 
-                            
                     </div>
                 </div>
             </div>
@@ -458,6 +496,30 @@
     </div>
 
     <script>
+        // function storeData()
+        // {
+        //     var act=[];
+        //     act[$("#actName").val()] =  $("#actPrice").val();
+        //     $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+        //     jQuery.ajax({
+        //     url: "/storeTrip",
+        //     method: 'GET',
+        //     data: {
+        //     "_token": "{{ csrf_token() }}",
+        //     "title":$("#title").val(),
+        //     "des":$("#des").val(),
+        //     act,
+        //     },
+        //     error: function(error)
+        //     {
+        //     console.log(error.responseJSON);
+        //     },
+        //     success:function(data){
+                
+        //     }
+        //     });
+        // }
+
      $(document).ready(function() {
         $('#activities').multiselect({
             includeSelectAllOption: true,
@@ -489,38 +551,9 @@
 
         });
 
-        // $(document).ready(function(){
-        //     $("#city").change(function(){
-        //         var selectedCountry = $(this).children("option:selected").val();
-        //         alert("You have selected the country - " + selectedCountry);
-        //     });
-        // });
-
 
     </script>
 
 
-    {{--    <section class="content container-fluid">--}}
-    {{--        <div class="row">--}}
-    {{--            <div class="col-md-12">--}}
-
-    {{--                @includeif('partials.errors')--}}
-
-    {{--                <div class="card card-default">--}}
-    {{--                    <div class="card-header">--}}
-    {{--                        <span class="card-title">Create Tourguide</span>--}}
-    {{--                    </div>--}}
-    {{--                    <div class="card-body">--}}
-    {{--                        <form method="POST" action="{{ route('tourguides.store') }}"  role="form" enctype="multipart/form-data">--}}
-    {{--                            @csrf--}}
-
-    {{--                            @include('tourguide.form')--}}
-
-    {{--                        </form>--}}
-    {{--                    </div>--}}
-    {{--                </div>--}}
-    {{--            </div>--}}
-    {{--        </div>--}}
-    {{--    </section>--}}
     
 @endsection
