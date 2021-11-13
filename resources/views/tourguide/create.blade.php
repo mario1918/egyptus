@@ -49,7 +49,7 @@
                             </div>
                         @endif --}}
                             {{-- TAB 1: PERSONAL INFO --}}
-                                {{-- <div style="display: none" class="tab-pane fade show active" id="step1" role="tabpanel" aria-labelledby="step2" style="margin: 10px">
+                                <div style="display: none" class="tab-pane fade show active" id="step1" role="tabpanel" aria-labelledby="step2" style="margin: 10px">
                                     <div class="row">
                                     <div class="  col-md-4 col-xs-12">
                                         <div class="form-group">
@@ -148,9 +148,9 @@
                                         </div>
                                     </div>
                                     </div>
-                                </div> --}}
+                                </div>
                             {{-- TAB 2: Work Experience --}}
-                                {{-- <div class="tab-pane fade d-none" id="step2" role="tabpanel" aria-labelledby="step3" style="margin: 10px">
+                                <div class="tab-pane fade d-none" id="step2" role="tabpanel" aria-labelledby="step3" style="margin: 10px">
                                     <div class="row">
                                         <div class="col-md-8">
                                             <div class="form-group">
@@ -173,10 +173,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div> --}}
+                                </div>
 
                             {{-- TAB 3: Educational Background --}}
-                                {{-- <div class="tab-pane fade" id="step3" role="tabpanel" aria-labelledby="step4" style="margin: 10px">
+                                <div class="tab-pane fade" id="step3" role="tabpanel" aria-labelledby="step4" style="margin: 10px">
                                     <div class="row">
                                         <table class="table table-striped  table-bordered">
                                             <thead class="table-dark ">
@@ -199,9 +199,9 @@
                                         </table> 
                                     </div> 
 
-                                </div> --}}
+                                </div>
                             {{-- TAB 4: Languages Fluency --}}
-                                {{-- <div class="tab-pane fade" id="step4" role="tabpanel" aria-labelledby="step5" style="margin: 10px">
+                                <div class="tab-pane fade" id="step4" role="tabpanel" aria-labelledby="step5" style="margin: 10px">
                                     <div class="row col-md-12">
                                         <div class="form-group d-flex col-md-8">
                                             <label class="labels-names " for="langName">Language Name  </label>
@@ -278,9 +278,9 @@
                                     </div> --}}
 
                                     
-                                {{-- </div> --}}
+                                </div>
                             {{-- TAB 5: Documents Uplaod --}}
-                                {{-- <div class="tab-pane fade" id="step5" role="tabpanel" aria-labelledby="" style="margin: 10px">
+                                <div class="tab-pane fade" id="step5" role="tabpanel" aria-labelledby="" style="margin: 10px">
                                     <div class="container">
                                         <h3>1) National Id</h3>
                                         <div class="row col-md-12">
@@ -340,19 +340,10 @@
                                             @enderror
                                         </div>
                                     </div>
-                                </div> --}}
+                                </div>
                                
-                                <div class="tab-pane fade" id="step6" role="tabpanel" aria-labelledby="" style="margin: 10px">
-                                    <div class="form-group">
-                                        <label class="labels-names" for="frontNation">Front</label>
-                                        <input type="file" class="form-control" id="frontNation" value="{{old('frontNation')}}" name="frontNation">
-                                                
-                                        @error('frontNation')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-    
-                                    </div>
-                                    {{-- <input type="submit" name="submit" value="Submit"> --}}
+                               
+                                    <input type="submit" name="submit" value="Submit">
                         </div>
                             
 
