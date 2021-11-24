@@ -27,7 +27,7 @@
       <a href="profile.html">Get A TourGuide Now</a>
   </div>
   <div class=" animate__animated animate__bounceInRight whats-happening animate__slow animate__delay-1s">
-      <a href="TourGuideRegister.html" style="text-decoration: none;"><h2>Become a tour guide</h2></a>
+      <a href="{{route('tourguideSignup')}}" style="text-decoration: none;"><h2>Become a tour guide</h2></a>
   </div>
 
 

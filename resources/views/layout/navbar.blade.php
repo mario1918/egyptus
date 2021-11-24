@@ -2,7 +2,7 @@
   <!-- Start Navbar Section -->
   <div class="upper-nav">
     <div class="container">
-        <span class="special"><a href="TourGuideRegister.html"> Sign Up as Tourguide</a></span>
+        <span class="special"><a href="{{route('tourguideSignup')}}"> Sign Up as Tourguide</a></span>
         <span><a href="login.html"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a></span>
 
     </div>
