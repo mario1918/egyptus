@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="images/Logo_cropped.png" type="image/icon type">
-    <title>Egyptus</title>
+
+    <title>@yield("title")Egyptus</title>
+    <link rel="icon" href="{{asset('images/titlelogo.png')}}" type="image/icon type">
 
     <!-- Css Files -->
     <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
@@ -14,6 +15,7 @@
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/front.css')}}">
     <link rel="stylesheet" href="{{asset('css/animate.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/profile.css')}}">
 
 
     <!-- Google Fonts -->

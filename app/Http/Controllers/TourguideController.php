@@ -233,7 +233,7 @@ class TourguideController extends Controller
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $img->getClientOriginalExtension();
             $fileImgName = $name. "_". $user . "_" . time().'.'.$extension;
-            $pathImg = $img->storeAs('tourGuideDocuments',$fileImgName);
+            $pathImg = $img->storeAs('public/tourGuideDocuments',$fileImgName);
         return $pathImg;
     }
 
@@ -294,10 +294,11 @@ class TourguideController extends Controller
     }
     public function profile($id)
     {
-        $tourguide = Tourguide::findOrFail(Crypt::decryptString($id));
-      
+        $tourguide = Tourguide::findOrFail($id);
+        $languages = explode(',',$tourguide->languages);
+        $lang = $languages[0];
 
-        return view('tourguide.profile',compact('tourguide'));
+        return view('tourguide.profile',compact('tourguide','lang'));
     }
 
      public function addReviews(Request $request)

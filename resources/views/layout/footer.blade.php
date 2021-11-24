@@ -39,6 +39,7 @@
  <script src="{{asset('js/bootstrap.min.js')}}"></script>
  <script src="{{asset('js/slider.js')}}"></script>
  <script src="{{asset('js/front.js')}}"></script>
+
 </body>
 
 </html>

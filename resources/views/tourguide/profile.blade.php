@@ -1,257 +1,479 @@
 @extends('layout.header')
-@section('template_title')
+@section('title')
     {{$tourguide->user->firstName }} Profile
 @endsection
 @section('content')
+
+@include('layout.navbar')
 @if ($errors->any())
 <div class="m-2 alert alert-info">
    <strong> {{$errors->first()}}</strong>
 </div>
 @endif
-<div class="profile-page">
-    <div class="container">
-        <div class="main-body">
-
-              <div class="row gutters-sm">
-                <div class="col-md-4 mb-3">
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="d-flex flex-column align-items-center text-center">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
-                        <div class="mt-3">
-                          <h4>{{$tourguide->user->firstName}}</h4>
-                          <p class="text-muted font-size-sm">{{$tourguide->bio}}</p>
-                          <div class="clearfix mb-1"> <span class="float-start">
-                            @for ($i = 0; $i < $tourguide->personalRate; $i++)
-                            <i class="fa fa-star text-warning"></i>
-                            @endfor
-                            </span></div>
-                          <button class="btn btn-outline-warning btn-block">Message</button>
-                          <button class="btn btn-outline-primary btn-block btn-lg ">Request guide</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="card mt-3">
-                    <ul class="list-group list-group-flush">
-                      <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                        <h6 class="mb-0"> <i class="fa fa-google mr-3" aria-hidden="true"></i>Website</h6>
-                        <span class="text-secondary">{{$tourguide->user->portfolio}}</span>
-                      </li> 
-                      <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                        <h6 class="mb-0"><i class="fa fa-facebook mr-3" aria-hidden="true"></i>Facebook</h6>
-                        <a href="https://www.facebook.com/{{$tourguide->user->fb_link}}"><span class="text-secondary">{{$tourguide->user->fb_link}}</span></a>
-                      </li>
-                    </ul>
-                  </div>
-
-                </div>
-
-                <div class="col-md-8">
-                  <div class="card mb-3">
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <h6 class="mb-0">Full Name</h6>
-                        </div>
-                        <div class="col-sm-9 text-secondary">
-                          {{$tourguide->user->firstName}}      {{$tourguide->user->lastName}}
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <h6 class="mb-0">Locations & places</h6>
-                        </div>
-                        <div class="col-sm-9 text-secondary">
-                          {{$tourguide->cities}}
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <h6 class="mb-0">Price rate</h6>
-                        </div>
-                        <div class="col-sm-9 text-secondary">
-                          <strong>${{$tourguide->priceRate}}</strong>/hour
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <h6 class="mb-0">Languages</h6>
-                        </div>
-                        <div class="col-sm-9 text-secondary">
-                        <p>{{$tourguide->languages}}</p>
-                        </div>
-                      </div>
-
-                 
-                    </div>
-                  </div>
-    
-                  <div class="row gutters-sm">
-                    <div class="col-sm-6 mb-3">
-                      <div class="card h-100">
-                        <div class="card-body">
-                            <h2 class="d-flex justify-content-center mb-3">About me</h2>
-                            <div> {{$tourguide->bio}}</div>
-    
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-sm-6 mb-3">
-                      <div class="card h-100">
-                        <div class="card-body">
-                          <h2 class="d-flex justify-content-center mb-3">Activities </h2>
-                          <div> 
-                            <ul>
-                              @foreach(explode(",",$tourguide->activities) as $activity)
-                              <li>{{$activity}}</li>
-                              @endforeach
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
 
 
+ <!-- Start Main Section -->
 
-                  </div>
-    
-    
-    
-                </div>
-              </div> 
+ <section class="profile">
+  <div class="container">
+      <div class="info">
+          <h1 class="Tourguide-name">{{$tourguide->user->firstName }} {{$tourguide->user->lastName }}</h1>
+          <button data-toggle="modal" data-target="#book">Travel With {{$tourguide->user->firstName }}</button>
+      </div>
+      <div class="row">
+          <div class="col-lg-4 col-md-6 col-xs-12 col-sm-12">
+              <img width="100%" height="250" width="100"  src="{{asset('storage/' . $tourguide->user->profileImg  )}}" alt="user-image">
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quibusdam ipsa magnam quia, tempore facilis ea, iusto, ratione vel ipsum repellat incidunt culpa iure quam quas. Ipsum quas magnam tenetur illum optio doloribus doloremque porro
+                  nihil temporibus aperiam, nisi exercitationem maiores nesciunt unde sed tempora sapiente corrupti distinctio culpa eius asperiores!
+              </p>
               <hr>
-             
-
-              <!-- CARD TEST -->
-            <div class="containter">
-            <!-- If there is any error -->
-            @if ($errors->any())
-                <div class="m-2 alert alert-success">
-                  <strong> {{$errors->first()}}</strong>
-                </div>
-            @endif
-            <!--------The posted review----->
-            <h2 style="font-size: 30px;">Some reviews</h2>
-
-            <!-- The text area for submiting a new review -->
-            <div class="card col-md-7 add-review-card border-0">
-                  <div class="card-body">
-                    <h5 class="card-title"></h5>
-                    <form action="{{route('addReviews')}}" role="form" method="POST">
-                      @csrf
-                      <div class="form-group">
-                        <input type="hidden" name="tourguide" value="{{Crypt::encryptString($tourguide->id)}}">
-                        <textarea placeholder="Enter your review here .." class="form-control review-textarea" id="review"  name="review" rows="3"></textarea>
-                      </div>
-                       
-                        <div class="col-md-12 text-sm-right">
-                        <button type="submit" id="submitForm"  class="btn btn-warning submit-review-button">Add a new review</button>
-                        </div>
-  
-                    </form>
-                  </div>
-                </div>
-            <!-- END SUBMITING REVIEW -->
-
-              <div class="container-fluid px-1">
-              @if (!empty($tourguide->reviews) )
-                      @foreach ($tourguide->reviews as $review)
-                <div class="row justify-content-start">
-                  <div class="col-xl-7 col-lg-8 col-md-10 col-12 text-center">
-	
-                    <div class="card review-card border-0">
-                      <div class="row d-flex">
-                        <div class="card-title"> <img class="review-profile-pic rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar7.png"> </div>
-                          <div class="d-flex flex-column">
-                            <h3 class="mt-2 mb-0 reviewer-name">{{$review->reviewername->firstName}}  {{$review->reviewername->lastName}}</h3>
-                            <div>
-                              <p class="text-left"><span class="text-muted">Tourist</span> <!--<span class="fa fa-star star-active ml-3"></span> <span class="fa fa-star star-active"></span>--></p>
-                            </div>
-                          </div>
-
-                          <div class="ml-auto">
-                              <p class="text-muted pt-5 pt-sm-3">{{date('d-m-Y', strtotime($review->created_at))}}</p>
-                          </div>
-                        </div>
-                        <div class="card-body text-left">
-                            <h4 class="review-headline text-left">"An awesome activity to experience"</h4>
-                            <p class="card-text" style="padding-left:10px">{{$review->review}}</p>
-
-                          </div>
-
-                    </div>
-                  </div>
-                </div>
+              <h3>Expertise</h3>
+              <div class="Expertise">
+                  <span>Local Cuisine</span><span>Local Culture</span>
+                  <span>Safari</span><span>Biking</span>
               </div>
-              @endforeach
-              @endif
+              <hr>
+              <h3>Languages</h3>
+              <div class="Expertise">
+                  <span>{{$lang}}</span>
+              </div>
+          </div>
+          <div class="col-lg-8 col-md-6 col-xs-12 col-sm-12">
+              <div class="slider-container">
+                  <div id="slide-number" class="slide-number"></div>
+                  <img src="{{asset('images/profileimages/Hurghada.jpg')}}" alt="" />
+                  <img src="{{asset('images/profileimages/Sharm.jpg')}}" alt="" />
+                  <img src="{{asset('images/profileimages/Pyrimades.jpg')}}" alt="" />
+                  <img src="{{asset('images/profileimages/SaltyLakes.jpg')}}" alt="" />
+                  <img src="{{asset('images/profileimages/ParoonCastle.jpg')}}" alt="" />
+
+              </div>
+              <div class="slider-controls">
+                  <span style="display: none;" id="prev" class="prev">previous</span>
+                  <span id="indicator" class="indicator">
+                      
+                  </span>
+                  <span style="display: none;" id="next" class="next">next</span>
+              </div>
+              <div class="slider-container2">
+                  <div style="display:none;" id="slide-number2" class="slide-number2"></div>
+                  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis, dolorem? Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis tempora asperiores ex dolorem dolorum eveniet corrupti dolor facere! Ab, nam. Lorem
+                      ipsum dolor sit amet consectetur, adipisicing elit. Numquam, molestias Mario!
+                      <br>
+                      <a  data-toggle="modal" data-target="#hurgada">Click to view this trip activities</a>
+                  </p>
+                  <p>Lorem ipsum dolor, sit elit. Perspiciatis, dolorem? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, quibusdam, tenetur magnam nam quaerat expedita hic nemo mollitia quod nostrum eius blanditiis quam veniam. Fugit
+                      quasi nobis earum? Veniam a iusto ullam eligendi quos voluptate est quo quibusdam. Libero unde repudiandae dicta cumque porro magnam ratione harum laudantium cum numquam! Lorem ipsum dolor sit amet consectetur, adipisicing
+                      elit. Deserunt, ipsam Ashraf!
+                  </p>
+                  <p>Lorem ipsum dolor, sit amet consecteturconsecteturconsectetur adipisicing elit. Perspiciatis, dolorem? Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis reprehenderit velit, temporibus totam laudantium ipsam!
+                      Nemo suscipit facere libero cum nobis blanditiis illum in fugiat sunt aperiam? Nulla, odit saepe illo at eius commodi nemo molestias voluptate, sed magnam fuga! Lorem, ipsum. Sobhy
+                  </p>
+                  <p>Lorem ipsum dolor, sit amet adipisicing elit. Perspiciatis, dolorem? Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, officia. Deleniti minima possimus officiis facilis quo. Lorem ipsum dolor, sit amet consectetur
+                      adipisicing elit. Officiis unde soluta quod voluptate vel sed nesciunt culpa illo pariatur veritatis ad assumenda odio, nobis eius aspernatur? Ea, eum!
+
+                  </p>
+                  <p>Lorem ipsum dolor, sit amet consectetur . Perspiciatis, dolorem? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iure suscipit adipisci ducimus. Nemo impedit, eius quasi est similique accusamus labore dignissimos amet
+                      fuga nobis facilis ea reiciendis cum nisi molestiae porro! Consequuntur culpa ipsum repellendus. Blanditiis aliquam quasi, voluptate omnis similique voluptates placeat adipisci doloribus impedit dolore et quae dolorum dolorem
+                      culpa, tenetur temporibus voluptatem quia ad explicabo. Accusamus, molestias? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit, porro.
+                  </p>
+
+              </div>
+
+          </div>
+      </div>
+  </div>
+</section>
+
+
+<!-- End Main Section -->
+
+
+    <!-- Start Favorite Trips Section  -->
+    <section class="favorite-trips">
+      <div class="container">
+          <h1>My favorite trips and tips</h1>
+          <div class="row">
+              <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                  <img width="100%" src="{{asset('images/Pyramids.jpg')}}" alt="Pyramids">
+                  <a href="#">The Egyptian pyramids are ancient masonry structures located in Egypt</a>
+                  <i class="fa fa-map-marker" aria-hidden="true"> Egypt, Giza</i>
+                  <h3>I made a headstart last night on my New Years resolution to read more. My first book "How to...</h3>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                  <img height="500px" width="100%" src="{{asset('images/CairoTower.jpg')}}" alt="Pyramids">
+                  <a href="#">The Egyptian Ciro Tower located in Egypt Cairo </a>
+                  <i class="fa fa-map-marker" aria-hidden="true"> Egypt, Cairo</i>
+                  <h3>There is nothing as rewarding for a travel advisor as receiving amazing, positive feedback even...</h3>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <!-- End Favorite Trips Section Styling -->
+
+
+  <!-- Start Reviews Section -->
+  <section class="reviews">
+      <div class="container">
+          <h1>Reviews</h1>
+          <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <h2><span class="bold-black">Josh . </span>Thailand</h2><span>Reivew provided by John</span>
+                  <p>
+                      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit, voluptate placeat. Atque fugit expedita repudiandae quibusdam accusantium amet voluptatum fugiat itaque unde saepe, delectus assumenda dignissimos facilis asperiores magnam possimus voluptatibus
+                      tempora perferendis beatae corrupti porro nemo laboriosam quos rerum? Debitis, delectus illum. Quae quia eius neque porro repellat earum!
+                  </p>
+              </div>
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <h2><span class="bold-black">Josh . </span>Egypt</h2><span>Reivew provided by John</span>
+                  <p>
+                      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit, voluptate placeat. Atque fugit expedita repudiandae quibusdam accusantium amet voluptatum fugiat itaque unde saepe, delectus assumenda dignissimos facilis asperiores magnam possimus voluptatibus
+                      tempora perferendis beatae corrupti porro nemo laboriosam quos rerum? Debitis, delectus illum. Quae quia eius neque porro repellat earum!
+                  </p>
+              </div>
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <h2><span class="bold-black">Josh . </span>USA</h2><span>Reivew provided by John</span>
+                  <p>
+                      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit, voluptate placeat. Atque fugit expedita repudiandae quibusdam accusantium amet voluptatum fugiat itaque unde saepe, delectus assumenda dignissimos facilis asperiores magnam possimus voluptatibus
+                      tempora perferendis beatae corrupti porro nemo laboriosam quos rerum? Debitis, delectus illum. Quae quia eius neque porro repellat earum!
+                  </p>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <!-- End Reviews Section -->
+
+   <!-- End Reviews Section -->
+<!-- End Reviews Section -->
+
+    <!-- Start of Activites Modal -->
+        <div class="modal fade" id="hurgada" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLongTitle">Hurghada Activites Menu</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th scope="col">Title</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Price (USD)</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            
+                            <td scope="row">Diving</td>
+                            <td>bla bla bla blaaaah</td>
+                            <td>50</td>
+                          </tr>
+                          <tr>
+                            
+                            <td scope="row">Snorkling</td>
+                            <td>Another bla bla bla blaaahh</td>
+                            <td>30</td>
+                          </tr>
+                          <tr>
+                            <td scope="row">Beach</td>
+                            <td>bla bla bla blaaaah</td>
+                            <td>25</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
             </div>
-
-              <!-- END CARD TEST -->
-
-              <!-- CARD TEST -->
-              <div class="container-fluid px-1 ">
-                <div class="row justify-content-start">
-                  <div class="col-xl-7 col-lg-8 col-md-10 col-12 text-center">
-	
-                    <div class="card review-card border-0">
-                      <div class="row d-flex">
-                        <div class=""> <img class="review-profile-pic rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar7.png"> </div>
-                          <div class="d-flex flex-column">
-                            <h3 class="mt-2 mb-0 reviewer-name">Abla Afaf</h3>
-                            <div>
-                              <p class="text-left"><span class="text-muted">Tourist</span> <!--<span class="fa fa-star star-active ml-3"></span> <span class="fa fa-star star-active"></span>--></p>
-                            </div>
-                          </div>
-
-                          <div class="ml-auto">
-                              <p class="text-muted pt-5 pt-sm-3">10 Sept</p>
-                          </div>
-                        </div>
-                        <div class="row text-left">
-                            <h4 class="review-headline mt-3">"An awesome activity to experience"</h4>
-                            <p class="review-body mt-2">If you really enjoy spending your vacation 'on water' or would like to try something new and exciting for the first time.</p>
-                        </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- END CARD TEST -->
-
-
-              <br>
-
-                
-    
             </div>
         </div>
+    <!-- End of Activities Modal-->
 
-        {{-- <script>
-          function addReview() {
+    <!-- Start of Booking Modal-->
+            <div class="modal fade" id="book" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h2 class="modal-title" id="exampleModalLongTitle">Travel With John</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <h3>Please Select the activites you wish to do</h3>
+                        <div class="panel-group" id="my_accordian">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title" data-target="#panel-hurgada" data-toggle="collapse" data-parent="#my_accordian">Hurgada</h4>
+                                </div>
+                                <div class="panel-collapse collapse" id="panel-hurgada">
+                                    <table class="table table-hover">
+                                        <thead>
+                                          <tr>
+                                           
+                                            <th scope="col">Title</th>
+                                            <th scope="col">Description</th>
+                                            <th scope="col">Price (USD)</th>
+                                            <th scope="col">Select</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+                                            
+                                            <td scope="row">Diving</td>
+                                            <td>bla bla bla blaaaah</td>
+                                            <td>50</td>
+                                            <td><input type="checkbox"></td>
+                                          </tr>
+                                          <tr>
+                                            
+                                            <td scope="row">Snorkling</td>
+                                            <td>Another bla bla bla blaaahh</td>
+                                            <td>30</td>
+                                            <td><input type="checkbox"></td>
+                                          </tr>
+                                          <tr>
+                                            <td scope="row">Beach</td>
+                                            <td>bla bla bla blaaaah</td>
+                                            <td>25</td>
+                                            <td><input type="checkbox"></td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                </div>
+                            </div>
 
-            $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
-            jQuery.ajax({
-                url: "/addReview",
-                method: 'GET',
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    trans,
-                },
-                error: function(error)
-                {
-                    console.log(error.responseJSON);
-                },
-                success:function(data){
-                    
-                }
-            });
-}
-        </script> --}}
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title" data-target="#panel-sharm" data-toggle="collapse" data-parent="#my_accordian">Sharm</h4>
+                                </div>
+                                <div class="panel-collapse collapse" id="panel-sharm">
+                                    <table class="table table-hover">
+                                        <thead>
+                                          <tr>
+                                           
+                                            <th scope="col">Title</th>
+                                            <th scope="col">Description</th>
+                                            <th scope="col">Price (USD)</th>
+                                            <th scope="col">Select</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+                                            
+                                            <td scope="row">Diving</td>
+                                            <td>bla bla bla blaaaah</td>
+                                            <td>50</td>
+                                            <td><input type="checkbox"></td>
+                                          </tr>
+                                          <tr>
+                                            
+                                            <td scope="row">Snorkling</td>
+                                            <td>Another bla bla bla blaaahh</td>
+                                            <td>30</td>
+                                            <td><input type="checkbox"></td>
+                                          </tr>
+                                          <tr>
+                                            <td scope="row">Beach</td>
+                                            <td>bla bla bla blaaaah</td>
+                                            <td>25</td>
+                                            <td><input type="checkbox"></td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title" data-target="#panel-pyramids" data-toggle="collapse" data-parent="#my_accordian">Pyramids</h4>
+                                </div>
+                                <div class="panel-collapse collapse" id="panel-pyramids">
+                                    <table class="table table-hover">
+                                        <thead>
+                                          <tr>
+                                           
+                                            <th scope="col">Title</th>
+                                            <th scope="col">Description</th>
+                                            <th scope="col">Price (USD)</th>
+                                            <th scope="col">Select</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+                                            
+                                            <td scope="row">Diving</td>
+                                            <td>bla bla bla blaaaah</td>
+                                            <td>50</td>
+                                            <td><input type="checkbox"></td>
+                                          </tr>
+                                          <tr>
+                                            
+                                            <td scope="row">Snorkling</td>
+                                            <td>Another bla bla bla blaaahh</td>
+                                            <td>30</td>
+                                            <td><input type="checkbox"></td>
+                                          </tr>
+                                          <tr>
+                                            <td scope="row">Beach</td>
+                                            <td>bla bla bla blaaaah</td>
+                                            <td>25</td>
+                                            <td><input type="checkbox"></td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title" data-target="#panel-salty" data-toggle="collapse" data-parent="#my_accordian">Salty Lakes</h4>
+                                </div>
+                                <div class="panel-collapse collapse" id="panel-salty">
+                                    <table class="table table-hover">
+                                        <thead>
+                                          <tr>
+                                           
+                                            <th scope="col">Title</th>
+                                            <th scope="col">Description</th>
+                                            <th scope="col">Price (USD)</th>
+                                            <th scope="col">Select</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+                                            
+                                            <td scope="row">Diving</td>
+                                            <td>bla bla bla blaaaah</td>
+                                            <td>50</td>
+                                            <td><input type="checkbox"></td>
+                                          </tr>
+                                          <tr>
+                                            
+                                            <td scope="row">Snorkling</td>
+                                            <td>Another bla bla bla blaaahh</td>
+                                            <td>30</td>
+                                            <td><input type="checkbox"></td>
+                                          </tr>
+                                          <tr>
+                                            <td scope="row">Beach</td>
+                                            <td>bla bla bla blaaaah</td>
+                                            <td>25</td>
+                                            <td><input type="checkbox"></td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title" data-target="#panel-paroon" data-toggle="collapse" data-parent="#my_accordian">Paroon Palace</h4>
+                                </div>
+                                <div class="panel-collapse collapse" id="panel-paroon">
+                                    <table class="table table-hover">
+                                        <thead>
+                                          <tr>
+                                           
+                                            <th scope="col">Title</th>
+                                            <th scope="col">Description</th>
+                                            <th scope="col">Price (USD)</th>
+                                            <th scope="col">Select</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+                                            
+                                            <td scope="row">Diving</td>
+                                            <td>bla bla bla blaaaah</td>
+                                            <td>50</td>
+                                            <td><input type="checkbox"></td>
+                                          </tr>
+                                          <tr>
+                                            
+                                            <td scope="row">Snorkling</td>
+                                            <td>Another bla bla bla blaaahh</td>
+                                            <td>30</td>
+                                            <td><input type="checkbox"></td>
+                                          </tr>
+                                          <tr>
+                                            <td scope="row">Beach</td>
+                                            <td>bla bla bla blaaaah</td>
+                                            <td>25</td>
+                                            <td><input type="checkbox"></td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <form>
+                            <div class="form-group form-inline">
+                              <label for="exampleFormControlInput1">How many persons?</label>
+                              <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="2">
+                            </div>
+
+                            <div class="form-group form-inline">
+                                <label for="exampleFormControlInput1">Do you need a hotel pickup?</label>
+                                <input type="radio" class="form-control" name="hotel-pickup" > Yes
+                                <input type="radio" class="form-control" name="hotel-pickup"> No
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">Please let us know if need any special request</label>
+                                <br>
+                                <textarea name="special-request" id="" cols="70" rows="5"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">Please pickup the desired date</label>
+                                <input type="date">
+                            </div>
+                            
+                        </form>
+
+                        <div>
+                            <div class="text-right"><h4>Total: <strong>USD###</strong></h4></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#success-book" data-dismiss="modal">Send Request</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+
+            <div class="modal" id="success-book" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Success</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-success" role="alert">
+                            Thank you for Booking this trip. We will Get back to you once your booking it is confirmed!
+                          </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+    <!-- End of Booking Modal-->
+    <script src="{{asset('js/profileslider.js')}}"></script>
+@include('layout.footer')
 @endsection
