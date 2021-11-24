@@ -21,13 +21,14 @@ class CreateTourguidesTable extends Migration
                 ->on('users')
                 ->onUpdate('cascade')->onDelete("cascade");
             $table->string("bio",500);
-            $table->string("work_exprience",2000);
+            $table->string("work_experience",2000);
             $table->string("education");
             $table->string("languages"); //["english" =>["spoken" => fluent , "wrriten" =>]
             $table->integer("priceRate");
             $table->string('nationalId');
+            $table->string('activities')->nullable();
             $table->string('tourLicense');
-            $table->string("video",200)->nullable();
+            $table->string("video",200)->nullable(); //not used
             $table->integer("personalRate")->nullable();
             $table->timestamps();
         });

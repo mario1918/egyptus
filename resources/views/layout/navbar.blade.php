@@ -1,34 +1,44 @@
 <!--start navbar -->
+  <!-- Start Navbar Section -->
+  <div class="upper-nav">
+    <div class="container">
+        <span class="special"><a href="TourGuideRegister.html"> Sign Up as Tourguide</a></span>
+        <span><a href="login.html"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a></span>
 
-<nav class=" second-nav navbar navbar-expand-lg navbar-mainbg">
-  <p class=" navbar-brand navbar-logo" style="margin-left: 6%;"><a href="{{route('home')}}" style="color: wheat">Egyptus</a><p>
+    </div>
+</div>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-  <i class="fa fa-bars text-white"></i>
-  </button>
+<nav id="navbar" class="navbar navbar-inverse">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-nav" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html"> <img src="images/logo.png" alt="Egyptus Logo"> </a>
+        </div>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-right: 6%;">
-      <ul class="navbar-nav ml-auto mr-2">
-          <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="app-nav">
+            <ul class="main-ul nav navbar-nav navbar-left">
+                <li><a href="index.html"> Home</a></li>
+                <li><a href="#about"> About</a></li>
+                <li><a href="profile.html"> Meet a tour guide</a></li>
+                <li><a href="customizeyourowntrip.html"> Customize Your Own Trip</a></li>
 
-          <!--
-          <li class="nav-item">
-              <a class="nav-link" href="#">Reviews</a>
-          </li>-->
 
-      <li class="nav-item pr-4 active">
-        <a class="nav-link" href="{{route('home')}}"> Home </a>
-      </li>
+            </ul>
 
-      <li class="nav-item pr-4">
-              <a class="nav-link" href="#tour-guides-cards-section" style="additive-symbols: ">Meet a tour guide</a>
-      </li>
-  
-      <li class="nav-item pr-4">
-        <a class="nav-link" href="#">About </a>
-      </li>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
 
-  @auth
+  {{-- @auth
         <li class="nav-item pr-4">
           <form class="form-inline">
             <a class="" href="{{ route('logout') }}">Logout</a>
@@ -43,9 +53,7 @@
           <a class="" href="{{route('tourguideSignup')}}">Sign Up as Tourguide</a>
         </li>
           @endauth
-        </li>
-      </ul>
-  </div>  
-</nav>
+        </li> --}}
+
 
 <!-- End navbar-->

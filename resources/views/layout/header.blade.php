@@ -1,29 +1,33 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/Logo_cropped.png" type="image/icon type">
+    <title>Egyptus</title>
+
+    <!-- Css Files -->
+    <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/normalize.css')}}">
+    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/front.css')}}">
+    <link rel="stylesheet" href="{{asset('css/animate.min.css')}}">
 
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;700;900&display=swap" rel="stylesheet">
 
-    <title>@yield("template_title")</title>
 
 
-<!-- Styles -->
-    <link rel="icon"       href="{{asset("images/logo.png")}}">
-    <link rel="stylesheet" href="{{asset("css/font-awesome.min.css")}}">
-    <link rel="stylesheet" href="{{asset("css/main.css")}}">
-    <link rel="stylesheet" href="{{asset("css/profile.css")}}">
-    <link rel="stylesheet" href="{{asset("css/Front_Page.css")}}">
-    <link href="{{asset("css/bootstrap.min.css")}}" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
 </head>
+
 <body>
 <!-- Navbar -->
-@include('layout.navbar')
+{{-- @include('layout.navbar') --}}
 
 <!-- End Navbar -->
 
@@ -31,6 +35,6 @@
           @yield('content')
       
 </main>
-@include('layout.footer')
+{{-- @include('layout.footer') --}}
 </body>
 </html>

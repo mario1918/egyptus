@@ -3,227 +3,190 @@
     Egyptus
 @endsection
 @section('content')
+@include('layout.navbar')
 <!-- Start Slider-->
 @if ($errors->any())
 <div class="m-2 alert alert-info">
    <strong> {{$errors->first()}}</strong>
 </div>
 @endif
-<div class="slider" id="slider">
-  <div id="main-slider" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
 
-          <div class="w-35 card-over-slider">
-              <div class="card-body">
-                <h5 class=" card-over-slider-headline card-title">Find amazing things to do.
-                  Anytime, anywhere.</h5>
-                  <div class="container">
-                    <div class="row">
-                  
+ <!-- Start Landing Section -->
+ <section class="landing-section">
 
-                      <div class="input-group rounded search-bar-card col-12">
-                        <div class="search"> 
-                         <i class="fa fa-search"></i>
-                          <input type="search" class="form-control rounded the-search-itself" placeholder="Cairo, Alexandria, Aswan, Luxor" aria-label="Search"
-                         aria-describedby="search-addon"/>
-                       
-                       </div> 
-                       </div>
+  <div class="video">
+      <video width="100%" src="{{asset('videos/homepage.mp4')}}" type="video/mp4" muted loop autoplay></video>
+  </div>
+  <div class="search-bar">
+      <button><i class="fa fa-search" aria-hidden="true"></i></button><input placeholder="Activities / Places / TourGuides ..." type="search">
+  </div>
+  <div class="text animate__animated animate__fadeInDown animate__slow animate__delay-1s">
+      <h2>WE ARE EGYPT</h2>
+      <!--<h3>Exploring The World</h3>-->
 
-                      </div>
-                    </div>                     
-                
-
-                  <div class="container mt-3">
-                    <div class="row">
-
-                      
-                      <div class="input-group rounded date-bar-card col-lg-8 col-sm-12">
-                        <div class="date"> 
-                        <i class="fa fa-calendar"></i>
-                      
-                          <input id="datefield" type='date' class="form-control rounded the-date-itself"></input>
-                       </div> 
-                       </div>
-
-                      <div class="btton-booking">
-                        <a href="#" class="btn btton-booking-hyper">Submit</a>
-                      </div>
-
-                    </div>
-                  </div>
-              </div>
-            </div>
-
-          <div class="overlay"></div>
-          
-          <div class="carousel-item active silde-one">
-            <img src="images/1.JPG" class="d-block w-100">
-          </div>
-          <div class="carousel-item silde-two">
-            <img src="images/2.JPG" class="d-block w-100">
-          </div>
-
-          <div class="carousel-item silde-three">
-            <img src="images/3.JPG" class="d-block w-100">
-          </div>
-
-         
-
-            <div class="carousel-item silde-five">
-              <img src="images/4.JPG" class="d-block w-100">
-            </div>
-      </div>
-
-        <ol class="carousel-indicators">
-          <li data-target="#main-slider" data-slide-to="0" class="active"></li>
-          <li data-target="#main-slider" data-slide-to="1"></li>
-          <li data-target="#main-slider" data-slide-to="2"></li>
-          <li data-target="#main-slider" data-slide-to="3"></li>
-        </ol>
-
-      </div>
-    </div>
+      <a href="profile.html">Get A TourGuide Now</a>
+  </div>
+  <div class=" animate__animated animate__bounceInRight whats-happening animate__slow animate__delay-1s">
+      <a href="TourGuideRegister.html" style="text-decoration: none;"><h2>Become a tour guide</h2></a>
   </div>
 
-<!-- End Slider-->
-<!--Start Why Us section-->
-<div class="why-us mt-5">
-  <h2 class="why-us-headline text-center">Why book with Egyptus?</h2>
-  <div class="container mt-5">
-    <div class="row">
 
-      <div class="feature-1 col-sm text-center">
-        <i class="fa fa-money fa-2x" aria-hidden="true"></i>
-        <h2 class="features-headline">
-          Ultimate flexibility
-        </h2>
-        <p class="features-para">
-          You’re in control, with free cancellation and payment options to satisfy any plan or budget.
-        </p>
+</section>
+<!-- End Landing Section -->
 
-      </div>
+<!-- Start About Section -->
 
-      <div class="feature-2 col-sm text-center">
-        <i class="fa fa-bandcamp fa-2x" aria-hidden="true"></i>
-        <h2 class="features-headline">
-          Memorable experiences
-        </h2>
-        <p class="features-para">
-          Browse and book tours and activities so incredible, you’ll want to tell your friends.
-        </p>
-
-      </div>
-
-     
-      <div class="feature-3 col-sm text-center">
-        <i class="fa fa-book fa-2x" aria-hidden="true"></i>
-        <h2 class="features-headline">
-          Quality at our core
-        </h2>
-
-        <p class="features-para" >
-          High quality standards. Millions of reviews. A Tripadvisor company.
-        </p>
-
-
-      </div>
-
-      <div class="feature-4 col-sm text-center">
-        <i class="fa fa-trophy fa-2x" aria-hidden="true"></i>
-        <h2 class="features-headline">
-          Award-winning support
-        </h2>
-
-        <p class="features-para">
-          New price? New plan? No problem. We’re here to help, 24/7.
-        </p>
-        
-      </div>
-
-    </div>
-  </div>
-</div>
-
-
-<!--Tour Guides Cards-->
-<div class="tour-guides-cards" id="tour-guides-cards-section">
-  <h2 class="h1 tour-guides-cards-headline d-flex justify-content-center ">Meet our tour Guides</h2>
-
-<section id="team" class="pb-5">
+<div id="about" class="about">
   <div class="container">
       <div class="row">
-          <!-- Tour guide Start-->
-          @if(count($users) > 0)
-          @foreach($users as $user)
-          <div class="col-xs-12 col-sm-6 col-md-4">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h2>WE ARE EGYPT
+              </h2>
+              <h1>ABOUT US</h1>
+              <p id="about-para">Egyptus seeks to elevate the tourism experience in Egypt for both the tourists and those working in the industry,we 
+                  provide a platform to bridge the gap between tourists who are seeking an authentic, hassle-free vacation and the hospitality providers who can deliver a memorable Egyptian experience.                        
+              </p>
 
-            <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-                <div class="mainflip">
-                    <div class="frontside">
-                        <div class="card">
-                          <div class="label-top shadow-sm">Price rate: {{$user->hasType->priceRate}} $/hr</div>
-                            <div class="card-body text-center">
-                                <p><img class=" img-fluid" src="images/tour.jpg" alt="card image"></p>
-                                <h4 class="card-title">Name</h4>
-                                <p class="card-text">{{$user->firstName . " " . $user->lastName}}</p>
-                                <a href="profile-page.html" class="stretched-link"></a>
-                                <hr>
-                                <div class="container">
-                                  <div class="row">
-                                    <div class="reviews col-4 mr-5">
-                                       <p class="card-text">Reviews</p>
-                                       <p class="card-text">11</p>
-                                    </div>
-                                    <div class="ratings col-5 ml-4">
-                                      <p class="card-text">Ratings</p>
-                                      <div class="clearfix mb-1"> <span class="float-start">
-                                        @for ($i = 0; $i < $user->hasType->personalRate; $i++)
-                                        <i class="fa fa-star text-warning"></i>
-                                        @endfor
-                                        </span></div>
-                                    </div>
-                                  </div>
-                                </div>      
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="backside">
-                        <div class="card">
-                            <div class="card-body text-center mt-4">
-                                <h4 class="card-title">{{$user->firstName . " " . $user->lastName}}</h4>
-                                <a href="{{route('toruguideProfile',Crypt::encryptString($user->hasType->id))}}" class="stretched-link"></a>
-                                <p class="card-text">{{$user->hasType->bio}}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        @endforeach
-        @endif
-        
-
-        </div>
+          </div>
       </div>
-  </section>
-</div>
-<!--End Tour Guides Cards -->
-
-
-
-
-<!--End Why Us section-->
-
-<!-- Start Cancelation Section
-<div class="cancelation mt-3 pt-3 pb-5">
-  <div class="container text-center">
-    <h2 class="cancelation-headline">Free <br> cancellation</h2>
-    <p class="cancelation-para">You'll receive a full refund if you cancel at <br> least 24 hours in advance of most <br> experiences.</p>
   </div>
-</div>-->
-<!-- End Cancelation Section -->
+</div>
 
+<!-- End About Section -->
+
+<!-- Start Why Egyptus Section -->
+
+<section id="why-egyptus" class="why-egyptus">
+  <div class="container">
+      <div class="row">
+          <div class=" animate__animated animate__fadeInTopLeft special col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h2 style="text-align: center;">WHY BOOK WITH EGYPTUS ?</h2>
+          </div>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="row">
+                  <div id="first-left-para" class="left col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                      <h1>Ultimate Flexibility</h1>
+                      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non? Lorem ipsum dolor, sit amet consectetur
+                          adipisicing elit. Non? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non?
+                      </p>
+                  </div>
+                  <div id="first-right-img" class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                      <img width="100%" src="{{asset('images/2.JPG')}}" alt="">
+                  </div>
+                  <div id="second-left-img" class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+
+                      <img width="100%" src="{{asset('images/Shoping.jpg')}}" alt="">
+                  </div>
+                  <div id="second-right-para" class="right col-lg-6 col-md-6 col-sm-12 col-xs-12">
+
+                      <h1>Award-winning support</h1>
+                      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non? Lorem ipsum dolor, sit amet consectetur
+                          adipisicing elit. Non? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non?</p>
+
+                  </div>
+                  <div id="third-left-para" class="left col-lg-6 col-md-6 col-sm-12 col-xs-12">
+
+                      <h1>Quality at Our Core</h1>
+                      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non? Lorem ipsum dolor, sit amet consectetur
+                          adipisicing elit. Non? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non?/p>
+
+                  </div>
+
+                  <div id="third-right-img" class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                      <img width="100%" src="{{asset('images/sailboats.jpg')}}" alt="">
+
+                  </div>
+
+              </div>
+
+          </div>
+      </div>
+  </div>
+
+</section>
+
+ <!-- Start Glary Section -->
+
+ <section class="slideshow">
+  <h1>TOP EXPERIENCES</h1>
+
+  <ul class="navigation">
+
+      <li class="navigation-item active">
+          <span class="rotate-holder"></span>
+          <span class="background-holder" style="background-image: url({{asset('images/Diving_icon.jpg')}});"></span>
+      </li>
+      <!-- slideshow:navigation:item END -->
+
+      <!-- slideshow:navigation:item START -->
+      <li class="navigation-item">
+          <span class="rotate-holder"></span>
+          <span class="background-holder" style="background-image: url({{asset('images/Horse\ riding\ icon.jpg')}});"></span>
+      </li>
+
+      <li class="navigation-item">
+          <span class="rotate-holder"></span>
+          <span class="background-holder" style="background-image: url({{asset('images/sailboats.jpg')}});"></span>
+      </li>
+
+      <li class="navigation-item">
+          <span class="rotate-holder"></span>
+          <span class="background-holder" style="background-image: url({{asset('images/Pottery_icon.jpg')}});"></span>
+      </li>
+
+
+  </ul>
+
+  <div class="detail">
+
+      <div class="detail-item active">
+          <div class="headline">Diving</div>
+          <div class="background" style="background-image: url({{asset('images/Diving.jpg')}}); height: 100vh;"></div>
+          <div class="background" style="background-image: url({{asset('images/Diving.jpg')}}); height: 100vh; background-size: cover; background-position: center;"></div>
+          
+      </div>
+      <!-- slideshow:details END -->
+
+      <!-- slideshow:details START -->
+      <div class="detail-item">
+          <div class="headline">Horse Riding</div>
+          <div class="background" style="background-image: url({{asset('images/Horse_riding.jpg')}});"></div>
+      </div>
+      <!-- slideshow:details END -->
+
+      <!-- slideshow:details START -->
+      <div class="detail-item">
+          <div class="headline">Silent Meditation</div>
+          <div class="background" style="background-image: url({{asset('images/sailboats.jpg')}});"></div>
+      </div>
+      <!-- slideshow:details END -->
+
+      <!-- slideshow:details START -->
+      <div class="detail-item">
+          <div class="headline">Pottery</div>
+          <div class="background" style="background-image: url({{asset('images/Pottery.jpg')}});"></div>
+      </div>
+      <!-- slideshow:details END -->
+  </div>
+  <!-- slideshow:details END -->
+
+</section>
+
+
+<!-- End Galary Section -->
+
+
+
+<!-- Start Vision Section -->
+<section class="vision">
+  <div class="container">
+      <h3>WE ARE EGYPT</h3>
+      <h1>OUR VISION FOR THE FUTUTRE</h1>
+      <p>We aspire to provide the tourist with a personalized simple and convenient method to ensure a smooth touristic experience. Egyptus Travel will ease the tourism industry processes in Egypt, by being the only digital tourism platform offering a huge variety of high quality tourism related options based on each tourist’s preferences. We aim to elevate tourism in Egypt and to reach all locations.
+      </p>
+  </div>
+</section>
+
+@include('layout.footer')
 @endsection

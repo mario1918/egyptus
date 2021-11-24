@@ -43,7 +43,7 @@ Route::middleware(['admin'])->group(function()
         // Route::resource("tourists",con\TouristController::class);
 });
 
-
+Route::post('/steps',[con\TourguideController::class,'steps'])->name('steps');
 
 Route::group(['prefix' => 'admin'], function () {
 });

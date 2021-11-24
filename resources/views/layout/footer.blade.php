@@ -1,86 +1,44 @@
 
-<!--Start footer-->
-<div class="footer" id="contact">
-  <div class="container">
-      <div class="row">
+<!-- Start Footer Section -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <h1>Egyptus</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure ullam itaque culpa ipsa nihil quis deserunt, ex quia fugit vel aliquid illum delectus vero dolorem.</p>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <h1>Contact Us</h1>
+                <h2>Facebook : </h2>
+                <h2>Mobile Number : </h2>
+                <h2>Email : </h2>
+                <h2>Linked in : </h2>
+            </div>
+        </div>
+        <div class="copy-right">
+            <h5>COPYRIGHT&copy; ALL RIGHTS RESERVED TO EGYPTUS COMPANY 2021</h5>
+        </div>
+    </div>
+</footer>
 
-          <div class=" col-sm-12 col-lg-8">
-              <div class="site-info">
-               <h2><span>Egyptus</span>
-                  </h2>
-              <p>Lorem ipsum, dolor sit 
-                  amet consectetur adipisicing elit. V
-                  eniam iure odio commodi expedita labore. 
-                  Aperiam esse facere temporibus, magni voluptate 
-                  beatae iusto impedit ipsa excepturi
-                   officia voluptatem nemo quisquam ratione.</p>
-              </div>
-          </div>
 
-          <div class=" col-sm-6 col-lg-4">
-              <div class="contact">
-                  <h2>Contact Us</h2>
+<!-- End Footer Section -->
 
-              <ul class="list-unstyled">
-                  <li>Address:</li>
-                  <li>Phone:</li>
-                  <li>Email: <a href="mailto:?subject=Contcat"></a></li>
-              </ul>
 
-              </div>
-          </div>
-
-      </div>
-  </div>
-</div>
-<!--End Footer-->
-<!-- Start Copyright-->
-
-<div class="copyright">
-  <div class="container">
-      <div class="row">
-
-          <div class="col-sm-6  text-center text-sm-left text-uppercase">
-              Copyright 2021 Egyptus &copy; All Right Reseverd 
-          </div>
-          <div class="col-sm-6 text-center text-sm-right">
-              <ul class="list-unstyled">
-                  <li>
-                      <a href="#"><i class="fa fa-facebook color-white"></i></a>
-                  </li>
-              
-                  <li>
-                      <a href="#"><i class="fa fa-github color-white"></i></a>
-                  </li>       
-          </ul>
-
-          </div>
-          
-      </div>
-
-  </div>
-</div>
 <!--End Copyright-->
-      
-<div id="demo-booking-multiple"></div>
-
+    
 
         
-<!-- Start loading page
-<div class="loading">
-    <div id="preloder">
-         <div class="loader"></div>
-     </div>
-   </div> -->
-   <!--End Loading page -->      
+
+
+<script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
+ <script src="{{asset('js/TweenMax.min.js')}}"></script>
+ <script src="{{asset('js/imagesloaded.pkgd.min.js')}}"></script>
+ <script src="{{asset('js/TextPlugin.min.js')}}"></script>
+ <script src="{{asset('js/CSSPlugin.min.js')}}"></script>
+ <script src="{{asset('js/bootstrap.min.js')}}"></script>
+ <script src="{{asset('js/slider.js')}}"></script>
+ <script src="{{asset('js/front.js')}}"></script>
 </body>
-        <!--Scripts-->    
-        <script src="{{asset('js/jquery-3.5.1.min.js')}}"></script>
-        <script src="{{asset('js/bootstrap.min.js')}}"></script> 
-        <script src="{{asset('js/main.js')}}"></script>
-        <script src="{{asset('js/profile.js')}}"></script>
-        <script src="{{asset("js/plugins.bundle.js")}}"></script>
-        <script src="{{asset("js/prismjs.bundle.js")}}"></script>
-        <script src="{{asset("js/scripts.bundle.js")}}"></script>
 
 </html>

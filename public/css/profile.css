@@ -1,242 +1,232 @@
+.navbar {
+    background-color: #111;
+    border-radius: 0;
+    border: none;
+    position: relative;
+    margin-bottom: 50px;
+    z-index: 100;
+    width: 100%;
+}
 
 
+/* Start Main Section */
 
-/*Start Navbar*/
+.profile .container .info {
+    margin-bottom: 35px;
+}
 
+.profile .container .info .Tourguide-name {
+    display: inline;
+    font-size: 44px;
+}
 
-.navbar-logo{
+.profile .container .info button {
+    height: 42px;
+    width: 194px;
     color: #fff;
-	font-size: 25px;
-	padding: 0;
-	margin: 0;
-	margin-left: 10px;
+    font-size: 17px;
+    outline: none;
+    background-color: #111;
+    border: none;
+    float: right;
 }
 
-.navbar-logo a:hover {
-	color: white;
+.profile .container img {
+    width: 100%;
 }
 
-.navbar-mainbg{
-	background-color: #EE7A2E;
-	padding: 0px;
-}
-#navbarSupportedContent{
-	overflow: hidden;
-	position: relative;
-}
-#navbarSupportedContent ul{
-	padding: 0px;
-	margin: 0px;
-}
-#navbarSupportedContent ul li a i{
-	margin-right: 10px;
-}
-#navbarSupportedContent li {
-	list-style-type: none;
-	float: left;
-}
-
-#navbarSupportedContent ul li a{
-	color: rgba(255,255,255,0.5);
-    text-decoration: none;
-    font-size: 15px;
-    display: block;
-    padding: 20px 20px;
-    transition-duration:0.6s;
-	transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+.slider-container {
+    width: 100%;
+    height: 250px;
     position: relative;
 }
 
-#navbarSupportedContent>ul>li.active>a{
-	color: #EE7A2E;
-	background-color: transparent;
-	transition: all 0.7s;
+.slider-container img {
+    position: relative;
+    display: none;
+    transition: opacity 1s;
+    -webkit-transition: opacity 1s;
+    -moz-transition: opacity 1s;
+    -ms-transition: opacity 1s;
+    -o-transition: opacity 1s;
+    z-index: 1;
 }
 
-#navbarSupportedContent a:not(:only-child):after {
-	content: "\f105";
-	position: absolute;
-	right: 20px;
-	top: 10px;
-	font-size: 14px;
-	font-family: "Font Awesome 5 Free";
-	display: inline-block;
-	padding-right: 3px;
-	vertical-align: middle;
-	font-weight: 900;
-	transition: 0.5s;
+.slider-container2 p {
+    position: relative;
+    display: none;
+    z-index: 1;
 }
 
-#navbarSupportedContent .active>a:not(:only-child):after {
-	transform: rotate(90deg);
+.slider-container img.active {
+    display: block;
+    height: 400px;
 }
 
+.slider-container2 p.active {
+    display: block;
+}
 
-.hori-selector{
-	display:inline-block;
-	position:absolute;
-	height: 100%;
-	top: 0px;
-	left: 0px;
-	transition-duration:0.6s;
-	transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-	background-color: #fff;
-	border-top-left-radius: 15px;
-	border-top-right-radius: 15px;
-	margin-top: 10px;
-}
-.hori-selector .right,
-.hori-selector .left{
-	position: absolute;
-	width: 25px;
-	height: 25px;
-	background-color: #fff;
-	bottom: 10px;
-}
-.hori-selector .right{
-	right: -25px;
-}
-.hori-selector .left{
-	left: -25px;
-}
-.hori-selector .right:before,
-.hori-selector .left:before{
-	content: '';
+.slider-container .slide-number {
     position: absolute;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: #EE7A2E;
-}
-.hori-selector .right:before{
-	bottom: 0;
-    right: -25px;
-}
-.hori-selector .left:before{
-	bottom: 0;
-    left: -25px;
+    left: 10px;
+    top: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 5px 10px;
+    font-size: 20px;
+    z-index: 2;
 }
 
-
-@media (max-width: 991px){
-	#navbarSupportedContent ul li a{
-		padding: 12px 30px;
-	}
-	.hori-selector{
-		margin-top: 0px;
-		margin-left: 10px;
-		border-radius: 0;
-		border-top-left-radius: 25px;
-		border-bottom-left-radius: 25px;
-	}
-	.hori-selector .left,
-	.hori-selector .right{
-		right: 10px;
-	}
-	.hori-selector .left{
-		top: -25px;
-		left: auto;
-	}
-	.hori-selector .right{
-		bottom: -25px;
-	}
-	.hori-selector .left:before{
-		left: -25px;
-		top: -25px;
-	}
-	.hori-selector .right:before{
-		bottom: -25px;
-		left: -25px;
-	}
+.slider-controls {
+    overflow: hidden;
+    margin-top: 200px;
 }
 
-/*Account buttons*/
-
-
-.account-btn:hover
-{
-	color: #EE7A2E !important;
-	background-color: white;
-	
+.slider-controls .prev,
+.slider-controls .next {
+    background-color: #009688;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    padding: 5px;
+    user-select: none;
+    width: 20%;
 }
 
-
-.account-btn
-{
-	color: white;
-	border-color: white;
-	text-decoration: none;
-	outline: none;
+.slider-controls .prev {
+    float: left;
 }
 
-
-.account-btn:focus
-{
-	box-shadow: none;
-	
+.slider-controls .next {
+    float: right;
 }
 
-a:link{
-	text-decoration: none;
-}
-/*End of account buttons*/
-
-/*End Navbar*/
-
-
-/*Start profile page*/
-
-.profile-page{
-    margin-top: 30px ;
+.slider-controls .prev.disapled,
+.slider-controls .next.disapled {
+    background-color: #00968780;
+    cursor: no-drop;
 }
 
-/* Review system */
-.review-card{
-    border-radius: 5px;
-    background-color:#FAFAFA;
-    padding-left: 60px;
-    padding-right: 60px;
+.slider-controls .indicator {
+    width: 100%;
+}
+
+.slider-controls .indicator ul {
+    list-style: none;
+    margin: 0;
+    text-align: center;
+}
+
+.slider-controls .indicator ul li {
+    display: inline-block;
+    background-color: #f6f6f6;
+    color: #333;
+    font-weight: bold;
+    height: 31px;
+    min-width: 98px;
+    margin: 0 2px;
+    line-height: 28px;
+    cursor: pointer;
+}
+
+.slider-controls .indicator ul li.active {
+    background-color: #111;
+    color: white;
+}
+
+.profile .container .Expertise span {
+    font-size: 16px;
+    background-color: #111;
+    display: inline-block;
+    margin-right: 9px;
+    padding: 2px 11px 2px 8px;
+    color: #fff;
+    border-radius: 1px;
+    margin-bottom: 5px;
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    -ms-border-radius: 1px;
+    -o-border-radius: 1px;
+}
+
+.profile p {
+    font-size: 16px;
+    line-height: 25px;
+    font-weight: 600;
     margin-top: 20px;
-    padding-top: 20px;
-    padding-bottom: 20px
-	
 }
 
-.reviewer-name {
-	font-size: 20px;
+
+/* End Main Section */
+
+
+/* Start Favorite Trips Section Styling*/
+
+.favorite-trips {
+    margin-bottom: 50px;
 }
 
-.review-body {
-    font-size: 14px
+.favorite-trips img {
+    width: 100%;
+    height: 500px;
 }
 
-.review-profile-pic {
-    width: 65px;
-    height: 65px;
-    border-radius: 100%;
-    margin-right: 30px
+.favorite-trips a {
+    color: #000;
+    font-size: 22px;
+    font-weight: bold;
 }
 
-.review-headline {
-	font-size: 18px;
-    color: #EE7A2E
+.favorite-trips i {
+    display: block;
+    margin-top: 5px;
 }
 
-.submit-review-button {
-	background-color: #EE7A2E !important;
-	color: white !important;
+
+/* End Favorite Trips Section Styling*/
+
+
+/* Start Reviews Section Style */
+
+.reviews {
+    width: 100%;
+    background-color: #fff;
+    margin-top: 44px;
+    margin-bottom: 44px;
 }
 
-/*
-.submit-review-button:hover {
-	background-color:white !important; 
-	color: #EE7A2E !important;
-	outline-color: #EE7A2E;
-}*/
-
-.review-textarea {
-	resize: none;
-	border-bottom: solid 5px;
+.reviews h1 {
+    text-transform: uppercase;
+    margin-bottom: 47px;
 }
 
-/*End profile page*/
+.reviews span {
+    float: right;
+}
+
+.reviews span.bold-black {
+    font-weight: bold;
+    font-size: 20px;
+    float: none;
+}
+
+.reviews h2 {
+    font-size: 19px;
+    display: inline;
+}
+
+.reviews p {
+    padding: 18px;
+    font-size: 18px;
+    line-height: 32px;
+}
+
+
+/* End Reviews Section Style */

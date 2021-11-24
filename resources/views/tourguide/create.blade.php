@@ -1,550 +1,242 @@
-@extends('layout.header')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('template_title')
-    Sign Up As Tourguide
-@endsection
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{asset('images/titlelogo.png')}}" type="image/icon type">
+    <title>Egyptus</title>
 
-@section('content')
-<link href="{{asset("css/plugins.bundle.css")}}" rel="stylesheet" type="text/css" />
-    <link href="{{asset("css/prismjs.bundle.css")}}" rel="stylesheet" type="text/css">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <div class="col-md-12">
-        <div class="tour-page d-flex justify-content-center">
-            <div class="container">
-                    <div class="all-elements mt-5 ">
-                        <h2 class="head-line mt-3 ml-2">Sign Up As Tour Guide</h2>
-                        <ul class="nav nav-tabs nav-tabs-line">
-                            <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#step1">Personal Information</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#step2">Work Experience</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#step3" tabindex="-1" aria-disabled="true">Educational Background</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#step4" tabindex="-1" aria-disabled="true">Langauges Fluency</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#step5" tabindex="-1" aria-disabled="true">Documents Uplaod</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#step6" tabindex="-1" aria-disabled="true">Trips</a>
-                            </li>
-                        </ul>
-                       
-                        <form method="POST" action="{{ route('tourguides.store') }}"  role="form" enctype="multipart/form-data">
-                            @csrf
-                        <div class="container tab-content mt-5" id="myTabContent">
-                            {{-- @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif --}}
-                            {{-- TAB 1: PERSONAL INFO --}}
-                                <div style="display: none" class="tab-pane fade show active" id="step1" role="tabpanel" aria-labelledby="step2" style="margin: 10px">
-                                    <div class="row">
-                                    <div class="  col-md-4 col-xs-12">
-                                        <div class="form-group">
-                                            <label class="labels-names" for="FirstName">First Name</label>
-                                            <input type="text" class="form-control" id="FirstName" name="firstName"
-                                                    value="{{old("firstName")}}"
-                                                    placeholder="Enter Your First Name">
-                                            @error('firstName')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
+    <!-- Css Files -->
+    <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/normalize.css')}}">
+    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/front.css')}}">
+    <link rel="stylesheet" href="{{asset('css/animate.min.css')}}">
 
-                                        </div>
-    
-                                        <div class="form-group">
-                                            <label class="labels-names" for="lastName">Last Name</label>
-                                            <input type="text" class="form-control" id="lastNmae" name="lastName"
-                                                    value="{{old("lastName")}}"
-                                                    placeholder="Enter Your Last Name">
-                                            @error('lastName')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="labels-names" for="username">Username</label>
-                                            <input type="text" class="form-control" id="username" name="username"
-                                                    value="{{old("username")}}"
-                                                    placeholder="Enter Your Username">
-                                            @error('username')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
 
-                                        <div class="row">
-                                            <div class="form-group col-md-6">
-                                                <label class="labels-names" for="region">Region</label>
-                                                <input type="text" class="form-control" id="region" name="region"
-                                                        value="{{old("region")}}"
-                                                        placeholder="Enter Your Region">
-                                                @error('region')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label class="labels-names" for="country">Country</label>
-                                                <input type="text" class="form-control" id="country" name="country"
-                                                        value="{{old("country")}}"
-                                                        placeholder="Enter Your country">
-                                                @error('country')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                            
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="labels-names" for="birthdate">Birthdate</label>
-                                            <input type="date" class="form-control" id="birthdate" required name="birthdate"
-                                                    value="{{old("birthdate")}}"
-                                                    >
-                                            @error('birthdate')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class=" col-md-4 col-xs-12" style="margin-left: 15rem">
-                                        <div class="form-group">
-                                            <label class="labels-names" for="phoneNo">Phone Number</label>
-                                            <input type="number" class="form-control" id="number" name="phoneNo"
-                                                    value="{{old("phoneNo")}}"
-                                                    >
-                                            @error('phoneNo')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="labels-names" for="email">Email</label>
-                                            <input type="email" class="form-control" id="email" name="email"
-                                                    value="{{old("email")}}"
-                                                    placeholder="Email" required>
-                                            @error('email')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-    
-                                        <div class="form-group">
-                                            <label class="labels-names" for="password">Password</label>
-                                            <input type="password" class="form-control" id="password" name="password" required placeholder="Password">
-                                            <small>The password must contain: 
-                                                at least One <b>upper letter</b> , One <b>special character</b> and One <b>number</b> </small>
-                                            @error('password')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="labels-names" for="confirm-password">Repeat your password</label>
-                                            <input type="password" class="form-control" id="confirm-password" name="password_confirmation" placeholder="Password">
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                            {{-- TAB 2: Work Experience --}}
-                                <div class="tab-pane fade d-none" id="step2" role="tabpanel" aria-labelledby="step3" style="margin: 10px">
-                                    <div class="row">
-                                        <div class="col-md-8">
-                                            <div class="form-group">
-                                                <label class="labels-names" for="work_experience"><b>1) Your Work Exprience</b></label>
-                                                <textarea class="form-control" id="work_experience"   name="work_experience" rows="5">{{old("work_experience")}}</textarea>
-                                                @error('work_experience')
-                                                <div class="alert alert-danger">{{$message}}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-8">
-                                            <div class="form-group">
-                                                <label class="labels-names" for="bio"><b>2) Write description about yourself (200 words)</b></label>
-                                                <textarea class="form-control" id="bio"   name="bio" rows="3">{{old("bio")}}</textarea>
-                                                @error('bio')
-                                                <div class="alert alert-danger">{{$message}}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;700;900&display=swap" rel="stylesheet">
 
-                            {{-- TAB 3: Educational Background --}}
-                                <div class="tab-pane fade" id="step3" role="tabpanel" aria-labelledby="step4" style="margin: 10px">
-                                    <div class="row">
-                                        <table class="table table-striped  table-bordered">
-                                            <thead class="table-dark ">
-                                                <tr>
-                                                    <th>Degree</th>
-                                                    <th>University</th>
-                                                    <th>Graduation Year</th>
-                                                    <th>#</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                <td><input class="form-control" type="text" id="degree" value="{{old('degree.0')}}"   name="degree[]" /></td> 
-                                                <td><input class="form-control" type="text" id="uni" value="{{old('uni.0')}}"   name="uni[]" /></td>
-                                                <td><input class="form-control" type="date" id="gradYear"  value="{{old('gradYear.0')}}"  name="gradYear[]" /></td>
-                                                <td><button class="btn btn-info">Add Another Education</button></td>
-                                                </tr>
-                                               
-                                            </tbody>
-                                        </table> 
-                                    </div> 
 
-                                </div>
-                            {{-- TAB 4: Languages Fluency --}}
-                                <div class="tab-pane fade" id="step4" role="tabpanel" aria-labelledby="step5" style="margin: 10px">
-                                    <div class="row col-md-12">
-                                        <div class="form-group d-flex col-md-8">
-                                            <label class="labels-names " for="langName">Language Name  </label>
-                                            <input type="text" style="margin-left: 10px" class=" col-md-4 form-control" id="langName" 
-                                            value="{{old('langName.0')}}" name="langName[]">
-                                            @error('langName')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                        <button class=" col-md-2 btn btn-info right" style="margin-left:10rem">Add another Language</button>
 
-                                    </div>
+</head>
 
-                                    <div style="margin-left: 10px">
-                                        <ul style="list-style-type: circle">
-                                            <li>
-                                                <div class="form-group">
-                                                    <label>Spoken</label>
-                                                    <div class="radio-inline">
-                                                        <label class="radio">
-                                                        <input type="radio" checked="checked" value="beginner" name="spoken[]">
-                                                        <span></span>Beginner</label>
-                                                        <label class="radio">
-                                                        <input type="radio" value="intermediate"  name="spoken[]">
-                                                        <span></span>Intermediate</label>
-                                                        <label class="radio">
-                                                        <input type="radio" value="advaned" name="spoken[]">
-                                                        <span></span>Advanced</label>
-                                                        <label class="radio">
-                                                            <input type="radio" value="fluent" name="spoken[]">
-                                                            <span></span>Fluent</label>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="form-group">
-                                                    <label>Written</label>
-                                                    <div class="radio-inline">
-                                                        <label class="radio">
-                                                        <input type="radio" checked="checked" value="beginner" name="written[]">
-                                                        <span></span>Beginner</label>
-                                                        <label class="radio">
-                                                        <input type="radio" value="intermediate"  name="written[]">
-                                                        <span></span>Intermediate</label>
-                                                        <label class="radio">
-                                                        <input type="radio" value="advaned" name="written[]">
-                                                        <span></span>Advanced</label>
-                                                        <label class="radio">
-                                                            <input type="radio" value="fluent" name="written[]">
-                                                            <span></span>Fluent</label>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="form-group">
-                                                    <label>Comperhension</label>
-                                                    <div class="radio-inline">
-                                                        <label class="radio">
-                                                        <input type="radio" checked="checked" value="beginner" name="comperhension[]">
-                                                        <span></span>Beginner</label>
-                                                        <label class="radio">
-                                                        <input type="radio" value="intermediate" name="comperhension[]">
-                                                        <span></span>Intermediate</label>
-                                                        <label class="radio">
-                                                        <input type="radio" value="advaned" name="comperhension[]">
-                                                        <span></span>Advanced</label>
-                                                        <label class="radio">
-                                                            <input type="radio" value="fluent" name="comperhension[]">
-                                                            <span></span>Fluent</label>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div> --}}
 
-                                    
-                                </div>
-                            {{-- TAB 5: Documents Uplaod --}}
-                                <div class="tab-pane fade" id="step5" role="tabpanel" aria-labelledby="" style="margin: 10px">
-                                    <div class="container">
-                                        <h3>1) National Id</h3>
-                                        <div class="row col-md-12">
-                                            <div class="form-group col-md-4">
-                                                <label class="labels-names" for="frontNation">Front</label>
-                                                <input type="file" class="form-control" id="frontNation" value="{{old('frontNation')}}" name="frontNation">
-                                                        
-                                                @error('frontNation')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
-            
-                                            </div>
-                                            <div class="form-group col-md-4">
-                                                <label class="labels-names" for="backNation">Back</label>
-                                                <input type="file" class="form-control" value="{{old('backNation')}}" id="backNation" name="backNation">
+<div class="tourguideregpage">
+    <h1 class="backhome"> 
+        <a href="{{route('home')}}"><i class="fa fa-chevron-left" aria-hidden="true"></i> Go Back Home</a></h1>>
+
+
+    <div class="container">
+        <h1>Sign Up as a Tour Guide</h1>
+        <form method="POST" id="form1" action="{{route('tourguides.store')}}">
+            @csrf
+            <meta name="csrf-token" content="{{ csrf_token() }}">
+            <h2>Personal Information</h2>
+            <div id="errorResult" class="alert alert-danger" style="display: none">
+                <ul>
                     
-                                                @error('backNation')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
-            
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <div class="container">
-                                        <h3>2) Tour Guiding License</h3>
-
-                                        <div class="row col-md-12">
-                                            <div class="form-group col-md-4">
-                                                <label class="labels-names" for="frontLicense">Front</label>
-                                                <input type="file" class="form-control" value="{{old('frontLicense')}}" id="frontLicense" name="frontLicense">
-                                                        
-                                                @error('frontLicense')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
-            
-                                            </div>
-                                            <div class="form-group col-md-4">
-                                                <label class="labels-names" for="backLicense">Back</label>
-                                                <input type="file" class="form-control" value="{{old('backLicense')}}" id="backLicense" name="backLicense">
-                    
-                                                @error('backLicense')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <div class="container">
-                                        <h3>3) Personal Photo</h3>
-                                        <div class="form-group col-md-4">
-                                            <label class="labels-names" for="profileImg">Personal Photo</label>
-                                            <input type="file" class="form-control" id="profileImg" value="{{old('profileImg')}}" name="profileImg">
-        
-                                            @error('personPhoto')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                               
-                               
-                                    <input type="submit" name="submit" value="Submit">
-                        </div>
-                            
-
-                                        
-                                       <!-- 
-                                        <div class="form-group activity dropdown bootstrap-select show-tick show" multiple="multiple" tabindex="null">
-                                            <label class="labels-names" for="activities">Select Activities You Can do</label>
-                                            <select required class=" selectpicker mr-sm-2 form-control" id="activities" name="activities[]"multiple="multiple" tabindex="null">
-                                        
-                                                <option class="option" value="History & Culture"> History & Culture</option>
-                                                <option class="option" value="Art & Museums">Art & Museums</option>
-                                                <option class="option" value=">Shopping">Shopping</option>
-                                                <option class="option" value="Pick up & Driving Tours">Pick up & Driving Tours</option>                                                </option>
-                                                <option class="option" value="Nighclub & Bars">Nighclub & Bars</option>
-                                                <option class="option" value="Exploration & Sightseeing">Exploration & Sightseeing</option>
-                                                <option class="option" value="Food & Restaurants">Food & Restaurants</option>
-                                                <option class="option" value="Sports">Sports</option>
-                                                <option class="option" value="Translation & Interpretation">Translation & Interpretation</option>
-                                            </select>
-                                            @error('activities')
-                                            <div class="alert alert-danger">Select at least one activity</div>
-                                            @enderror
-                                            {{-- <div id="result3">
-                                                <input type="hidden" name="activity[]" value="">
-                                            </div> --}}
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="labels-names" for="bio">Bio</label>
-                                            <textarea class="form-control" id="bio"  value="{{old("bio")}}" name="bio" rows="3"></textarea>
-                                            @error('bio')
-                                            <div class="alert alert-danger">The Bio field is required.</div>
-                                            @enderror
-                                        </div>
-                                        <div class="row col-md-12">                                    
-                                        <div class="form-group col-md-6">
-                                            <label class="labels-names" for="fb_link">Facebook Name</label>
-                                            <input class="form-control"  type="text" id="fb_link" name="fb_link" 
-                                            value="{{old("fb_link")}}"
-                                                   placeholder="/example">
-                                            @error('fb_link')
-                                            <div class="alert alert-danger">{{$message}}</div>
-                                            @enderror
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label class="labels-names" for="portfolio">Your Website (optional)</label>
-                                            <input class="form-control"  type="text" id="portfolio" name="portfolio" 
-                                            value="{{old("portfolio")}}"
-                                                   placeholder="www.egyptus.com">
-                                            @error('portfolio')
-                                            <div class="alert alert-danger">{{$message}}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                
-                                        <div class="form-group">
-                                            <label class="labels-names" for="profileImg">Upload Your Personal Photo</label>
-                                            <input class="form-control" type="file"  id="profileImg" name="profileImg" accept="image/*">
-                                            @error('profileImg')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                </div>
-                                
-
-                                    <div class="form-group language dropdown bootstrap-select show-tick show" multiple="multiple" tabindex="null">
-                                        <label class="labels-names" for="langauges">Select Your 2 langauges</label>
-                                        <select required class=" selectpicker mr-sm-2 form-control" id="langauges" name="languages[]"multiple="multiple" tabindex="null">
-                                            <option class="option" value="Arabic">Arabic</option>
-                                            <option class="option" value="Chinese">Chinese</option>
-                                            <option class="option" value="English">English</option>
-                                            <option class="option" value="French">French</option>                                                <option class="option" value="en">English</option>
-                                            <option class="option" value="German">German</option>
-                                            <option class="option" value="Hebrew">Hebrew</option>
-                                            <option class="option" value="Hindi">Hindi</option>
-                                            <option class="option" value="Irish">Irish</option>
-                                            <option class="option" value="Italian">Italian</option>
-                                            <option class="option" value="Japanese">Japanese</option>
-                                            <option class="option" value="Korean">Korean</option>
-                                            <option class="option" value="Portuguese">Portuguese</option>
-                                            <option class="option" value="Romanian">Romanian</option>
-                                            <option class="option" value="Russian">Russian</option>
-                                            <option class="option" value="Spanish">Spanish</option>
-                                            <option class="option" value="Sundanese">Sundanese</option>
-                                            <option class="option" value="Swedish">Swedish </option>
-                                            <option class="option" value="Turkish">Turkish</option>
-                                            <option class="option" value="Ukrainian">Ukrainian</option>
-                                        </select>
-                                        @error('languages')
-                                        <div class="alert alert-danger">Please select 2 langauges.</div>
-                                        @enderror
-                                    </div>
-                                    
-                                   
-                                    <div class="form-group">
-
-                                        <label class="labels-names" for="city"> Please Choose the cities you can work in </label>
-                                        <input type="Location" name="cities"  value="{{old("cities")}}" class="form-control" id="city" placeholder="Aswan , Cairo" required>
-                                        <small>If you want to add more than one.Put , between them</small>
-                                        @error('cities')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    
-                                    <br>
-                                    <div class="form-group">
-                                        <label class="labels-names" for="price">Pricing rates</label>
-                                        <div class="row">
-                                            <div class=" col col-md-3">
-                                                <input type="number" name="priceRate" value="{{old("priceRate")}}" min="1" class="form-control" id="price" required >
-                                                @error('priceRate')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror                                              </div>
-                                            <div class="col col-md-5">
-                                                <h6 style="font-weight: bolder;font-size: 15px;padding-top: 10px;">$ / hr</h6>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="labels-names" for="video">Upload a video: describing yourself(optional) max: 3 min</label>
-                                        <input  type="file" id="video" name="video" accept="video/*">
-
-                                    </div> 
-                                    <button type="submit" id="submitForm" class="btn btn-info sign-up-button mt-5">Sign Up</button>
-                                    <div class="form-check mt-3 mb-5">
-                                        <input type="checkbox" class="form-check-input" required id="exampleCheck1" name="accept_terms">
-                                        <label class="form-check-label labels-names "for="exampleCheck1">I agree to the <span class="terms-policy">Terms of Service</span> and <span class="terms-policy">Privacy Policy</span>  </label>
-                                    </div>
-                                -->
-
-                                    
-                                </div>
-                            </div>
-
-                        </form>
-
-                    </div>
-                </div>
+                </ul>
             </div>
+            <input required="required" id="Fname" name="firstName"  value="{{old("firstName")}}" type="text" placeholder="First Name">
+            @error('firstName')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+            <input required="required" id="Lname" name="lastName"  value="{{old("lastName")}}" type="text" placeholder="Last Name" required>
+            @error('lastName')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+            <input required="required" id="region" name="region"  value="{{old("region")}}" type="text" placeholder="Region">
+            @error('region')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+            <input required="required" id="country" name="country"  value="{{old("country")}}" type="text" placeholder="Country" required>
+            @error('country')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+            <input required="required" id="birthdate" name="birthdate" value="{{old("birthdate")}}" type="date" data-toggle="tooltip" data-placement="top" title="Your Age must be equal or more than 21">
+            @error('birthdate')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+            <input required="required" id="pnonenumber"  name="phoneNo" value="{{old("phoneNo")}}" type="number" placeholder="Phone Number" data-toggle="tooltip" data-placement="top" title="Phone number must be between 11 and 14 number" required>
+            @error('phoneNo')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+            <input required="required" id="Email" name="email" value="{{old("email")}}" type="email" placeholder="Email">
+            @error('email')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+            <input required="required" id="password" name="password" type="password" placeholder="Password" data-toggle="tooltip" data-placement="top" title="password must contain at least one upper letter and one number" required>
+            <input required="required" id="confirm-password" name="password_confirmation" type="password" placeholder="Repeat Your Password" required>
+
+
+            <div class="btn-box">
+                <button type="button" id="next1">Next</button>
+            </div>
+        </form>
+<script>
+   
+</script>
+        <form id="form2" method="post" action="{{route('tourguides.store')}}">
+            @csrf
+            <meta name="csrf-token" content="{{ csrf_token() }}">
+            <h2> Work Experience</h2>
+            <h1> Your Recent Work Experience </h1>
+            <input id="rec-work-experience" class=" input-lg" name="work_experience" placeholder="Recent work experience">
+
+            <h1> Job Title </h1>
+            <input id="jobtitle" name="jobTitle" placeholder="Your Job Title"><br>
+            <h1> Years Of Experience as a Tour Guide </h1>
+            <label class="radio-inline"><input id="yearExp" type="radio" name="yearExp" value="0To2">&nbsp;&nbsp;&nbsp;0 to 2</label>
+            <label class="radio-inline"><input type="radio" id="yearExp" name="yearExp" value="2To5">&nbsp;&nbsp;&nbsp;2 to 5</label>
+            <label class="radio-inline"><input type="radio" id="yearExp" name="yearExp" value="5+">&nbsp;&nbsp;5+</label>
+
+            <div class="btn-box">
+                <button type="button" id="back1">Back</button>
+                <button type="button" id="next2">Next</button>
+
+            </div>
+        </form>
+
+        <form id="form3"  method='post' action="{{route('tourguides.store')}}">
+            <meta name="csrf-token" content="{{ csrf_token() }}">
+            @csrf
+            <h2>Educational Background</h2>
+            <div id="eduback" class="eduback">
+                <input id="degree-one" type="text" placeholder="Degree" name="degree" required>
+                <input id="university-one" type="text" placeholder="University" name="uni" required>
+                <input id="date-one" type="date" placeholder="Gradutaion Year" name="gradYear" data-toggle="tooltip" data-placement="top" title="the Graduation Year" required>
+            </div>
+            <button style="margin-top: 12px;height: 41px;border-radius: 2px;background-color: #111;background-image: none;" type="button" id="addedu">Add Another Education</button>
+
+            <div class="btn-box">
+                <button type="button" id="back2">Back</button>
+                <button type="button" id="next3">Next</button>
+
+            </div>
+        </form>
+
+        <form id="form4" method='post' action="{{route('tourguides.store')}}">
+            <meta name="csrf-token" content="{{ csrf_token() }}">
+            <h2>Languages</h2>
+            <div id="eduback" class="eduback">
+                <select name="langName" id="lang1">
+                    <option value="">Choose the language</option>
+                    <option value="Arabic">Arabic</option>
+                    <option value="English">English</option>
+                    <option value="French">French</option>
+                    <option value="German">German</option>
+                    <option value="Hindi">Hindi</option>
+                    <option value="Italian">Italian</option>
+                    <option value="Korean">Korean</option>
+                    <option value="Russian">Russian</option>
+                    <option value="Spanish">Spanish</option>
+                    <option value="Turkish">Turkish</option>
+
+                </select>
+                <select name="speaking" id="Speaking1">
+                    <option value="">Speaking Level</option>
+                    <option value="Beginner">Beginner</option>
+                    <option value="Beginner">Elementary</option>
+                    <option value="English">Intermediate</option>
+                    <option value="English">Upper-intermediate</option>
+                    <option value="French">Advanced</option>
+                    <option value="Italian">Proficiency</option>
+                </select>
+                <select name="writting" id="Writting1">
+                    <option value="">Writting Level</option>
+                    <option value="Beginner">Beginner</option>
+                    <option value="Beginner">Elementary</option>
+                    <option value="English">Intermediate</option>
+                    <option value="English">Upper-intermediate</option>
+                    <option value="French">Advanced</option>
+                    <option value="Italian">Proficiency</option>
+                </select>
+                <select name="comprehension" id="Comprehension1">
+                    <option value="">Comprehension Level</option>
+                    <option value="Beginner">Beginner</option>
+                    <option value="Beginner">Elementary</option>
+                    <option value="English">Intermediate</option>
+                    <option value="English">Upper-intermediate</option>
+                    <option value="French">Advanced</option>
+                    <option value="Italian">Proficiency</option>
+                </select>
+            </div>
+            <button style="margin-top: 12px;height: 41px;border-radius: 2px;background-color: #111;background-image: none;" type="button" id="addedu">Add Another Language</button>
+
+            <div class="btn-box">
+                <button type="button" id="back3">Back</button>
+                <button type="button" id="next4">Next</button>
+
+            </div>
+        </form>
+
+
+        <form id="form5" method="post" action="{{route('steps')}}" enctype="multipart/form-data">
+            @csrf
+            <meta name="csrf-token" content="{{ csrf_token() }}">
+            <input type="hidden" name="step" value="5">
+            <h2>Upload Your Personal Documents</h2>
+            <div style="margin-bottom:50px;">
+
+                <div class="row">
+                    <!--National ID-->
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                        <input style="display: none;" id="f01" type="file" name="frontNation" value="{{old('frontNation')}}" placeholder="Add profile picture" />
+                        <label for="f01">Add  National ID Photo (Front)</label>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                        <input style="display: none;" id="f02" type="file" name="backNation" value="{{old('backNation')}}" placeholder="Add profile picture" />
+                        <label for="f02">Add  National ID Photo (Back)</label>
+                    </div>
+                    <!--Tou Guide Licenses-->
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                        <input style="display: none;" id="f03" type="file" name="frontLicense" value="{{old('frontLicense')}}" placeholder="Add profile picture" />
+                        <label for="f03">Add Tour Guide Licenses Photo (Front)</label>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                        <input style="display: none;" id="f04" type="file" name="backLicense" value="{{old('backLicense')}}" placeholder="Add profile picture" />
+                        <label for="f04">Add Tour Guide Licenses Photo (Back)</label>
+                    </div>
+                    <!--Personal Photo-->
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                        <input style="display: none;" id="f05" type="file" name="profileImg" value="{{old('profileImg')}}" placeholder="Add profile picture" />
+                        <label style="top: -15px;" for="f05">Add Personal Photo</label>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="btn-box">
+                <button type="button" id="back4">Back</button>
+                <button id="submit-all-forms" type="submit">Submit</button>
+
+            </div>
+        </form>
+
+        <div class="step-row">
+            <div id="progress">
+
+            </div>
+            <div class="step-col"><small> Step 1</small></div>
+            <div class="step-col"><small> Step 2</small></div>
+            <div class="step-col"><small> Step 3</small></div>
+            <div class="step-col"><small> Step 4</small></div>
+            <div class="step-col"><small> Step 5</small></div>
         </div>
     </div>
-
-    <script>
-        // function storeData()
-        // {
-        //     var act=[];
-        //     act[$("#actName").val()] =  $("#actPrice").val();
-        //     $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
-        //     jQuery.ajax({
-        //     url: "/storeTrip",
-        //     method: 'GET',
-        //     data: {
-        //     "_token": "{{ csrf_token() }}",
-        //     "title":$("#title").val(),
-        //     "des":$("#des").val(),
-        //     act,
-        //     },
-        //     error: function(error)
-        //     {
-        //     console.log(error.responseJSON);
-        //     },
-        //     success:function(data){
-                
-        //     }
-        //     });
-        // }
-
-     $(document).ready(function() {
-        $('#activities').multiselect({
-            includeSelectAllOption: true,
-            enableFiltering: true,
-            enableCaseInsensitiveFiltering: true,
-            filterPlaceholder:'Search Here..'
-            });
-            });
-
-        // $('.option').click(function(){
-        //     alert("yes")
-        //     let rdd = $(this);
-        //     $("#result").append('<input type="hidden" name="1stlang" value="' + rdd + '">');
-        //     // ...
-        // });
-        $("#1stlang").change(function () {
-            let rdd = $("#1stlang").val();
-                $("#result1 input").val( rdd);
-
-        });
-        $("#2ndlang").change(function () {
-            let rdd = $("#2ndlang").val();
-            $("#result2 input").val( rdd);
-
-        });
-        $("#activities").select(function () {
-            let rdd = $("#activities").val();
-            $("#result3 input").val( rdd);
-
-        });
+</div>
 
 
-    </script>
+    <!-- Scripts -->
+    <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
+    <script src="{{asset('js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('js/tourguideregpage.js')}}"></script>
+</body>
 
-
-    
-@endsection
+</html>

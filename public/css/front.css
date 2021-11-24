@@ -1,0 +1,1338 @@
+/* Start  General Styles */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    background-color: #f5f3ea;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+body::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+body::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #111;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+}
+
+
+/* End  General Styles */
+
+
+/* Start Navbar Section */
+
+.navbar {
+    background-color: #ffffff10;
+    border-radius: 0;
+    border: none;
+    padding-top: 24px;
+    padding-bottom: 20px;
+    position: absolute;
+    margin-bottom: 0;
+    z-index: 100;
+    width: 100%;
+    backdrop-filter: blur(10px);
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+}
+
+.navbar img {
+    width: 111px;
+    position: absolute;
+    top: 5px;
+    user-select: none;
+    background-color: #fff;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.navbar ul {
+    margin-left: 20%;
+}
+
+.navbar li a {
+    font-size: 17px;
+    margin-right: 20px;
+    user-select: none;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: rgb(22 22 22);
+    cursor: pointer;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+    color: #fff;
+}
+
+.navbar-inverse .navbar-toggle {
+    border-color: #333;
+    border: none;
+    margin-top: -2px;
+}
+
+.navbar-inverse .navbar-toggle .icon-bar {
+    background-color: #fff;
+    width: 34px;
+    margin-top: 6px;
+}
+
+@media(max-width:560px) {
+    .navbar-inverse .navbar-toggle .icon-bar {
+        background-color: #fff;
+        width: 34px;
+        margin-top: 6px;
+    }
+}
+
+.upper-nav {
+    background-color: transparent;
+    height: 53px;
+    padding: 15px;
+}
+
+.upper-nav .container span {
+    float: right;
+    padding: 3px;
+}
+
+.upper-nav .container span a {
+    font-size: 15px;
+    color: #111;
+    font-weight: bold;
+}
+
+.upper-nav .container .special {
+    float: right;
+    margin-left: 27px;
+    background-color: #111;
+    padding: 5px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.upper-nav .container .special a {
+    color: #fff;
+    font-size: 15px;
+}
+
+
+/* End Navbar Section */
+
+
+/* Start Landing Section */
+
+.landing-section {
+    position: relative;
+    right: 0;
+    width: 100%;
+    min-height: 120vh;
+    padding: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #111;
+    color: #fff;
+    z-index: 2;
+}
+
+.landing-section video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: none;
+    opacity: 0.8;
+}
+
+.landing-section .text {
+    z-index: 10;
+    position: absolute;
+    top: 50%;
+    user-select: none;
+    left: 10%;
+}
+
+.landing-section .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #03a8fa;
+    mix-blend-mode: overlay;
+}
+
+.text h2 {
+    font-size: 3em;
+    font-weight: 800;
+    line-height: 1em;
+    text-transform: uppercase;
+}
+
+.text h3 {
+    font-size: 3em;
+    font-weight: 700;
+    line-height: 1em;
+    text-transform: uppercase;
+}
+
+.text p {
+    font-size: 1.1em;
+    margin: 20px 0;
+    font-weight: 400;
+    max-width: 700px;
+}
+
+.text a {
+    display: inline-block;
+    font-size: 1em;
+    background-color: #111;
+    padding: 10px 30px;
+    text-decoration: none;
+    color: #fff;
+    margin-top: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+}
+
+.text a:hover {
+    letter-spacing: 6px;
+}
+
+.landing-section .search-bar {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    width: 50%;
+}
+
+@media(max-width:560px) {
+    .landing-section .search-bar {
+        position: absolute;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, 50%);
+        width: 70%;
+    }
+}
+
+.landing-section input {
+    height: 46px;
+    width: 75%;
+    border: none;
+    outline: none;
+    box-shadow: 0px 0px 25px -2px rgb(0 0 0 / 29%);
+    color: #111;
+    padding: 20px;
+    background-color: #ffffff10;
+    border-radius: 1px;
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    -ms-border-radius: 1px;
+    -o-border-radius: 1px;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+    backdrop-filter: blur(12px);
+}
+
+
+.landing-section input:hover {
+    background-color: #fff;
+}
+
+.landing-section input::placeholder {
+    color: #111;
+}
+
+@media(max-width:500px) {
+    .navbar-inverse .navbar-toggle {
+        background-color: transparent;
+        border: none;
+    }
+    .navbar-inverse .navbar-toggle:hover {
+        background-color: transparent;
+        border: none;
+    }
+}
+
+.landing-section button {
+    height: 46px;
+    border: none;
+    width: 51px;
+    box-shadow: 0px 0px 25px -2px rgb(0 0 0 / 29%);
+    background-color: #d5942510;
+}
+
+.landing-section button:hover {
+    background-color: #d59425;
+}
+
+.landing-section a {
+    background-color: #d5942510;
+}
+
+.landing-section a:hover {
+    background-color: #d59425;
+}
+
+
+
+.landing-section .whats-happening {
+    position: fixed;
+    top: 82%;
+    left: 87%;
+    width: 106px;
+    height: 110px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    background-color: #fff;
+    color: #111;
+    font-weight: bold;
+    font-size: 5px;
+    text-align: center;
+    padding: 15px;
+    z-index: 10000;
+    box-shadow: 0px 0px 25px -2px rgba(0, 0, 0, 0.29);
+    cursor: pointer;
+    user-select: none;
+}
+
+.landing-section .whats-happening h2 {
+    color: #111;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+@media(max-width:560px) {
+    .landing-section .whats-happening {
+        position: fixed;
+        top: 82%;
+        left: 66%;
+        width: 85px;
+        height: 85px;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        background-color: #FCF4D3;
+        color: #111;
+        font-weight: bold;
+        font-size: 5px;
+        text-align: center;
+        padding: 6px;
+        z-index: 10000;
+        box-shadow: 0px 0px 25px -2px rgb(0 0 0 / 29%);
+    }
+    .landing-section .whats-happening h2 {
+        color: #111;
+        font-weight: bold;
+        font-size: 13px;
+    }
+}
+
+@media(max-width: 400px) {
+    .landing-section .whats-happening {
+        left: 57%;
+    }
+}
+
+
+/* End Landing Section */
+
+
+/* Start Why EGYPTUS section */
+
+.why-egyptus {
+    position: relative;
+    margin-top: 50px;
+}
+
+.why-egyptus h2 {
+    font-size: 51px;
+    padding: 25px;
+    font-weight: bold;
+}
+
+.why-egyptus .container .row .left,
+.why-egyptus .container .row .right {
+    margin-bottom: 50px;
+    background-color: #fff;
+    height: 350px;
+    box-shadow: 0px 0px 25px -2px rgb(0 0 0 / 19%);
+    transition: 1.7s;
+    -webkit-transition: 1.7s;
+    -moz-transition: 1.7s;
+    -ms-transition: 1.7s;
+    -o-transition: 1.7s;
+}
+
+.why-egyptus .container .row img {
+    height: 350px;
+    box-shadow: 0px 0px 25px -2px rgb(0 0 0 / 19%);
+    margin-bottom: 50px;
+    transition: 1.7s;
+    -webkit-transition: 1.7s;
+    -moz-transition: 1.7s;
+    -ms-transition: 1.7s;
+    -o-transition: 1.7s;
+}
+
+@media(max-width:560px) {
+    .why-egyptus .container .why-card h1 {
+        font-size: 26px;
+    }
+}
+
+.why-egyptus p {
+    font-size: 15px;
+    line-height: 28px;
+    font-weight: bold;
+}
+
+#first-left-para,
+#second-left-img,
+#third-left-para {
+    position: relative;
+    left: -2500px;
+}
+
+#first-right-img,
+#second-right-para,
+#third-right-img {
+    position: relative;
+    left: 2500px;
+}
+
+
+/* End Why Egyptus Section */
+
+
+/* Start Galary Section */
+
+body section.slideshow {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    height: 100vh;
+    margin: 0 auto;
+    visibility: hidden;
+    margin-top: 200px;
+}
+
+body section.slideshow h1 {
+    margin-top: 50px;
+    font-size: 50px;
+    font-weight: bold;
+    position: absolute;
+    left: 50%;
+    top: -27%;
+    transform: translate(-50%);
+    -webkit-transform: translate(-50%);
+    -moz-transform: translate(-50%);
+    -ms-transform: translate(-50%);
+    -o-transform: translate(-50%);
+}
+
+body section.slideshow ul.navigation {
+    position: absolute;
+    display: block;
+    width: 640px;
+    height: 640px;
+    padding: 0;
+    margin: 0;
+    left: -230px;
+    top: 50%;
+    margin-top: -320px;
+    z-index: 10;
+}
+
+body section.slideshow ul.navigation li.navigation-item {
+    position: absolute;
+    display: inline-block;
+    overflow: hidden;
+    width: 120px;
+    height: 120px;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: border 0.6s ease-in-out;
+}
+
+body section.slideshow ul.navigation li.navigation-item .rotate-holder {
+    position: fixed;
+    display: block;
+    width: 0;
+    height: 0;
+    left: -9999px;
+    top: -9999px;
+}
+
+body section.slideshow ul.navigation li.navigation-item .background-holder {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.6s ease-in-out, visibility 0.6s ease-in-out;
+}
+
+body section.slideshow ul.navigation li.navigation-item:hover .background-holder {
+    opacity: 0.75;
+}
+
+body section.slideshow ul.navigation li.navigation-item.active .background-holder {
+    opacity: 0;
+    visibility: hidden;
+}
+
+body section.slideshow .detail {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 8;
+}
+
+body section.slideshow .detail .detail-item {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+body section.slideshow .detail .detail-item .headline {
+    position: absolute;
+    display: block;
+    width: 100%;
+    max-width: calc(100% - 480px);
+    height: 126px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: visible;
+    white-space: nowrap;
+    box-sizing: border-box;
+    z-index: 2;
+}
+
+@media (max-width:560px) {
+    body section.slideshow .detail .detail-item .headline {
+        left: 6%;
+    }
+    body section.slideshow ul.navigation {
+        left: -435px;
+    }
+}
+
+body section.slideshow .detail .detail-item .headline .letter {
+    font-family: 'Oswald', sans-serif;
+    position: relative;
+    display: inline-block;
+    opacity: 0;
+    visibility: hidden;
+    color: #FFFFFF;
+    font-size: 3em;
+    line-height: 110px;
+    font-weight: 900;
+    font-kerning: none;
+    white-space: nowrap;
+    box-sizing: border-box;
+    text-transform: uppercase;
+}
+
+body section.slideshow .detail .detail-item .background {
+    position: absolute;
+    display: block;
+    width: 100%;
+    width: calc(100%);
+    height: 100%;
+    height: calc(100%);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: visible;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    z-index: 1;
+}
+
+body section.slideshow .detail .detail-item .background::before {
+    content: "";
+    background: linear-gradient(to right, black 0%, rgba(0, 0, 0, 0) 90%);
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+}
+
+body section.slideshow .detail .detail-item.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* End Galary Section */
+
+
+/* Start About Section */
+
+.about {
+    margin-top: 150px;
+    text-align: center;
+}
+
+.about h1 {
+    font-size: 50px;
+    font-weight: bold;
+    color: #111;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+.about h2 {
+    font-size: 40px;
+    font-weight: bold;
+    color: #d59425;
+    font-size: 18px;
+}
+
+.about p {
+    font-size: 17px;
+    line-height: 30px;
+    margin-top: 50px;
+    padding: 0 10%;
+    opacity: 0;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+}
+
+
+/* End About Section */
+
+
+/* Start Vision Section */
+
+.vision {
+    margin-top: 150px;
+    margin-bottom: 150px;
+}
+
+.vision h1 {
+    font-size: 35px;
+}
+
+.vision p {
+    font-size: 17px;
+    margin-top: 23px;
+    line-height: 42px;
+}
+
+
+/* End Vision Section */
+
+
+/* Start Footer Section */
+
+footer {
+    background-color: #111;
+}
+
+footer h1 {
+    font-size: 45px;
+    font-weight: bold;
+    color: #d59425;
+}
+
+footer p {
+    font-size: 18px;
+    line-height: 37px;
+    color: #fff;
+}
+
+footer h2 {
+    font-size: 18px;
+    color: #fff;
+}
+
+footer .copy-right {
+    text-align: center;
+    font-size: 18px;
+    color: #fff;
+    margin-top: 20px;
+}
+
+
+/* End Footer Section */
+
+
+/* Start tourguideregpage Style */
+
+.tourguideregpage {
+    width: 100%;
+    height: 100%;
+    background-image: url("../images/regguideback.png");
+    background-position: center;
+    background-size: cover;
+    background-color: #111;
+    position: fixed;
+}
+
+.tourguideregpage .container {
+    width: 80%;
+    height: 561px;
+    margin: 2% auto;
+    background: #fff;
+    border-radius: 5px;
+    position: relative;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.tourguideregpage .container::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+.tourguideregpage .container::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.tourguideregpage .container::-webkit-scrollbar-thumb {
+    background-color: #111;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+}
+
+.tourguideregpage .container h3 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #777;
+}
+
+.tourguideregpage .container form {
+    width: 900px;
+    position: absolute;
+    top: 100px;
+    left: 40px;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+}
+
+.tourguideregpage .container form input {
+    width: 45%;
+    padding: 10px 5px;
+    margin: 4px 7px;
+    border: 0;
+    border-bottom: 1px solid #999;
+    outline: none;
+    background: transparent;
+}
+
+.tourguideregpage .container form input::placeholder {
+    color: rgb(87, 87, 87);
+    font-size: 18px;
+}
+
+.tourguideregpage .container form select {
+    width: 45%;
+    padding: 10px 5px;
+    margin: 5px 5px;
+    border: 0;
+    border-bottom: 1px solid #999;
+    outline: none;
+    background: transparent;
+}
+
+.tourguideregpage .container form select::placeholder {
+    color: rgb(87, 87, 87);
+    font-size: 18px;
+}
+
+.tourguideregpage .container .btn-box {
+    width: 100%;
+    margin: 30px auto;
+    text-align: center;
+}
+
+.tourguideregpage .container form button {
+    width: 110px;
+    height: 35px;
+    margin: 0 10px;
+    background: #ffad06;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    border: 0;
+    outline: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+#form2 {
+    left: 1500px;
+    text-align: center;
+}
+
+#form2 h2 {
+    font-size: 39px;
+    text-transform: uppercase;
+}
+
+#form2 h1 {
+    font-size: 21px;
+    text-align: center;
+}
+
+#form2 textarea {
+    height: 124px;
+    width: 64%;
+}
+
+#form3 {
+    left: 1500px;
+}
+
+#form4 {
+    left: 1500px;
+}
+
+#form5 {
+    left: 1500px;
+}
+
+.step-row {
+    width: 600px;
+    height: 40px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 -1px 5px -1px #000;
+    position: relative;
+    left: -15px;
+}
+
+.step-row .step-col {
+    width: 120px;
+    text-align: center;
+    color: #333;
+    position: relative;
+    font-size: 15px;
+}
+
+.step-row #progress {
+    position: absolute;
+    height: 100%;
+    width: 120px;
+    background: #ffad06;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+}
+
+.step-row #progress::after {
+    content: '';
+    height: 0;
+    width: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 20px solid #ffad06;
+    position: absolute;
+    right: -20px;
+    top: 0;
+}
+
+.backhome {
+    text-decoration: none;
+    color: #fff;
+    font-size: 20px;
+    margin-left: 50px;
+}
+
+.backhome a {
+    text-decoration: none;
+    color: #fff;
+}
+
+@media(max-width:850px) {
+    .tourguideregpage {
+        width: 100%;
+        height: 139%;
+        background-color: #111;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: 0;
+    }
+    .tourguideregpage .container {
+        width: 420px;
+        height: calc(100% - 100px);
+        margin: 2% auto;
+        background: #ffffff;
+        border-radius: 5px;
+        position: relative;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -ms-border-radius: 5px;
+        -o-border-radius: 5px;
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
+    .tourguideregpage .container form input {
+        width: 100%;
+        padding: 10px 5px;
+        margin: 5px 0;
+        border: 0;
+        border-bottom: 1px solid #999;
+        outline: none;
+        background: transparent;
+        margin-left: 0;
+    }
+    .tourguideregpage .container form {
+        width: 335px;
+        position: absolute;
+        top: 100px;
+        left: 40px;
+        transition: 0.5s;
+        -webkit-transition: 0.5s;
+        -moz-transition: 0.5s;
+        -ms-transition: 0.5s;
+        -o-transition: 0.5s;
+    }
+}
+
+.eduback {
+    border: 1px solid #111;
+    width: 80%;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    padding: 15px;
+}
+
+
+/* Basics */
+
+label,
+input {
+    color: #333;
+    font: 14px/20px Arial;
+}
+
+
+/* Hide the file input using
+  opacity */
+
+[type=file] {
+    filter: alpha(opacity=0);
+    opacity: 0;
+}
+
+input,
+[type=file]+label {
+    border: 1px solid #CCC;
+    border-radius: 3px;
+    text-align: left;
+    padding: 10px;
+    width: 150px;
+    margin: 0;
+    left: 0;
+}
+
+[type=file]+label {
+    /* Decorative */
+    background: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-right: 40px;
+    min-height: 61px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+[type=file]+label:hover {
+    background: #3399ff;
+}
+
+#form5 .row {
+    text-align: center;
+}
+
+
+/* End tourguideregpage Style */
+
+
+/* Start Customize Your Own Trip Page */
+
+.customOwnTrip {
+    width: 100%;
+    height: 100%;
+    background-image: url("../images/custombackground.png");
+    background-position: center;
+    background-size: cover;
+    background-color: #111;
+    position: fixed;
+}
+
+.customOwnTrip .container {
+    width: 80%;
+    height: 561px;
+    margin: 2% auto;
+    background: #fff;
+    border-radius: 5px;
+    position: relative;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.customOwnTrip .container::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+.customOwnTrip .container::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.customOwnTrip .container::-webkit-scrollbar-thumb {
+    background-color: #111;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+}
+
+.customOwnTrip .container h3 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #777;
+}
+
+.customOwnTrip .container form {
+    width: 900px;
+    position: absolute;
+    top: 100px;
+    left: 40px;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+}
+
+.customOwnTrip .container form input {
+    width: 45%;
+    padding: 10px 5px;
+    margin: 5px 5px;
+    border: 0;
+    border-bottom: 1px solid #999;
+    outline: none;
+    background: transparent;
+}
+
+.customOwnTrip .container form input::placeholder {
+    color: rgb(87, 87, 87);
+    font-size: 18px;
+}
+
+.customOwnTrip .container form select {
+    width: 45%;
+    padding: 10px 5px;
+    margin: 5px 5px;
+    border: 0;
+    border-bottom: 1px solid #999;
+    outline: none;
+    background: transparent;
+}
+
+.customOwnTrip .container form select::placeholder {
+    color: rgb(87, 87, 87);
+    font-size: 18px;
+}
+
+.customOwnTrip .container .btn-box {
+    width: 100%;
+    margin: 30px auto;
+    text-align: center;
+}
+
+.customOwnTrip .container form button {
+    width: 110px;
+    height: 35px;
+    margin: 0 10px;
+    background: #ffad06;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    border: 0;
+    outline: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+@media(max-width:850px) {
+    .customOwnTrip {
+        width: 100%;
+        height: 139%;
+        background-color: #111;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: 0;
+    }
+    .customOwnTrip .container {
+        width: 420px;
+        height: calc(100% - 100px);
+        margin: 2% auto;
+        background: #ffffff;
+        border-radius: 5px;
+        position: relative;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -ms-border-radius: 5px;
+        -o-border-radius: 5px;
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
+    .customOwnTrip .container form input {
+        width: 100%;
+        padding: 10px 5px;
+        margin: 5px 0;
+        border: 0;
+        border-bottom: 1px solid #999;
+        outline: none;
+        background: transparent;
+        margin-left: 0;
+    }
+    .customOwnTrip .container form {
+        width: 335px;
+        position: absolute;
+        top: 100px;
+        left: 40px;
+        transition: 0.5s;
+        -webkit-transition: 0.5s;
+        -moz-transition: 0.5s;
+        -ms-transition: 0.5s;
+        -o-transition: 0.5s;
+    }
+}
+
+.checkbox-inline,
+.radio-inline {
+    position: relative;
+    display: inline-block;
+    padding-left: 20px;
+    margin-bottom: 0;
+    font-weight: 400;
+    vertical-align: middle;
+    cursor: pointer;
+    font-size: 20px;
+    margin-top: 0px;
+}
+
+.flight {
+    border: 1px solid #111;
+    width: 100%;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    padding: 15px;
+    margin-top: 60px;
+    display: none;
+}
+
+.adress {
+    border: 1px solid #111;
+    width: 100%;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    padding: 15px;
+    margin-top: 60px;
+    display: none;
+}
+
+.customOwnTrip .container #form3 {
+    width: 92%;
+    position: absolute;
+    top: 100px;
+    left: 1500px;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    text-align: center;
+    -o-transition: 0.5s;
+}
+
+.bookingassistwarning {
+    width: 100%;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    padding: 15px;
+    margin-top: 60px;
+    display: none;
+}
+
+.bookingassist {
+    width: 100%;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    padding: 15px;
+    margin-top: 60px;
+    display: none;
+}
+
+.bookinginfo {
+    border: 1px solid #111;
+    width: 100%;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    padding: 15px;
+    margin-top: 60px;
+    display: none;
+}
+
+.customOwnTrip .container #form4 {
+    width: 92%;
+    position: absolute;
+    top: 100px;
+    left: 1500px;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    text-align: center;
+    -o-transition: 0.5s;
+}
+
+.customOwnTrip .container #form4 textarea.area-one {
+    width: 70%;
+    height: 150px;
+}
+
+.customOwnTrip .container #form4 textarea.area-two {
+    width: 70%;
+    height: 75px;
+}
+
+.thank-you {
+    text-align: center;
+}
+
+.thank-you i {
+    text-align: center;
+    font-size: 65px;
+}
+
+#next1,
+#next2,
+#next3,
+.tourguideregpage .submit-all-forms {
+    pointer-events: none;
+}
+
+
+/* End Customize Your Own Trip Page Style */
