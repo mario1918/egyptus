@@ -413,7 +413,6 @@ class TourguideController extends Controller
                 $user =  new User();
                 $user->firstName = Session::get('firstName');
                 $user->lastName = Session::get("lastName");
-                $user->username = "";
                 $user->email = Session::get('email');
                 $user->password =  Hash::make(Session::get('password'));
                 $user->profileImg = $pathImg;
