@@ -234,6 +234,7 @@ class TourguideController extends Controller
             $extension = $img->getClientOriginalExtension();
             $fileImgName = $name. "_". $user . "_" . time().'.'.$extension;
             $pathImg = $img->storeAs('public/tourGuideDocuments',$fileImgName);
+            
         return $pathImg;
     }
 
@@ -398,7 +399,7 @@ class TourguideController extends Controller
                     $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
                     $extension = $request->file('profileImg')->getClientOriginalExtension();
                     $fileImgName = $filename. '_'.time().'.'.$extension;
-                    $pathImg = $request->file('profileImg')->storeAs('profileImgs',$fileImgName);
+                    $pathImg = $request->file('profileImg')->storeAs('public/profileImgs',$fileImgName);
                 }
                 else{
                     $pathImg = "images/boy.png";
@@ -438,7 +439,7 @@ class TourguideController extends Controller
                 $tourguide->save();
 
                 return redirect()->route('home')
-                ->with('success', 'Please wait for the admin to verify the account.');
+                ->withErrors(['success'=> 'Please wait for the admin to verify the account.']);
                 
             }
         }
