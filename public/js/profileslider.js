@@ -45,7 +45,7 @@ var paginationElement = document.createElement('ul');
 // Set Id On Created element
 paginationElement.setAttribute('id', 'pagination-ul');
 
-const slidesindicators = ["Hurgada", "Sharm", "Pyramids", "Salty Lakes", "Paroon Castle"]
+const slidesindicators = ["Hurgada", "Pyramids", "Alexandira", "Salty Lakes", "Paroon Castle"]
 
 // Create List  Items Based On Slides Count
 for (var i = 1; i <= slidesCount; i++) {

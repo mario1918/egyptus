@@ -1,46 +1,116 @@
-<!DOCTYPE html>
-<html lang="en">
+<nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+    <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
+      <a class="navbar-brand brand-logo" href="{{ url('/') }}">
 
-<head>
-    <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="{{asset("img/apple-icon.png")}}">
-    <link rel="icon" type="image/png" href="{{asset('img/favicon.png')}}">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>
-        @yield("title")
-    </title>
-    @section("title")Admin Dashboard @endsection
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-    <!--     Fonts and icons     -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <!-- CSS Files -->
-    <link href="{{asset("css/bootstrap.min.css")}}" rel="stylesheet" />
-    <link href="{{asset("css/style.bundle.css")}}" rel="stylesheet" type="text/css" />
-    <link href="{{asset("css/plugins.bundle.css")}}" rel="stylesheet" type="text/css" />
-    <link href="{{asset("css/prismjs.bundle.css")}}" rel="stylesheet" type="text/css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
-
-
-
-    <!-- CSS Just for demo purpose, don't include it in your project -->
-</head>
-<style>
-
-</style>
-<body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled sidebar-enabled" data-header-scroll="on"
-      data-scrolltop="on" style="margin-right: 10px;margin-left: 10px;">
-<div class="wrapper m-2">
-    {{-- @include("admin.sidebar") --}}
-    <div class="container cont col-lg-11">
-
-            <!--end::Toolbar-->
-
-        @yield('content')
+        <img src="{{url('images/logo.png')}}" alt="Egyptus Logo" style='height:100px'></a>
+      <a class="navbar-brand brand-logo-mini" href="{{ url('/') }}">
+        
+        <img src="{{asset('images/titlelogo.png')}}" alt="Egyptus" /> </a>
     </div>
-    {{-- @include("admin.footer") --}}
-</div>
-
+    <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+      <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+        <span class="mdi mdi-menu"></span>
+      </button>
+      <ul class="navbar-nav navbar-nav-left header-links">
+       
+        <li class="nav-item active d-none d-lg-flex">
+          <a href="#" class="nav-link">
+            <i class="mdi mdi-elevation-rise"></i>Reports</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav navbar-nav-right">
+        <li class="nav-item dropdown">
+          <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+            <i class="mdi mdi-file-outline"></i>
+            <span class="count">7</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="messageDropdown">
+            <a class="dropdown-item py-3">
+              <p class="mb-0 font-weight-medium float-left">You have 7 unread mails </p>
+              <span class="badge badge-pill badge-primary float-right">View all</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item preview-item">
+              <div class="preview-thumbnail">
+                <img src="{{ url('assets/images/faces/face10.jpg') }}" alt="image" class="img-sm profile-pic"> </div>
+              <div class="preview-item-content flex-grow py-2">
+                <p class="preview-subject ellipsis font-weight-medium text-dark">Marian Garner </p>
+                <p class="font-weight-light small-text"> The meeting is cancelled </p>
+              </div>
+            </a>
+            <a class="dropdown-item preview-item">
+              <div class="preview-thumbnail">
+                <img src="{{ url('assets/images/faces/face12.jpg') }}" alt="image" class="img-sm profile-pic"> </div>
+              <div class="preview-item-content flex-grow py-2">
+                <p class="preview-subject ellipsis font-weight-medium text-dark">David Grey </p>
+                <p class="font-weight-light small-text"> The meeting is cancelled </p>
+              </div>
+            </a>
+            <a class="dropdown-item preview-item">
+              <div class="preview-thumbnail">
+                <img src="{{ url('assets/images/faces/face3.jpg') }}" alt="image" class="img-sm profile-pic"> </div>
+              <div class="preview-item-content flex-grow py-2">
+                <p class="preview-subject ellipsis font-weight-medium text-dark">Travis Jenkins </p>
+                <p class="font-weight-light small-text"> The meeting is cancelled </p>
+              </div>
+            </a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+            <i class="mdi mdi-bell-outline"></i>
+            <span class="count bg-success">4</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="notificationDropdown">
+            <a class="dropdown-item py-3 border-bottom">
+              <p class="mb-0 font-weight-medium float-left">4 new notifications </p>
+              <span class="badge badge-pill badge-primary float-right">View all</span>
+            </a>
+            <a class="dropdown-item preview-item py-3">
+              <div class="preview-thumbnail">
+                <i class="mdi mdi-alert m-auto text-primary"></i>
+              </div>
+              <div class="preview-item-content">
+                <h6 class="preview-subject font-weight-normal text-dark mb-1">Application Error</h6>
+                <p class="font-weight-light small-text mb-0"> Just now </p>
+              </div>
+            </a>
+            <a class="dropdown-item preview-item py-3">
+              <div class="preview-thumbnail">
+                <i class="mdi mdi-settings m-auto text-primary"></i>
+              </div>
+              <div class="preview-item-content">
+                <h6 class="preview-subject font-weight-normal text-dark mb-1">Settings</h6>
+                <p class="font-weight-light small-text mb-0"> Private message </p>
+              </div>
+            </a>
+            <a class="dropdown-item preview-item py-3">
+              <div class="preview-thumbnail">
+                <i class="mdi mdi-airballoon m-auto text-primary"></i>
+              </div>
+              <div class="preview-item-content">
+                <h6 class="preview-subject font-weight-normal text-dark mb-1">New user registration</h6>
+                <p class="font-weight-light small-text mb-0"> 2 days ago </p>
+              </div>
+            </a>
+          </div>
+        </li>
+        <li class="nav-item dropdown d-none d-xl-inline-block">
+          <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+            <span class="profile-text d-none d-md-inline-flex">{{Auth::user()->firstName}} !</span>
+            
+            <img class="img-xs rounded-circle"src="{{ url('admin/images/faces/face8.jpg') }}" alt="Profile image"> </a>
+          
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+            <a class="dropdown-item mt-2"> Manage Accounts </a>
+            <a class="dropdown-item"> Change Password </a>
+            {{-- <a class="dropdown-item"> Check Inbox </a> --}}
+            <a class="dropdown-item"> Sign Out </a>
+          </div>
+        </li>
+      </ul>
+      <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+        <span class="mdi mdi-menu icon-menu"></span>
+      </button>
+    </div>
+  </nav>

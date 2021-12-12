@@ -11,6 +11,16 @@ var $thirdLeftPara = document.getElementById("third-left-para");
 var $thirdRightimg = document.getElementById("third-right-img");
 var $navbar = document.getElementById("navbar");
 
+$(document).ready(function() {
+    $(".profile-settings img").click(function() {
+        $(".profile-settings-dropdown ul").fadeToggle(500);
+    })
+    $(".profile-settings i").click(function() {
+        $(".profile-settings-dropdown ul").fadeToggle(500);
+    })
+
+});
+
 $window.on('scroll', function() {
 
     $myDist = $window.scrollTop();
@@ -53,6 +63,7 @@ $window.on('scroll', function() {
             backgroundColor: '#ffffff10'
         });
     }
+
 
 
 });

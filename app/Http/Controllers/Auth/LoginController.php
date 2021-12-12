@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\Tourguide;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -24,7 +25,7 @@ class LoginController extends Controller
             'email'     => 'required',
             'password'  => 'required|min:6'
         ]);
-    
+
         $credentials = $request->only('email', 'password');
         $user = User::where("email", $request->email)->first();
         if(!empty($user))
@@ -32,12 +33,13 @@ class LoginController extends Controller
         if($user->isAdmin == 1 || $user->type == 2)
         {
             if (Auth::attempt($credentials)) {
-               //if user is admin => redirect on admin dashboard 
+               //if user is admin => redirect on admin dashboard
                 if($user->isAdmin ==1)
                 {
-                    return redirect('/');
+                    $tourguides = count(Tourguide::all());
+                    return view('admin.dashboard',compact('tourguides'));
                 }
-                 //if user is tourist => redirect on admin dashboard 
+                 //if user is tourist => redirect on admin dashboard
                 elseif($user->type == 2)
                 {
                     return redirect('/')->withErrors(['msg' => "Check Your Mail To Verify Your Account"]);
@@ -48,7 +50,7 @@ class LoginController extends Controller
                 return redirect()->back()->withErrors(['msg' => "The cerdentials is not right"]);
             }
         }
-        //the tourguide is active 
+        //the tourguide is active
         elseif($user->type == 1 && $user->status == 'active')
         {
             if (Auth::attempt($credentials)) {
@@ -65,12 +67,12 @@ class LoginController extends Controller
             if ( Auth::attempt($credentials)) {
                 // if success login => redirect to profile tourguide
                 return redirect('')->withErrors(['msg' => "We will send you a mail when the admin
-                verify your account"]); 
+                verify your account"]);
             }
             else{
                 return redirect()->back()->withErrors(['msg' => "The cerdentials is not right"]);
             }
-               
+
         }
     }
     }

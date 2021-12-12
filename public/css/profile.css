@@ -1,232 +1,1205 @@
-.navbar {
-    background-color: #111;
-    border-radius: 0;
-    border: none;
-    position: relative;
-    margin-bottom: 50px;
-    z-index: 100;
-    width: 100%;
-}
-
-
-/* Start Main Section */
-
-.profile .container .info {
-    margin-bottom: 35px;
-}
-
-.profile .container .info .Tourguide-name {
-    display: inline;
-    font-size: 44px;
-}
-
-.profile .container .info button {
-    height: 42px;
-    width: 194px;
-    color: #fff;
-    font-size: 17px;
-    outline: none;
-    background-color: #111;
-    border: none;
-    float: right;
-}
-
-.profile .container img {
-    width: 100%;
-}
-
-.slider-container {
-    width: 100%;
-    height: 250px;
-    position: relative;
-}
-
-.slider-container img {
-    position: relative;
-    display: none;
-    transition: opacity 1s;
-    -webkit-transition: opacity 1s;
-    -moz-transition: opacity 1s;
-    -ms-transition: opacity 1s;
-    -o-transition: opacity 1s;
-    z-index: 1;
-}
-
-.slider-container2 p {
-    position: relative;
-    display: none;
-    z-index: 1;
-}
-
-.slider-container img.active {
-    display: block;
-    height: 400px;
-}
-
-.slider-container2 p.active {
-    display: block;
-}
-
-.slider-container .slide-number {
-    position: absolute;
-    left: 10px;
-    top: 10px;
-    background-color: rgba(0, 0, 0, 0.6);
-    color: #fff;
-    padding: 5px 10px;
-    font-size: 20px;
-    z-index: 2;
-}
-
-.slider-controls {
-    overflow: hidden;
-    margin-top: 200px;
-}
-
-.slider-controls .prev,
-.slider-controls .next {
-    background-color: #009688;
-    color: #fff;
-    font-size: 16px;
-    text-align: center;
-    cursor: pointer;
-    border-radius: 4px;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    -ms-border-radius: 4px;
-    -o-border-radius: 4px;
-    padding: 5px;
-    user-select: none;
-    width: 20%;
-}
-
-.slider-controls .prev {
-    float: left;
-}
-
-.slider-controls .next {
-    float: right;
-}
-
-.slider-controls .prev.disapled,
-.slider-controls .next.disapled {
-    background-color: #00968780;
-    cursor: no-drop;
-}
-
-.slider-controls .indicator {
-    width: 100%;
-}
-
-.slider-controls .indicator ul {
-    list-style: none;
-    margin: 0;
-    text-align: center;
-}
-
-.slider-controls .indicator ul li {
-    display: inline-block;
-    background-color: #f6f6f6;
-    color: #333;
-    font-weight: bold;
-    height: 31px;
-    min-width: 98px;
-    margin: 0 2px;
-    line-height: 28px;
-    cursor: pointer;
-}
-
-.slider-controls .indicator ul li.active {
-    background-color: #111;
-    color: white;
-}
-
-.profile .container .Expertise span {
-    font-size: 16px;
-    background-color: #111;
-    display: inline-block;
-    margin-right: 9px;
-    padding: 2px 11px 2px 8px;
-    color: #fff;
-    border-radius: 1px;
-    margin-bottom: 5px;
-    -webkit-border-radius: 1px;
-    -moz-border-radius: 1px;
-    -ms-border-radius: 1px;
-    -o-border-radius: 1px;
-}
-
-.profile p {
-    font-size: 16px;
-    line-height: 25px;
-    font-weight: 600;
-    margin-top: 20px;
-}
-
-
-/* End Main Section */
-
-
-/* Start Favorite Trips Section Styling*/
-
-.favorite-trips {
-    margin-bottom: 50px;
-}
-
-.favorite-trips img {
-    width: 100%;
-    height: 500px;
-}
-
-.favorite-trips a {
-    color: #000;
-    font-size: 22px;
-    font-weight: bold;
-}
-
-.favorite-trips i {
-    display: block;
-    margin-top: 5px;
-}
-
-
-/* End Favorite Trips Section Styling*/
-
-
-/* Start Reviews Section Style */
-
-.reviews {
-    width: 100%;
-    background-color: #fff;
-    margin-top: 44px;
-    margin-bottom: 44px;
-}
-
-.reviews h1 {
-    text-transform: uppercase;
-    margin-bottom: 47px;
-}
-
-.reviews span {
-    float: right;
-}
-
-.reviews span.bold-black {
-    font-weight: bold;
-    font-size: 20px;
-    float: none;
-}
-
-.reviews h2 {
-    font-size: 19px;
-    display: inline;
-}
-
-.reviews p {
-    padding: 18px;
-    font-size: 18px;
-    line-height: 32px;
-}
-
-
-/* End Reviews Section Style */
+    .navbar {
+        background-color: #111;
+        border-radius: 0;
+        border: none;
+        position: relative;
+        margin-bottom: 50px;
+        z-index: 100;
+        width: 100%;
+    }
+    /* Start Main Section */
+    
+    .profile .container .info {
+        margin-bottom: 35px;
+    }
+    
+    .profile .container .info .Tourguide-name {
+        display: inline;
+        font-size: 44px;
+    }
+    
+    .profile .container .info button {
+        height: 42px;
+        color: #fff;
+        padding-left: 10px;
+        padding-right: 10px;
+        font-size: 17px;
+        outline: none;
+        background-color: #111;
+        border: none;
+        float: right;
+        margin-left: 20px;
+        transition: 0.5s;
+        -webkit-transition: 0.5s;
+        -moz-transition: 0.5s;
+        -ms-transition: 0.5s;
+        -o-transition: 0.5s;
+    }
+    
+    .profile .container .info button:hover {
+        background-color: transparent;
+        border: 1px solid;
+        color: #000;
+    }
+    
+    .profile .container img {
+        width: 100%;
+    }
+    
+    .slider-container {
+        width: 100%;
+        height: 250px;
+        position: relative;
+    }
+    
+    .slider-container img {
+        position: relative;
+        display: none;
+        transition: opacity 1s;
+        -webkit-transition: opacity 1s;
+        -moz-transition: opacity 1s;
+        -ms-transition: opacity 1s;
+        -o-transition: opacity 1s;
+        z-index: 1;
+    }
+    
+    .slider-container2 p {
+        position: relative;
+        display: none;
+        z-index: 1;
+    }
+    
+    .slider-container img.active {
+        display: block;
+        height: 400px;
+    }
+    
+    .slider-container2 p.active {
+        display: block;
+    }
+    
+    .slider-container .slide-number {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        background-color: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        padding: 5px 10px;
+        font-size: 20px;
+        z-index: 2;
+    }
+    
+    .slider-controls {
+        overflow: hidden;
+        margin-top: 200px;
+    }
+    
+    .slider-controls .prev,
+    .slider-controls .next {
+        background-color: #009688;
+        color: #fff;
+        font-size: 16px;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 4px;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        -ms-border-radius: 4px;
+        -o-border-radius: 4px;
+        padding: 5px;
+        user-select: none;
+        width: 20%;
+    }
+    
+    .slider-controls .prev {
+        float: left;
+    }
+    
+    .slider-controls .next {
+        float: right;
+    }
+    
+    .slider-controls .prev.disapled,
+    .slider-controls .next.disapled {
+        background-color: #00968780;
+        cursor: no-drop;
+    }
+    
+    .slider-controls .indicator {
+        width: 100%;
+    }
+    
+    .slider-controls .indicator ul {
+        list-style: none;
+        margin: 0;
+        text-align: center;
+    }
+    
+    .slider-controls .indicator ul li {
+        display: inline-block;
+        background-color: #f6f6f6;
+        color: #333;
+        font-weight: bold;
+        height: 31px;
+        min-width: 98px;
+        margin: 0 2px;
+        line-height: 28px;
+        cursor: pointer;
+    }
+    
+    .slider-controls .indicator ul li.active {
+        background-color: #111;
+        color: white;
+    }
+    
+    .profile .container .Expertise span,
+    .profile .container .Languages span {
+        font-size: 16px;
+        background-color: #111;
+        display: inline-block;
+        margin-right: 9px;
+        padding: 2px 11px 2px 8px;
+        color: #fff;
+        border-radius: 1px;
+        margin-bottom: 5px;
+        -webkit-border-radius: 1px;
+        -moz-border-radius: 1px;
+        -ms-border-radius: 1px;
+        -o-border-radius: 1px;
+    }
+    
+    .profile .container .Languages {
+        position: relative;
+        overflow: hidden;
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+    
+    .profile .container .Languages .lang-edit-hovering {
+        background-color: #0000002f;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        text-align: right;
+        display: block;
+        transition: 0.5s;
+        -webkit-transition: 0.5s;
+        -moz-transition: 0.5s;
+        -ms-transition: 0.5s;
+        -o-transition: 0.5s;
+        display: none;
+    }
+    
+    .profile .container .Languages:hover .lang-edit-hovering {
+        display: block;
+    }
+    
+    .profile .container .Languages .lang-edit-hovering i {
+        font-size: 28px;
+        color: #fff;
+        padding: 15px;
+        cursor: pointer;
+    }
+    
+    .profile p {
+        font-size: 16px;
+        line-height: 25px;
+        font-weight: 600;
+        margin-top: 20px;
+    }
+    
+    .profile-photo-container {
+        position: relative;
+        overflow: hidden;
+        min-height: 450px;
+    }
+    
+    .profile-photo-container img {
+        object-fit: cover;
+    }
+    
+    .user-profile-description {
+        overflow: hidden;
+        min-height: 440px;
+        position: relative;
+    }
+    /* End Main Section */
+    /* Start Favorite Trips Section Styling*/
+    
+    .favorite-trips {
+        margin-bottom: 50px;
+    }
+    
+    .favorite-trips img {
+        width: 100%;
+        height: 500px;
+    }
+    
+    .favorite-trips a {
+        color: #000;
+        font-size: 22px;
+        font-weight: bold;
+    }
+    
+    .favorite-trips i {
+        display: block;
+        margin-top: 5px;
+    }
+    /* End Favorite Trips Section Styling*/
+    /* Start Reviews Section Style */
+    
+    .reviews {
+        width: 100%;
+        background-color: #fff;
+        margin-top: 44px;
+        margin-bottom: 44px;
+    }
+    
+    .reviews h1 {
+        text-transform: uppercase;
+        margin-bottom: 47px;
+    }
+    
+    .reviews span {
+        float: right;
+    }
+    
+    .reviews span.bold-black {
+        font-weight: bold;
+        font-size: 20px;
+        float: none;
+    }
+    
+    .reviews h2 {
+        font-size: 19px;
+        display: inline;
+    }
+    
+    .reviews p {
+        padding: 18px;
+        font-size: 18px;
+        line-height: 32px;
+    }
+    /* End Reviews Section Style */
+    /* Start Pop Ups Style Section */
+    
+    .pop-ups,
+    .pop-ups-2 {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        background-color: rgba(0, 0, 0, 0.473);
+        top: 0;
+        z-index: 100000;
+        display: none;
+        transition: 0.5s;
+        -webkit-transition: 0.5s;
+        -moz-transition: 0.5s;
+        -ms-transition: 0.5s;
+        -o-transition: 0.5s;
+    }
+    
+    .pop-ups .edit_trips_popup {
+        width: 80%;
+        height: 80%;
+        background-color: #fff;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        overflow-y: scroll;
+    }
+    
+    .pop-ups .edit_trips_popup::-webkit-scrollbar {
+        width: 0.5em;
+    }
+    
+    .pop-ups .edit_trips_popup::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    }
+    
+    .pop-ups .edit_trips_popup::-webkit-scrollbar-thumb {
+        background-color: #111;
+        border-radius: 3px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        -ms-border-radius: 3px;
+        -o-border-radius: 3px;
+    }
+    
+    .pop-ups .edit_trips_popup h1 {
+        text-align: center;
+        font-size: 31px;
+        font-weight: bold;
+    }
+    
+    .pop-ups .edit_trips_popup h2 {
+        text-align: right;
+        margin-right: 15px;
+        font-size: 22px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    
+    .pop-ups .edit_trips_popup .dropdown {
+        width: 100%;
+        margin-top: 60px;
+        text-align: center;
+    }
+    
+    .pop-ups .edit_trips_popup .dropdown button.dropdown-toggle {
+        width: 75%;
+        text-align: left;
+        background-color: #fff;
+        box-shadow: 0px 0px 1.3px rgb(0 0 0 / 8%), 0px 0px 10px rgb(0 0 0 / 16%);
+        height: 50px;
+        font-size: 16px;
+        outline: none;
+    }
+    
+    .pop-ups .edit_trips_popup .dropdown i {
+        margin-left: 80%;
+    }
+    
+    .pop-ups .edit_trips_popup .dropdown-menu {
+        width: 69%;
+        left: 17%;
+        box-shadow: none;
+        border-top: none;
+        transition: 0.5s;
+        -webkit-transition: 0.5s;
+        -moz-transition: 0.5s;
+        -ms-transition: 0.5s;
+        -o-transition: 0.5s;
+    }
+    
+    .activities span {
+        display: inline;
+    }
+    
+    .pop-ups .edit_trips_popup .dropdown-menu img {
+        width: 78%;
+    }
+    
+    .pop-ups .container {
+        width: 100%;
+    }
+    
+    .pop-ups .container span {
+        margin-top: 20%;
+        background-color: #111;
+        border-radius: none;
+        -webkit-border-radius: none;
+        -moz-border-radius: none;
+        -ms-border-radius: none;
+        -o-border-radius: none;
+        border: none;
+        display: inline-block;
+        padding: 10px;
+        color: #fff;
+    }
+    
+    .add-trip {
+        position: relative;
+        top: 6%;
+        left: 14%;
+        width: 100px;
+        height: 42px;
+        outline: none;
+        border: none;
+        background-color: #111;
+        color: #fff;
+    }
+    
+    .pop-ups .container .row .description {
+        margin-top: 50px;
+    }
+    
+    .pop-ups .container .row .description p {
+        font-size: 16px;
+        padding: 15px;
+    }
+    
+    .pop-ups .edit-trip {
+        background-color: #fff;
+        height: 50px;
+        font-size: 16px;
+        outline: none;
+        border: none;
+    }
+    
+    .delete-trip {
+        background-color: transparent;
+        border: none;
+        outline: none;
+    }
+    
+    .delete-trip i {
+        font-size: 23px;
+        padding: 2px;
+    }
+    
+    .pop-ups .edit_trips_popup .dropdown .edit-trip i {
+        margin: 0;
+    }
+    
+    .pop-ups .container .row h1 {
+        text-align: left;
+        font-size: 23px;
+        padding: 22px;
+    }
+    
+    .pop-ups .container .row div.form-check {
+        display: inline-block;
+    }
+    /* End Pop Ups Style Section */
+    /* Hovering Section */
+    
+    .profile-photo-hovering {
+        background-color: #0000002f;
+        width: 36rem;
+        height: 48rem;
+        position: absolute;
+        top: 0;
+        text-align: right;
+        display: none;
+        transition: 0.5s;
+        -webkit-transition: 0.5s;
+        -moz-transition: 0.5s;
+        -ms-transition: 0.5s;
+        -o-transition: 0.5s;
+    }
+    
+    @media(max-width:870px) {
+        .profile-photo-hovering {
+            background-color: #0000002f;
+            width: 462px;
+            height: 617px;
+            position: absolute;
+            top: 0;
+            text-align: right;
+            display: none;
+            transition: 0.5s;
+            -webkit-transition: 0.5s;
+            -moz-transition: 0.5s;
+            -ms-transition: 0.5s;
+            -o-transition: 0.5s;
+        }
+    }
+    
+    .profile-photo-hovering:hover {
+        display: block;
+    }
+    
+    .user-image:hover+.profile-photo-hovering {
+        display: block;
+    }
+    
+    .profile-photo-hovering i,
+    .profile-description-hovering i {
+        font-size: 28px;
+        color: #fff;
+        padding: 15px;
+        cursor: pointer;
+    }
+    
+    .profile-description-hovering {
+        background-color: #0000003a;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 2%;
+        text-align: right;
+        display: none;
+        transition: 0.5s;
+        -webkit-transition: 0.5s;
+        -moz-transition: 0.5s;
+        -ms-transition: 0.5s;
+        -o-transition: 0.5s;
+    }
+    
+    .profile-description:hover+.profile-description-hovering {
+        display: block;
+    }
+    
+    .profile-description-hovering:hover {
+        display: block;
+    }
+    
+    .profile-settings {
+        border-radius: 50%;
+        position: absolute;
+        left: 83%;
+        top: 50%;
+        width: 46px;
+        height: 50px;
+        transform: translate(50%, -50%);
+    }
+    
+    .profile-settings i {
+        position: absolute;
+        left: 65px;
+        top: 36%;
+        font-size: 24px;
+        font-weight: bold;
+        color: #fff;
+        cursor: pointer;
+    }
+    
+    .profile-settings img {
+        cursor: pointer;
+    }
+    
+    @media(max-width:870px) {
+        .profile-settings {
+            border-radius: 50%;
+            position: absolute;
+            left: 43%;
+            top: 85%;
+            width: 46px;
+            height: 50px;
+            transform: translate(50%, -50%);
+        }
+    }
+    
+    .profile-settings-dropdown ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        background-color: #111;
+        position: absolute;
+        right: 105px;
+        min-width: 200px;
+        top: calc(100% + 15px);
+        display: none;
+        transition: var(--main-tranistion);
+        -webkit-transition: var(--main-tranistion);
+        -moz-transition: var(--main-tranistion);
+        -ms-transition: var(--main-tranistion);
+        -o-transition: var(--main-tranistion);
+        z-index: 1;
+    }
+    
+    .profile-settings-dropdown ul::before {
+        content: "";
+        border-width: 10px;
+        border-style: solid;
+        border-color: transparent transparent #111 transparent;
+        position: absolute;
+        right: 5px;
+        top: -20px;
+    }
+    
+    .profile-settings-dropdown ul li a {
+        display: block;
+        padding: 15px;
+        text-decoration: none;
+        color: #fff;
+        transition: var(--main-tranistion);
+        -webkit-transition: var(--main-tranistion);
+        -moz-transition: var(--main-tranistion);
+        -ms-transition: var(--main-tranistion);
+        -o-transition: var(--main-tranistion);
+    }
+    
+    .profile-settings-dropdown ul li a:hover {
+        padding-left: 25px;
+    }
+    
+    .profile-settings-dropdown ul li:not(:last-child) a {
+        border-bottom: 1px solid #ddd;
+    }
+    
+    @media(max-width:870px) {
+        .profile-settings-dropdown ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            background-color: #111;
+            position: absolute;
+            right: 280px;
+            min-width: 200px;
+            top: calc(100% + 15px);
+            display: none;
+            transition: var(--main-tranistion);
+            -webkit-transition: var(--main-tranistion);
+            -moz-transition: var(--main-tranistion);
+            -ms-transition: var(--main-tranistion);
+            -o-transition: var(--main-tranistion);
+            z-index: 1;
+        }
+    }
+    
+    @media (max-width: 550px) {
+        .profile-settings-dropdown ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            background-color: #111;
+            position: absolute;
+            right: 172px;
+            min-width: 200px;
+            top: calc(100% + 15px);
+            display: none;
+            transition: var(--main-tranistion);
+            -webkit-transition: var(--main-tranistion);
+            -moz-transition: var(--main-tranistion);
+            -ms-transition: var(--main-tranistion);
+            -o-transition: var(--main-tranistion);
+            z-index: 1;
+        }
+    }
+    /* End Hovering Section */
+    /* Start Profile Photo Pop Up */
+    
+    .pop-ups-2 .edit-profile-photo {
+        width: 80%;
+        height: 80%;
+        background-color: #fff;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+    }
+    
+    .pop-ups-2 .edit-profile-photo img {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        position: absolute;
+        left: 50%;
+        top: 41%;
+        margin: 0 auto;
+        transform: translate(-50%, -50%);
+    }
+    
+    #for-edit-photo-input {
+        position: absolute;
+        top: 71%;
+        left: 50%;
+        margin: 0 auto;
+        transform: translate(-50%, -50%);
+        width: 153px;
+        height: 74px;
+        /* border-radius: 33% 0 50% 50%; */
+        border: none;
+        outline: none;
+        background-color: #111;
+        color: #fff;
+        font-size: 19px;
+    }
+    
+    .pop-ups-2 h2 {
+        text-align: right;
+    }
+    
+    .close-edit-photo-popup {
+        font-size: 34px;
+        padding: 22px;
+        cursor: pointer;
+    }
+    /* End Profile Photo Pop Up */
+    /* Start Langs Pop Up Section */
+    
+    .langs-pop-up {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        background-color: rgba(0, 0, 0, 0.473);
+        top: 0;
+        left: 0;
+        z-index: 100000;
+        display: none;
+        transition: 0.5s;
+        -webkit-transition: 0.5s;
+        -moz-transition: 0.5s;
+        -ms-transition: 0.5s;
+        -o-transition: 0.5s;
+    }
+    
+    .langs-pop-up .edit-langs-popup {
+        width: 80%;
+        height: 80%;
+        background-color: #fff;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        overflow-y: scroll;
+    }
+    
+    #edit-langs-form {
+        width: 94%;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        text-align: left;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+    }
+    
+    #edit-langs-form textarea.area-one {
+        width: 70%;
+        height: 150px;
+    }
+    
+    #edit-langs-form textarea.area-two {
+        width: 70%;
+        height: 75px;
+    }
+    
+    .langs-pop-up input {
+        width: 45%;
+        padding: 10px 5px;
+        margin: 4px 7px;
+        border: 0;
+        border-bottom: 1px solid #999;
+        outline: none;
+        background: transparent;
+    }
+    
+    .langs-pop-up input::placeholder {
+        color: rgb(87, 87, 87);
+        font-size: 18px;
+    }
+    
+    .langs-pop-up form select {
+        width: 45%;
+        padding: 10px 5px;
+        margin: 5px 5px;
+        border: 0;
+        border-bottom: 1px solid #999;
+        outline: none;
+        background: transparent;
+    }
+    
+    .langs-pop-up form select::placeholder {
+        color: rgb(87, 87, 87);
+        font-size: 18px;
+    }
+    
+    .edit-langs-close-button {
+        cursor: pointer;
+        font-size: 30px;
+        color: #000;
+        padding: 15px;
+    }
+    
+    .langs-pop-up button {
+        margin-top: 12px;
+        height: 41px;
+        border-radius: 2px;
+        background-color: #111;
+        background-image: none;
+        color: #fff;
+        outline: none;
+        border: none;
+    }
+    
+    .langs-pop-up button#rmvlang {
+        background-color: rgb(139, 0, 0);
+        margin-left: 15px;
+    }
+    
+    .langs-pop-up button#editlang {
+        background-color: rgb(0, 97, 8);
+        margin-left: 15px;
+    }
+    /* End Langs Pop Up Section */
+    /* Start Expertise Pop Up Section */
+    
+    .Expertise-pop-up {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        background-color: rgba(0, 0, 0, 0.473);
+        top: 0;
+        left: 0;
+        z-index: 100000;
+        display: none;
+        transition: 0.5s;
+        -webkit-transition: 0.5s;
+        -moz-transition: 0.5s;
+        -ms-transition: 0.5s;
+        -o-transition: 0.5s;
+    }
+    
+    .Expertise-pop-up .edit-Expertise-popup {
+        width: 80%;
+        height: 80%;
+        background-color: #fff;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        overflow-y: scroll;
+    }
+    
+    .profile .container .Expertise .Expertise-edit-hovering {
+        background-color: #0000002f;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        text-align: right;
+        display: block;
+        transition: 0.5s;
+        -webkit-transition: 0.5s;
+        -moz-transition: 0.5s;
+        -ms-transition: 0.5s;
+        -o-transition: 0.5s;
+        display: none;
+    }
+    
+    .profile .container .Expertise {
+        position: relative;
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+    
+    .profile .container .Expertise:hover .Expertise-edit-hovering {
+        display: block;
+    }
+    
+    .profile .container .Expertise .Expertise-edit-hovering i {
+        font-size: 28px;
+        color: #fff;
+        padding: 15px;
+        cursor: pointer;
+    }
+    
+    .Expertise-pop-up form {
+        text-align: center;
+        margin-top: 50px;
+    }
+    
+    .Expertise-pop-up .select {
+        display: grid;
+        grid-template-columns: repeat(5, 10fr);
+        min-width: 200px;
+        gap: 5px;
+    }
+    
+    .Expertise-pop-up .select__item {
+        padding: 10px;
+        cursor: pointer;
+        font-family: "Heebo", sans-serif;
+        text-align: center;
+        border-radius: 3px;
+        background: #eeeeee;
+        transition: background 0.1s;
+    }
+    
+    .Expertise-pop-up .select__item--selected {
+        background: #009578;
+        color: #ffffff;
+    }
+    /* End Expertise Section Pop uP */
+    /* Start Profile Description Pop Up */
+    
+    .description-pop-up {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        background-color: rgba(0, 0, 0, 0.473);
+        top: 0;
+        left: 0;
+        z-index: 100000;
+        display: none;
+        transition: 0.5s;
+        -webkit-transition: 0.5s;
+        -moz-transition: 0.5s;
+        -ms-transition: 0.5s;
+        -o-transition: 0.5s;
+    }
+    
+    .description-pop-up .edit-description-popup {
+        width: 80%;
+        height: 80%;
+        background-color: #fff;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        overflow-y: scroll;
+    }
+    
+    #description-edits {
+        text-align: center;
+        margin-top: 70px;
+    }
+    
+    #description-edits textarea {
+        width: 80%;
+        height: 200px;
+    }
+    /* End Profile Description Pop Up */
+    /* start Edit Trip Section */
+    
+    .edit-trip-form .select {
+        display: grid;
+        grid-template-columns: repeat(5, 10fr);
+        min-width: 200px;
+        gap: 5px;
+    }
+    
+    .edit-trip-form .select__item {
+        padding: 10px;
+        cursor: pointer;
+        font-family: "Heebo", sans-serif;
+        text-align: center;
+        border-radius: 3px;
+        background: #eeeeee;
+        transition: background 0.1s;
+    }
+    
+    .edit-trip-form .select__item--selected {
+        background: #111;
+        color: #ffffff;
+    }
+    
+    .edit-trip-pop-up {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        background-color: rgba(0, 0, 0, 0.473);
+        top: 0;
+        z-index: 100000;
+        display: none;
+        transition: 0.5s;
+        -webkit-transition: 0.5s;
+        -moz-transition: 0.5s;
+        -ms-transition: 0.5s;
+        -o-transition: 0.5s;
+    }
+    
+    .edit-trip-form {
+        width: 80%;
+        height: 80%;
+        background-color: #fff;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        overflow-y: scroll;
+    }
+    
+    .edit-trip-form form {
+        text-align: left;
+        margin-top: 70px;
+    }
+    
+    .edit-trip-form form input {
+        width: 40%;
+        margin-top: 20px;
+        margin-left: 50px;
+    }
+    
+    .edit-trip-form [type=file] {
+        filter: alpha(opacity=1);
+        opacity: 1;
+        -webkit-filter: alpha(opacity=1);
+    }
+    
+    .edit-trip-form input,
+    .edit-trip-form [type=file]+label {
+        border: 1px solid #CCC;
+        border-radius: 3px;
+        text-align: left;
+        padding: 10px;
+        width: 150px;
+        margin: 0;
+        left: 0;
+    }
+    
+    [type=file]+label {
+        /* Decorative */
+        background: #333;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        margin-right: 40px;
+        min-height: 61px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+    
+    [type=file]+label:hover {
+        background: #3399ff;
+    }
+    
+    .edit-trip-form input {
+        display: inline-block;
+        margin-bottom: 20px;
+    }
+    /* End Edit Trip Section */
+    /* Start Add Trip Section */
+    
+    .add-trip-form .select {
+        display: grid;
+        grid-template-columns: repeat(5, 10fr);
+        min-width: 200px;
+        gap: 5px;
+    }
+    
+    .add-trip-form .select__item {
+        padding: 10px;
+        cursor: pointer;
+        font-family: "Heebo", sans-serif;
+        text-align: center;
+        border-radius: 3px;
+        background: #eeeeee;
+        transition: background 0.1s;
+    }
+    
+    .add-trip-form .select__item--selected {
+        background: #111;
+        color: #ffffff;
+    }
+    
+    .add-trip-pop-up {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        background-color: rgba(0, 0, 0, 0.473);
+        top: 0;
+        z-index: 100000;
+        display: none;
+        transition: 0.5s;
+        -webkit-transition: 0.5s;
+        -moz-transition: 0.5s;
+        -ms-transition: 0.5s;
+        -o-transition: 0.5s;
+    }
+    
+    .add-trip-form {
+        width: 80%;
+        height: 80%;
+        background-color: #fff;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        overflow-y: scroll;
+    }
+    
+    .add-trip-form form {
+        text-align: left;
+        margin-top: 70px;
+    }
+    
+    .add-trip-form form input {
+        width: 40%;
+        margin-top: 20px;
+        margin-left: 50px;
+    }
+    
+    .add-trip-form [type=file] {
+        filter: alpha(opacity=1);
+        opacity: 1;
+        -webkit-filter: alpha(opacity=1);
+    }
+    
+    .add-trip-form input,
+    .add-trip-form [type=file]+label {
+        border: 1px solid #CCC;
+        border-radius: 3px;
+        text-align: left;
+        padding: 10px;
+        width: 150px;
+        margin: 0;
+        left: 0;
+    }
+    
+    [type=file]+label {
+        /* Decorative */
+        background: #333;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        margin-right: 40px;
+        min-height: 61px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+    
+    [type=file]+label:hover {
+        background: #3399ff;
+    }
+    
+    .add-trip-form input {
+        display: inline-block;
+        margin-bottom: 20px;
+    }
+    /* End Add Trip Section */

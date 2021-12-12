@@ -1,7 +1,7 @@
 <!--start navbar -->
   <!-- Start Navbar Section -->
   @guest
-      
+
   <div class="upper-nav">
     <div class="container">
         <span class="special"><a href="{{route('tourguideSignup')}}"> Sign Up as Tourguide</a></span>
@@ -72,10 +72,27 @@
                   <li><a href="profile.html"> Meet a tour guide</a></li>
                   <li><a href="customizeyourowntrip.html"> Customize Your Own Trip</a></li>
 
-              </ul>
+                  <div class="profile-settings">
+                      <img src="{{asset('storage/' . Auth::user()->profileImg  )}}" style="border-radius: 50%; width: 50px; height:50px;">
+                      <i class="fa fa-caret-down" aria-hidden="true"></i>
 
+                  </div>
+                  @auth
+                  <div class="profile-settings-dropdown">
+                      <ul>
+                          <li><a href="#services">visit website</a></li>
+                          <li><a href="#portfolio">settings <i class="fa fa-cog" aria-hidden="true"></i></a></li>
+                          <li><a href="#About">info <i class="fa fa-question-circle" aria-hidden="true"></i></a></li>
+                          <li><a href="{{URL::route('logout')}}">Logout <i class="fa fa-sign-out"  aria-hidden="true"></i></a>
+                          </li>
+
+                      </ul>
+                  </div>
+                  @endauth
+
+              </ul>
           </div>
-          <!-- /.navbar-collapse -->
+         <!-- /.navbar-collapse -->
       </div>
       <!-- /.container-fluid -->
   </nav>

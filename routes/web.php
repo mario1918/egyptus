@@ -38,8 +38,9 @@ Route::get('/tourguide/{id}/profile', [con\TourguideController::class,'profile']
 
 Route::middleware(['admin'])->group(function()
 {
+//        Route::get('/admin/dashboard',[con\AdminController::class,'index']);
         Route::resource('/users',App\Http\Controllers\UserController::class);
-        // Route::resource("tourguides",con\TourguideController::class);
+        Route::resource("tourguides",con\TourguideController::class)->except('create,store');
         // Route::resource("tourists",con\TouristController::class);
 });
 
