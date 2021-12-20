@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{asset('css/front.css')}}">
     <link rel="stylesheet" href="{{asset('css/animate.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/profile.css')}}">
+    <link rel="stylesheet" href="{{asset('css/tourguidesprofiles.css')}}">
 
 
     <!-- Google Fonts -->
@@ -35,7 +36,7 @@
 
 <main class="">
           @yield('content')
-      
+
 </main>
 {{-- @include('layout.footer') --}}
 </body>

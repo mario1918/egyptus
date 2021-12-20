@@ -130,5 +130,28 @@ $(document).ready(function() {
     });
 
 
+    var trips_activities_template = '<div class="add-activities">\
+    <input type="text" placeholder="Activity Title" name="act-title-1">\
+    <input type="number" placeholder="Activity Price" name="act-price-1">\
+    </div>';
+
+    var counter_act = 0;
+    var widthSaveButton = -110;
+
+    $("#add-activity").click(function() {
+        counter_act++;
+        var trips_activities_template = '<div class="add-activities">\
+    <input type="text" required placeholder="Activity Title" name="act-title-' + counter_act + '">\
+    <input type="number" required placeholder="Activity Price" name="act-price-' + counter_act + '">\
+    </div>';
+        $("#save-add-trips").css("bottom", widthSaveButton)
+        document.getElementById("addd-trip").innerHTML += trips_activities_template;
+        widthSaveButton += -110;
+
+    })
+
+
+
+
 
 });

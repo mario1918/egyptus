@@ -14,7 +14,7 @@
 
  <!-- Start Main Section -->
 
- <section class="profile">
+ <section class="profile" style="margin-top: 100px">
   <div class="container">
       <div class="info">
           <h1 class="Tourguide-name">{{$tourguide->user->firstName }} {{$tourguide->user->lastName }}</h1>

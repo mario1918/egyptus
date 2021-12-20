@@ -33,6 +33,9 @@ Route::post("login", [con\Auth\LoginController::class, 'authenticate'])->name("l
 Route::get("logout", [con\Auth\LoginController::class, 'logout'])->name("logout");
 
 
+Route::get('/tourguidesProfiles', [con\TourguideController::class,'tourguidesProfile'])->name("tourguidesProfiles");
+
+
 Route::get('/tourguide/{id}/profile', [con\TourguideController::class,'profile'])->name("toruguideProfile");
 
 

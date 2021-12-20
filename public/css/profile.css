@@ -1202,4 +1202,26 @@
         display: inline-block;
         margin-bottom: 20px;
     }
+    
+    .add-activities {
+        width: 95%;
+        border: 1px solid #111;
+        border-radius: 2px;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        -ms-border-radius: 2px;
+        -o-border-radius: 2px;
+        margin: 21px 12px 15px 27px;
+    }
+    
+    #add-activity {
+        width: 100px;
+        height: 40px;
+        background-color: #111;
+        color: #fff;
+        outline: none;
+        border: none;
+        border-radius: 2px;
+        margin: 0 0 3% 3%;
+    }
     /* End Add Trip Section */

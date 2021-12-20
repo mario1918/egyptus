@@ -27,17 +27,8 @@ class HomeController extends Controller
      */
     public function home()
     {
-
-
-            if (Auth::user() && (Auth::user()->isAdmin == 1))
-            {
-                $tourguides = count(Tourguide::all());
-                return view('admin.dashboard',compact('tourguides'));
-            }
-            else{
-                $users = User::where('status', 'active')->where('type',1)->get();
-                return view('home',compact('users'));
-            }
+        $users = User::where('status', 'active')->where('type',1)->get();
+        return view('home',compact('users'));
 
     }
     public function verification($user_id)

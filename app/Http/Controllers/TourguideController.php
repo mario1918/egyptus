@@ -57,7 +57,7 @@ class TourguideController extends Controller
     {
 
         dd($this->data);
-        
+
 
         $messages = [
             "password.required" => "Password is required",
@@ -81,7 +81,7 @@ class TourguideController extends Controller
 
         dd($request->post());
         $validator = $request->validate( [
-            
+
             //personal info
             "firstName" => "min:5|max:50|required",
             "lastName" =>"min:5|max:50|required",
@@ -121,10 +121,10 @@ class TourguideController extends Controller
         // 'price' =>'required|float',
 
         ],$messages);
-    
-        
+
+
         if(User::where('email',$request->post('email'))->first() != null)
-        { 
+        {
             $user = User::where('email',$request->post('email'))->first();
         }
         else{
@@ -191,7 +191,7 @@ class TourguideController extends Controller
         $backNation = $this->storeImg($request->file('backNation'),'backNation',3);
         $frontLicense = $this->storeImg($request->file('frontLicense'),'frontLicense',3);
         $backLicense = $this->storeImg($request->file('backLicense'),'backLicense',3);
-       
+
 
         $tourguide = new Tourguide();
         $tourguide->user_id = $user->id;
@@ -222,9 +222,9 @@ class TourguideController extends Controller
         $trip->hours = date("H:i:s", $request->post('hours')*60*60);
         $trip->fair = $request->post('fare');
         $trip->save();
-          
+
         return redirect()->route('toruguideProfile',Crypt::encryptString($user->hasType->id))->withErrors(['msg' => "We will send you a mail when the admin
-        verify your account"]); 
+        verify your account"]);
     }
 
     public function storeImg($img,$name,$user)
@@ -234,7 +234,7 @@ class TourguideController extends Controller
             $extension = $img->getClientOriginalExtension();
             $fileImgName = $name. "_". $user . "_" . time().'.'.$extension;
             $pathImg = $img->storeAs('public/tourGuideDocuments',$fileImgName);
-            
+
         return $pathImg;
     }
 
@@ -321,7 +321,7 @@ class TourguideController extends Controller
             if($request->post('step') == 1)
             {
                 // $validator = Validator::make($request->all(), [
-            
+
                 //     //personal info
                 //     "firstName" => "min:5|max:50|required",
                 //     "lastName" =>"min:5|max:50|required",
@@ -337,7 +337,7 @@ class TourguideController extends Controller
                 // {
                 //     return response()->json(['error'=>$validator->errors()->all()]);
                 // }
-                
+
                 Session::put('firstName',$request->post("firstName"));
                 Session::put('lastName',$request->post("lastName"));
                 Session::put('email',$request->post("email"));
@@ -410,7 +410,7 @@ class TourguideController extends Controller
                 $backNation = $this->storeImg($request->file('backNation'),'backNation',3);
                 $frontLicense = $this->storeImg($request->file('frontLicense'),'frontLicense',3);
                 $backLicense = $this->storeImg($request->file('backLicense'),'backLicense',3);
-       
+
                 $user =  new User();
                 $user->firstName = Session::get('firstName');
                 $user->lastName = Session::get("lastName");
@@ -440,8 +440,14 @@ class TourguideController extends Controller
 
                 return redirect()->route('home')
                 ->withErrors(['success'=> 'Please wait for the admin to verify the account.']);
-                
+
             }
         }
-       
+
+        public  function tourguidesProfile()
+        {
+            $tourguides = Tourguide::all();
+            return view("tourguide.profiles",compact("tourguides"));
+        }
+
 }
