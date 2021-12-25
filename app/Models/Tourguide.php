@@ -27,7 +27,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Tourguide extends Model
 {
-    
+
     static $rules = [
 		'profileImg' => 'required',
 		'languages' => 'required',
@@ -55,7 +55,7 @@ class Tourguide extends Model
     {
         return $this->hasMany('App\Models\Review', 'tourguide_id', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongTo
      */
@@ -63,6 +63,7 @@ class Tourguide extends Model
     {
         return $this->belongsTo('App\Models\User', 'user_id', 'id');
     }
-    
+
+
 
 }

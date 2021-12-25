@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Activity;
+use App\Models\Expertise;
 use App\Models\Tourguide;
 use App\Models\User;
 use App\Models\Review;
@@ -28,6 +29,11 @@ class TourguideController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('tourguide')->except("create",'store');
+    }
+
     public function index()
     {
         $tourguides = Tourguide::paginate();
@@ -55,9 +61,6 @@ class TourguideController extends Controller
 
     public function store(Request $request)
     {
-
-        dd($this->data);
-
 
         $messages = [
             "password.required" => "Password is required",
@@ -147,7 +150,8 @@ class TourguideController extends Controller
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('profileImg')->getClientOriginalExtension();
             $fileImgName = $filename. '_'.time().'.'.$extension;
-            $pathImg = $request->file('profileImg')->storeAs('profileImgs',$fileImgName);
+
+            $pathImg = $requestt->file('profileImg')->save('/storage/profileImgs/' . $fileImgName );
         }
         else{
             $pathImg = "images/boy.png";
@@ -296,10 +300,10 @@ class TourguideController extends Controller
     public function profile($id)
     {
         $tourguide = Tourguide::findOrFail($id);
-        $languages = explode(',',$tourguide->languages);
-        $lang = $languages[0];
+        $languages = explode('|',$tourguide->languages);
+        $expertises = Expertise::all();
 
-        return view('tourguide.profile',compact('tourguide','lang'));
+        return view('tourguide.profile',compact('tourguide','expertises','languages'));
     }
 
      public function addReviews(Request $request)
@@ -320,23 +324,22 @@ class TourguideController extends Controller
         {
             if($request->post('step') == 1)
             {
-                // $validator = Validator::make($request->all(), [
+                 $validator = Validator::make($request->all(), [
 
-                //     //personal info
-                //     "firstName" => "min:5|max:50|required",
-                //     "lastName" =>"min:5|max:50|required",
-                //     "email" => "required|email|",
-                //     'password' => ['required',
-                //     'regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/'],
-                //     "phoneNo" => 'required|numeric|digits_between:11,14',
-                //     "region"=> 'required|string',
-                //     "country"=> 'required|string',
-                //     'birthdate' => "required|date_format:Y-m-d|before:01/01/2000"
-                // ]);
-                // if($validator->fails())
-                // {
-                //     return response()->json(['error'=>$validator->errors()->all()]);
-                // }
+                     //personal info
+                     "firstName" => "min:5|max:50|required",
+                     "lastName" =>"min:5|max:50|required",
+                     "email" => "required|email|",
+                     'password' => ['required',
+                     'regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/'],
+                     "region"=> 'required|string',
+                     "country"=> 'required|string',
+                     'birthdate' => "required|date_format:Y-m-d"
+                 ]);
+                 if($validator->fails())
+                 {
+                     return response()->json(['error'=>$validator->errors()->all()]);
+                 }
 
                 Session::put('firstName',$request->post("firstName"));
                 Session::put('lastName',$request->post("lastName"));
@@ -351,9 +354,10 @@ class TourguideController extends Controller
 
             elseif($request->post('step') == 2)
             {
-                // $validator = $request->validate( [
-                // 'work_experience' => "required|min:5",
-                // ]);
+                 $validator = $request->validate( [
+                 'work_experience' => "required|min:5",
+                 ]);
+
 
                 Session::put('work_experience', $request->post('work_experience'));
 
@@ -363,9 +367,6 @@ class TourguideController extends Controller
 
             elseif($request->post('step') == 3)
             {
-                // $validator = $request->validate( [
-                // 'work_experience' => "required|min:5",
-                // ]);
                 Session::put('education', $request->post('education'));
                 return json_encode("step3 done");
 
@@ -376,20 +377,21 @@ class TourguideController extends Controller
                 // $validator = $request->validate( [
                 // 'work_experience' => "required|min:5",
                 // ]);
-
-                Session::put('langauges', $request->post('langauges'));
-                $this->data = [
-                    'firstName' => Session::get("firstName"),
-                    'lastName' => Session::get("lastName"),
-                    'email' => Session::get("email"),
-                    'password' => Session::get("password"),
-                    'location' => Session::get('location'),
-                    'birthdate' => Session::get("birthdate"),
-                   'phoneNo'=> Session::get("phoneNo"),
-                    'education' =>Session::get("education"),
-                    'work_Exp' =>Session::get("work_experience"),
-                    'langauges' =>Session::get("langauges"),
-                ];
+                $languages = implode("|",$request->post('languages'));
+                Session::put('languages', $languages);
+//                $this->data = [
+//                    'firstName' => Session::get("firstName"),
+//                    'lastName' => Session::get("lastName"),
+//                    'email' => Session::get("email"),
+//                    'password' => Session::get("password"),
+//                    'location' => Session::get('location'),
+//                    'birthdate' => Session::get("birthdate"),
+//                   'phoneNo'=> Session::get("phoneNo"),
+//                    'education' =>Session::get("education"),
+//                    'work_Exp' =>Session::get("work_experience"),
+//                    'langauges' =>Session::get("langauges"),
+//                ];
+                return json_encode("step4 done");
 
             }
             elseif($request->post('step') == 5)
@@ -431,16 +433,17 @@ class TourguideController extends Controller
                 $tourguide->bio ="";
                 $tourguide->work_experience = Session::get("work_experience");
                 $tourguide->education = Session::get('education');
-                $tourguide->languages = Session::get('langauges');
+                $tourguide->languages = Session::get('languages');
                 $tourguide->nationalId = json_encode([$frontNation,$backNation]);
                 $tourguide->tourLicense = json_encode([$frontLicense,$backLicense]);
                 $tourguide->personalRate = 2;
                 $tourguide->priceRate = 5;
                 $tourguide->save();
 
+                $mail = new MailController();
+                $mail->verifyMail($user);
                 return redirect()->route('home')
                 ->withErrors(['success'=> 'Please wait for the admin to verify the account.']);
-
             }
         }
 

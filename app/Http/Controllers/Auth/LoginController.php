@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\MailController;
 use App\Models\Tourguide;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -55,7 +56,8 @@ class LoginController extends Controller
         {
             if (Auth::attempt($credentials)) {
                 // if success login => redirect to profile tourguide
-                return redirect()->route('toruguideProfile',Crypt::encryptString($user->hasType->id));
+//                return redirect()->route('toruguideProfile',Crypt::encryptString($user->hasType->id));
+                return redirect()->route('toruguideProfile',$user->hasType->id);
             }
             else{
                 //wait for the admin to verify the tourguide account in admiin dashboard
@@ -64,6 +66,7 @@ class LoginController extends Controller
         }
         elseif($user->type == 1  && $user->status == 'inactive')
         {
+
             if ( Auth::attempt($credentials)) {
                 // if success login => redirect to profile tourguide
                 return redirect('')->withErrors(['msg' => "We will send you a mail when the admin
@@ -81,6 +84,24 @@ class LoginController extends Controller
     {
         Auth::logout();
         return redirect()->route('home');
+    }
+
+    public function verification($user_id)
+    {
+        $user = User::where('id',$user_id)->first();
+        $user->status = "active";
+        $user->save();
+        if ($user->type == 1)
+        {
+            //send mail to tourguide that the account is verified
+            $mail = new MailController();
+            $mail->confirmationMail($user);
+            return json_encode("this account has been verified and an email has sent to this tourguide");
+        }
+        elseif($user->type == 2)
+        {
+            return "Profile of This tourist";
+        }
     }
 
 }

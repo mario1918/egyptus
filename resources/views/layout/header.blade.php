@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>@yield("title")Egyptus</title>
-    <link rel="icon" href="{{asset('images/titlelogo.png')}}" type="image/icon type">
+    <link rel="icon" href="{{asset('images/Logo_cropped.png')}}" type="image/icon type">
 
     <!-- Css Files -->
     <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">

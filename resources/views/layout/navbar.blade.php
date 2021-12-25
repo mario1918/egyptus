@@ -73,7 +73,7 @@
                   <li><a href="customizeyourowntrip.html"> Customize Your Own Trip</a></li>
 
                   <div class="profile-settings">
-                      <img src="{{asset('storage/' . Auth::user()->profileImg  )}}" style="border-radius: 50%; width: 50px; height:50px;">
+                      <img src="{{asset(Auth::user()->profileImg)}}" style="border-radius: 50%; width: 50px; height:50px;">
                       <i class="fa fa-caret-down" aria-hidden="true"></i>
 
                   </div>

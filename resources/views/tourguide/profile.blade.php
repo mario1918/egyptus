@@ -5,17 +5,13 @@
 @section('content')
 
 @include('layout.navbar')
-@if ($errors->any())
-<div class="m-2 alert alert-info">
-   <strong> {{$errors->first()}}</strong>
-</div>
-@endif
 
 
  <!-- Start Main Section -->
 
  <section class="profile" style="margin-top: 100px">
   <div class="container">
+      @include('errors')
       <div class="info">
           <h1 class="Tourguide-name">{{$tourguide->user->firstName }} {{$tourguide->user->lastName }}</h1>
           <button data-toggle="modal" data-target="#book">Travel With {{$tourguide->user->firstName }}</button>
@@ -23,7 +19,7 @@
       </div>
       <div class="row">
           <div class="col-lg-4 col-md-6 col-xs-12 col-sm-12">
-              <img width="100%" height="250" width="100"  src="{{asset('storage/' . $tourguide->user->profileImg  )}}" alt="user-image">
+              <img width="100%" height="250" width="100"  src="{{asset($tourguide->user->profileImg)}}" alt="user-image">
               <div class="profile-photo-hovering">
                   <i id="edit-profile-photo" class="fa fa-pencil-square-o" aria-hidden="true"></i>
               </div>
@@ -33,18 +29,20 @@
               <hr>
               <h3>Expertise</h3>
               <div class="Expertise">
-                  <span>Local Cuisine</span><span>Local Culture</span>
-                  <span>Safari</span><span>Biking</span>
+                  @foreach(explode(",",$tourguide->expertises) as $expertise)
 
+                      <span>{{$expertise}}</span>
+                  @endforeach
                   <div class="Expertise-edit-hovering">
-                      <i id="edit-Expertise-btn" class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                     <i id="edit-Expertise-btn" class="fa fa-pencil-square-o" aria-hidden="true"></i>
                   </div>
               </div>
               <hr>
               <h3>Languages</h3>
               <div class="Languages">
-                  <span>English</span><span>Arabic</span>
-                  <span>French</span><span>Chinise</span>
+                  @foreach($languages as $language)
+                  <span>{{explode(",",$language)[0]}}</span>
+                  @endforeach
                   <div class="lang-edit-hovering">
                       <i id="edit-langs-btn" class="fa fa-pencil-square-o" aria-hidden="true"></i>
                   </div>
@@ -57,21 +55,15 @@
                   <h2 style="text-align: right;"><i style="cursor: pointer;" class="edit-Expertise-close-button fa fa-times" aria-hidden="true"></i></h2>
                   <h1 style="text-align: center;">Edit Expertises</h1>
 
-                  <form id="Expertise-edits">
-                      <select name="language" class="custom-select" multiple>
-                          <option value="Local Cuisine" selected >Local Cuisine</option>
-                          <option value="Local Culture" selected>Local Culture</option>
-                          <option value="Safary" selected>Safary</option>
-                          <option value="Pick up and Driving Tours">Pick up and Driving Tours</option>
-                          <option value="Art and Museums">Art and Museums</option>
-                          <option value="Nightlife and Bars">Nightlife and Bars</option>
-                          <option value="Exploration and Sightseeing">Exploration and Sightseeing</option>
-                          <option value="Islamic Cairo">Islamic Cairo</option>
-                          <option value="Pharaonic Cairo">Pharaonic Cairo</option>
-                          <option value="Roman Dynasty">Roman Dynasty</option>
-                          <option value="Modern History">Modern History</option>
-                          <option value="Christian History">Christian History</option>
-                          <option value="Christian History" Selected>Biking</option>
+                  <form id="Expertise-edits" action="{{url('/saveExpertises')}}" method="POST">
+                      @csrf @method('POST')
+                      <meta name="csrf-token" content="{{ csrf_token() }}">
+                      <select name="expertises[]" id="expertises" class="custom-select" multiple>
+                          @foreach($expertises as $exper)
+                              <option value="{{$exper->name}}"
+                              @if(in_array($exper->name , explode(",",$tourguide->expertises))) selected @endif>
+                                  {{$exper->name}}</option>
+                          @endforeach
                       </select>
 
                       <button style="right: 30px;
@@ -83,7 +75,7 @@
                                 color: #fff;
                                 outline: none;
                                 border: none;
-                                border-radius: 2px;" type="submit">Save</button>
+                                border-radius: 2px;" type="submit" onclick="">Save</button>
 
 
                   </form>
@@ -100,47 +92,64 @@
               <div class="edit-langs-popup">
                   <h2 style="text-align: right;"><i class="edit-langs-close-button fa fa-times" aria-hidden="true"></i></h2>
                   <h1 style="text-align: center;">Edit Languages</h1>
-                  <form id="edit-langs-form">
+                  <form id="edit-langs-form" style="margin-top: 50px" action="{{url('/saveLanguages')}}" method="POST">
+                      @csrf @method('POST')
                       <h2>Languages</h2>
-                      <div id="eduback" class="eduback">
-                          <select name="languages" id="lang1">
-                              <option value="">Choose the language</option>
+                      @foreach($languages as $key =>$lang)
+                          @php
+                          $language = explode(',',$lang);
+                            $key++;
+                            $l = count($languages);
+                            $l++;
+                          @endphp
+                      <input type="hidden" name="count" id="count" value="{{$l}}">
+                      <div id="langDiv{{$key}}" class="eduback">
+                          <select name="langName[]" id="lang{{$key}}">
+                              <option value="" selected>{{$language[0]}}</option>
                               <option value="Arabic">Arabic</option>
                               <option value="English">English</option>
                               <option value="French">French</option>
+                              <option value="German">German</option>
+                              <option value="Hindi">Hindi</option>
                               <option value="Italian">Italian</option>
+                              <option value="Korean">Korean</option>
+                              <option value="Russian">Russian</option>
+                              <option value="Spanish">Spanish</option>
+                              <option value="Turkish">Turkish</option>
                           </select>
-                          <select name="Speaking" id="Speaking1">
-                              <option value="">Speaking Level</option>
+                          <select name="speaking[]" id="Speaking{{$key}}">
+                              <option value="" selected>{{$language[1]}}</option>
                               <option value="Beginner">Beginner</option>
-                              <option value="Beginner">Elementary</option>
-                              <option value="English">Intermediate</option>
-                              <option value="English">Upper-intermediate</option>
-                              <option value="French">Advanced</option>
-                              <option value="Italian">Proficiency</option>
+                              <option value="Elementary">Elementary</option>
+                              <option value="Intermediate">Intermediate</option>
+                              <option value="Upper-intermediate">Upper-intermediate</option>
+                              <option value="Advanced">Advanced</option>
+                              <option value="Proficiency">Proficiency</option>
                           </select>
-                          <select name="Writting" id="Writting1">
-                              <option value="">Writting Level</option>
+                          <select name="writing[]" id="Writting{{$key}}">
+                              <option value="" selected>{{$language[2]}}</option>
                               <option value="Beginner">Beginner</option>
-                              <option value="Beginner">Elementary</option>
-                              <option value="English">Intermediate</option>
-                              <option value="English">Upper-intermediate</option>
-                              <option value="French">Advanced</option>
-                              <option value="Italian">Proficiency</option>
+                              <option value="Elementary">Elementary</option>
+                              <option value="Intermediate">Intermediate</option>
+                              <option value="Upper-intermediate">Upper-intermediate</option>
+                              <option value="Advanced">Advanced</option>
+                              <option value="Proficiency">Proficiency</option>
                           </select>
-                          <select name="Comprehension" id="Comprehension1">
-                              <option value="">Comprehension Level</option>
+                          <select name="comprehension[]" id="Comprehension{{$key}}">
+                              <option value="" selected>{{$language[3]}}</option>
                               <option value="Beginner">Beginner</option>
-                              <option value="Beginner">Elementary</option>
-                              <option value="English">Intermediate</option>
-                              <option value="English">Upper-intermediate</option>
-                              <option value="French">Advanced</option>
-                              <option value="Italian">Proficiency</option>
+                              <option value="Elementary">Elementary</option>
+                              <option value="Intermediate">Intermediate</option>
+                              <option value="Upper-intermediate">Upper-intermediate</option>
+                              <option value="Advanced">Advanced</option>
+                              <option value="Proficiency">Proficiency</option>
                           </select>
                       </div>
-                      <button type="button" id="addlang">Add Another Language</button>
+                          <br>
+                      @endforeach
+                      <button type="button" id="addLang">Add Another Language</button>
                       <button type="button" id="rmvlang">Remove Language</button>
-                      <button type="button" id="editlang">Save Edits</button>
+                      <button type="submit" id="editlang">Save Edits</button>
 
                   </form>
 

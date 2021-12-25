@@ -15,13 +15,13 @@
      <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
      <link rel="stylesheet" href="{{asset('css/front.css')}}">
      <link rel="stylesheet" href="{{asset('css/animate.min.css')}}">
- 
- 
+
+
      <!-- Google Fonts -->
      <link rel="preconnect" href="https://fonts.googleapis.com">
      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
      <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;700;900&display=swap" rel="stylesheet">
- 
+
 
 
 </head>
@@ -33,9 +33,14 @@
 
 
         <div class="container">
+            @if ($errors->any())
+                <div class="m-2 alert alert-danger" style="position: absolute;margin-top: 10px">
+                    <strong> {{$errors->first()}}</strong>
+                </div>
+            @endif
+            <br>
             <form method="POST" action="{{ route('login') }}">
                 @csrf
-                
                 <div class="form-group">
                     <div class="row">
                         <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
@@ -50,11 +55,11 @@
                 <div class="form-group">
                     <div class="row">
                         <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
-                        <div class="" id="password">
-                            <input type="password" class="col-md-6 form-control @error('password') 
+                        <div class="">
+                            <input type="password" class="col-md-6 form-control @error('password')
                             is-invalid @enderror" name="password" required autocomplete="current-password"
-                            id="pass_log_id" />
-                            <span style="padding-top: 12px" id="password" toggle="#password-field" class=" fa fa-fw fa-eye field_icon toggle-password p-3"></span>
+                            id="password" />
+                            <span style="padding-top: 12px" id="toggleBtn" toggle="#password" onclick="toggePassword()" class=" fa fa-fw fa-eye field_icon toggle-password p-3"></span>
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -70,17 +75,18 @@
                             {{ __('Login') }}
                         </button>
                 <script>
-                    $("#password").on('click', '.toggle-password', function() {
-                    $(this).toggleClass("fa-eye fa-eye-slash");
-                    var input = $("#pass_log_id");
-                    if (input.attr("type") === "password") {
-                        input.attr("type", "text");
-                    } else {
-                        input.attr("type", "password");
+                    function toggePassword() {
+                        var upass = document.getElementById('password');
+                        var toggleBtn = document.getElementById('toggleBtn');
+                        if (upass.type == "password") {
+                            upass.type = "text";
+                            toggleBtn.value = "Hide password";
+                        } else {
+                            upass.type = "Password";
+                            toggleBtn.value = "Show the password";
+                        }
                     }
-
-                });
-                    </script> 
+                 </script>
             </form>
         </div>
 
@@ -91,4 +97,3 @@
 </body>
 
 </html>
-                        

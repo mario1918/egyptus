@@ -18,11 +18,27 @@ class MailController extends Controller
             $message->to($user->email)
 
                 ->subject('Egyptus');
-            $message->from('engMarina97@gmail.com','Egyptus');
+            $message->from('zeka.bolbol@gmail.com','Egyptus');
         });
 
         if (Mail::failures()) {
             return "Please try again later";
         }
 }
+
+    public function confirmationMail(User $user)
+    {
+
+        Mail::send('emails.confirmationMail', compact(['user']), function($message) use($user) {
+
+            $message->to($user->email)
+
+                ->subject('Egyptus');
+            $message->from('zeka.bolbol@gmail.com','Egyptus');
+        });
+
+        if (Mail::failures()) {
+            return "Please try again later";
+        }
+    }
 }

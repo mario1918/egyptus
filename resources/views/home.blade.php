@@ -6,7 +6,7 @@
 @include('layout.navbar')
 <!-- Start Slider-->
 @if ($errors->any())
-<div class="m-2 alert alert-info">
+<div class="m-2 alert alert-info" style="position: absolute;">
    <strong> {{$errors->first()}}</strong>
 </div>
 @endif

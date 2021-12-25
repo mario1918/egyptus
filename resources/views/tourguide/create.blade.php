@@ -27,19 +27,20 @@
 
 
 <div class="tourguideregpage">
-    <h1 class="backhome"> 
+    <h1 class="backhome">
         <a href="{{route('home')}}"><i class="fa fa-chevron-left" aria-hidden="true"></i> Go Back Home</a></h1>>
 
 
     <div class="container">
         <h1>Sign Up as a Tour Guide</h1>
-        <form method="POST" id="form1" action="{{route('tourguides.store')}}">
+        <form method="POST" id="form1" action="{{route('steps')}}">
             @csrf
             <meta name="csrf-token" content="{{ csrf_token() }}">
+            <input type="hidden" name="step" value="1">
             <h2>Personal Information</h2>
-            <div id="errorResult" class="alert alert-danger" style="display: none">
+            <div id="errorResult1" class="alert alert-danger" style="display: none">
                 <ul>
-                    
+
                 </ul>
             </div>
             <input required="required" id="Fname" name="firstName"  value="{{old("firstName")}}" type="text" placeholder="First Name">
@@ -62,10 +63,7 @@
             @error('birthdate')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-            <input required="required" id="pnonenumber"  name="phoneNo" value="{{old("phoneNo")}}" type="number" placeholder="Phone Number" data-toggle="tooltip" data-placement="top" title="Phone number must be between 11 and 14 number" required>
-            @error('phoneNo')
-            <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
+            <input required="required" id="phonenumber"  name="phoneNo" value="{{old("phoneNo")}}" type="number" placeholder="Phone Number" data-toggle="tooltip" data-placement="top" title="Phone number must be between 11 and 14 number" required>
             <input required="required" id="Email" name="email" value="{{old("email")}}" type="email" placeholder="Email">
             @error('email')
             <div class="alert alert-danger">{{ $message }}</div>
@@ -73,17 +71,22 @@
             <input required="required" id="password" name="password" type="password" placeholder="Password" data-toggle="tooltip" data-placement="top" title="password must contain at least one upper letter and one number" required>
             <input required="required" id="confirm-password" name="password_confirmation" type="password" placeholder="Repeat Your Password" required>
 
-
             <div class="btn-box">
                 <button type="button" id="next1">Next</button>
             </div>
         </form>
 <script>
-   
+
 </script>
-        <form id="form2" method="post" action="{{route('tourguides.store')}}">
+        <form id="form2" method="post" action="{{route('steps')}}">
             @csrf
             <meta name="csrf-token" content="{{ csrf_token() }}">
+            <input type="hidden" name="step" value="2">
+            <div id="errorResult2" class="alert alert-danger" style="display: none">
+                <ul>
+
+                </ul>
+            </div>
             <h2> Work Experience</h2>
             <h1> Your Recent Work Experience </h1>
             <input id="rec-work-experience" class=" input-lg" name="work_experience" placeholder="Recent work experience">
@@ -102,9 +105,15 @@
             </div>
         </form>
 
-        <form id="form3"  method='post' action="{{route('tourguides.store')}}">
+        <form id="form3"  method='post' action="{{route('steps')}}">
             <meta name="csrf-token" content="{{ csrf_token() }}">
             @csrf
+            <input type="hidden" name="step" value="3">
+            <div id="errorResult3" class="alert alert-danger" style="display: none">
+                <ul>
+
+                </ul>
+            </div>
             <h2>Educational Background</h2>
             <div id="eduback" class="eduback">
                 <input id="degree-one" type="text" placeholder="Degree" name="degree" required>
@@ -120,10 +129,17 @@
             </div>
         </form>
 
-        <form id="form4" method='post' action="{{route('tourguides.store')}}">
+        <form id="form4" method='post' action="{{route('steps')}}">
             <meta name="csrf-token" content="{{ csrf_token() }}">
+            @csrf
+            <input type="hidden" name="step" value="4">
+            <div id="errorResult4" class="alert alert-danger" style="display: none">
+                <ul>
+
+                </ul>
+            </div>
             <h2>Languages</h2>
-            <div id="eduback" class="eduback">
+            <div id="langDiv" class="langDiv">
                 <select name="langName" id="lang1">
                     <option value="">Choose the language</option>
                     <option value="Arabic">Arabic</option>
@@ -166,7 +182,7 @@
                     <option value="Italian">Proficiency</option>
                 </select>
             </div>
-            <button style="margin-top: 12px;height: 41px;border-radius: 2px;background-color: #111;background-image: none;" type="button" id="addedu">Add Another Language</button>
+            <button style="margin-top: 12px;height: 41px;border-radius: 2px;background-color: #111;background-image: none;" type="button" id="addLang">Add Another Language</button>
 
             <div class="btn-box">
                 <button type="button" id="back3">Back</button>

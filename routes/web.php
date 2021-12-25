@@ -27,16 +27,18 @@ Route::resource("tourguides",con\TourguideController::class);
 Route::resource("tourists",con\TouristController::class);
 Route::get("register", [con\TourguideController::class, 'create'])->name("tourguideSignup");
 Route::get("signup", [con\TouristController::class, 'create'])->name("touristSignup");
-Route::get("verify/{user_id}", [con\HomeController::class, 'verification'])->name("verif");
+Route::get("verify/{user_id}", [con\Auth\LoginController::class, 'verification'])->name("verify");
 Route::get("login", [App\Http\Controllers\Auth\LoginController::class, 'loginPage'])->name("loginPage");
 Route::post("login", [con\Auth\LoginController::class, 'authenticate'])->name("login");
 Route::get("logout", [con\Auth\LoginController::class, 'logout'])->name("logout");
-
+Route::get("/test",function (){
+    return view("test");
+});
 
 Route::get('/tourguidesProfiles', [con\TourguideController::class,'tourguidesProfile'])->name("tourguidesProfiles");
+Route::get('/tourguide/{id}/profile', [con\TourguideController::class,'profile'])->name("tourguideProfile");
 
 
-Route::get('/tourguide/{id}/profile', [con\TourguideController::class,'profile'])->name("toruguideProfile");
 
 
 Route::middleware(['admin'])->group(function()
@@ -49,7 +51,9 @@ Route::middleware(['admin'])->group(function()
 
 Route::post('/steps',[con\TourguideController::class,'steps'])->name('steps');
 
-Route::group(['prefix' => 'admin'], function () {
+Route::middleware(['tourguide'])->group(function(){
+    Route::post('/saveExpertises',[con\ExpertiseController::class,'saveExpertise']);
+    Route::post('/saveLanguages',[con\ExpertiseController::class,'saveLanguages']);
 });
 
 // Route::get('/storeTrip',[con\TourguideController::class,'storeTrip']);

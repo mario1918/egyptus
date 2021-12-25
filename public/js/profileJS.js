@@ -155,3 +155,122 @@ $(document).ready(function() {
 
 
 });
+
+var i = document.getElementById('count').value;
+
+function addLang(i) {
+    var append = '<br><div id="langDiv' + i + '" class="eduback">\n' +
+        '                <select name="langName[]" id="lang' + i + '">\n' +
+        '                    <option value="">Choose the language</option>\n' +
+        '                    <option value="Arabic">Arabic</option>\n' +
+        '                    <option value="English">English</option>\n' +
+        '                    <option value="French">French</option>\n' +
+        '                    <option value="German">German</option>\n' +
+        '                    <option value="Hindi">Hindi</option>\n' +
+        '                    <option value="Italian">Italian</option>\n' +
+        '                    <option value="Korean">Korean</option>\n' +
+        '                    <option value="Russian">Russian</option>\n' +
+        '                    <option value="Spanish">Spanish</option>\n' +
+        '                    <option value="Turkish">Turkish</option>\n' +
+        '\n' +
+        '                </select>\n' +
+        '                <select name="speaking[]" id="Speaking' + i + '">\n' +
+        '                    <option value="">Speaking Level</option>\n' +
+        '                    <option value="Beginner">Beginner</option>\n' +
+        '                    <option value="Elementary">Elementary</option>\n' +
+        '                    <option value="Intermediate">Intermediate</option>\n' +
+        '                    <option value="Upper-intermediate">Upper-intermediate</option>\n' +
+        '                    <option value="Advanced">Advanced</option>\n' +
+        '                    <option value="Proficiency">Proficiency</option>\n' +
+        '                </select>\n' +
+        '                <select name="writing[]" id="Writting' + i + '">\n' +
+        '                    <option value="">Writting Level</option>\n' +
+        '                    <option value="Beginner">Beginner</option>\n' +
+        '                    <option value="Elementary">Elementary</option>\n' +
+        '                    <option value="Intermediate">Intermediate</option>\n' +
+        '                    <option value="Upper-intermediate">Upper-intermediate</option>\n' +
+        '                    <option value="Advanced">Advanced</option>\n' +
+        '                    <option value="Proficiency">Proficiency</option>\n' +
+        '                </select>\n' +
+        '                <select name="comprehension[]" id="Comprehension' + i + '">\n' +
+        '                    <option value="">Comprehension Level</option>\n' +
+        '                    <option value="Beginner">Beginner</option>\n' +
+        '                    <option value="Elementary">Elementary</option>\n' +
+        '                    <option value="Intermediate">Intermediate</option>\n' +
+        '                    <option value="Upper-intermediate">Upper-intermediate</option>\n' +
+        '                    <option value="Advanced">Advanced</option>\n' +
+        '                    <option value="Proficiency">Proficiency</option>\n' +
+        '                </select>\n' +
+        '            </div>';
+    i--
+    $("#langDiv" + i +" ").after(append);
+}
+$("#addLang").click(function() {
+    addLang(i)
+
+});
+
+// var langArray=[];
+// function stepFour()
+// {
+//     var ii = document.getElementById('count').value;
+//     for (j=1;j<=ii;j++)
+//     {
+//         var langName =$('#lang' + j).find(":selected").text();
+//         var speaking = $('#Speaking' + j).find(":selected").text();
+//         var writting = $("#Writting" + j).find(":selected").text();
+//         var comprehension = $("#Comprehension" + j).find(":selected").text();
+//
+//         var lang = [langName,speaking,writting,comprehension];
+//         var langauges = lang.join();
+//         langArray.push(langauges);
+//     }
+//     $("#count").val(langArray);
+//     // $.ajaxSetup({
+//     //     headers: {
+//     //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//     //     }
+//     // });
+//     // $.ajax({
+//     //     type: 'post',
+//     //     data:{
+//     //         languages : langArray,
+//     //         step : 4
+//     //     },
+//     //
+//     //     url: "/editLang",
+//     //     success: function(result){
+//     //         window.
+//     //         console.log(result);
+//     //     }
+//     // });
+// }
+// var ex = [];
+// $("#expertises option:selected").map(function(){ ex.push(this.value) }).get().join(", ");
+// // console.log($("#expertises option:selected"));
+// function saveExpertise()
+// {
+//     var ex = [];
+//     $("#expertises option:selected").map(function()
+//     {
+//         ex.push(this.value);
+//     });
+//     var expertises = ex.join(",");
+//
+//     // $.ajaxSetup({
+//     //     headers: {
+//     //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//     //     }
+//     // });
+//     // $.ajax({
+//     //     type: 'post',
+//     //     data:{
+//     //         expertises : expertises,
+//     //     },
+//     //
+//     //     url: "/saveExpertises",
+//     //     success: function(result){
+//     //         console.log(result);
+//     //     }
+//     // });
+// }
