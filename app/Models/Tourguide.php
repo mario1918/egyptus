@@ -64,6 +64,11 @@ class Tourguide extends Model
         return $this->belongsTo('App\Models\User', 'user_id', 'id');
     }
 
+    public function trips()
+    {
+        return $this->belongsToMany(Trip::class, 'tourguide_trips');
+    }
+
 
 
 }

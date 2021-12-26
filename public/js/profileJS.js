@@ -44,10 +44,10 @@ $(document).ready(function() {
     $(".edit-Expertise-close-button").click(function() {
         $(".Expertise-pop-up").fadeOut(400);
     });
-
-    $(".edit-trip").click(function() {
+    var c = $("#number").val();
+    $("#edit-trip"+c).click(function() {
         $(".pop-ups").fadeOut(500).delay(500);
-        $(".edit-trip-pop-up").fadeIn(500);
+        $("#edit-trip-pop-up" + c).fadeIn(500);
     });
 
     $("#close_edittrip_button").click(function() {
@@ -150,11 +150,48 @@ $(document).ready(function() {
 
     })
 
-
-
-
-
 });
+
+
+
+function addAct(j)
+{
+    var act = '<div id="act'+j+'"><input type="text" id="actTitle'+j+'" placeholder="Activity Title" name="actTitle[]">\n' +
+        '            <input type="text" id="actDes'+j+'" placeholder="Activity Description" name="actDes[]">\n' +
+        '            <input type="number" id="actPrice'+j+'" placeholder="Activity Price" name="actPrice[]"></div>';
+
+    $("#act").after(act);
+}
+var j = 0;
+
+$("#addAct").click(function ()
+{
+    j++;
+    addAct(j);
+});
+
+var count = $("#count").val();
+
+$(".addAct").click(function ()
+{
+    count--;
+    var act = '<div id="act'+count+'"><input type="text" id="actTitle'+count+'" placeholder="Activity Title" name="actTitle[]">\n' +
+        '            <input type="text" id="actDes'+count+'" placeholder="Activity Description" name="actDes[]">\n' +
+        '            <input type="number" id="actPrice'+count+'" placeholder="Activity Price" name="actPrice[]">' +
+        '<input type="hidden" value="" name="actId[]"' +
+        '</div>';
+
+    $(".addAct").before(act);
+});
+
+// $('#addTrip').submit(function(event) {
+//
+//     event.preventDefault(); //this will prevent the default submit
+//
+//     // your code here (But not asynchronous code such as Ajax because it does not wait for a response and move to the next line.)
+//
+//     // $(this).unbind('submit').submit(); // continue the submit unbind preventDefault
+// })
 
 var i = document.getElementById('count').value;
 

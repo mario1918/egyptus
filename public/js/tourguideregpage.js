@@ -113,11 +113,11 @@ $(document).ready(function() {
 
             confirmPassword.style.border = "1px solid red";
             confirmPassword.style.borderRadius = "5px";
-        } else if (password.value != confirmPassword.value && password.value.length < 9 || confirmPassword.value.length < 9) {
+        } else if (password.value != confirmPassword.value && password.value.length <= 8 || confirmPassword.value.length <= 8) {
             password.style.border = "1px solid red";
             password.style.borderRadius = "5px";
 
-            confirmPassword.style.border = "1px solid reds";
+            confirmPassword.style.border = "1px solid red";
             confirmPassword.style.borderRadius = "5px";
 
 
@@ -375,7 +375,12 @@ $(document).ready(function() {
             '            </div>'
         $("#langDiv").append(append);
     }
-
+    var i = 1;
+$("#addLang").click(function ()
+{
+    i++
+    addLang(i);
+});
     var langArray=[];
     function stepFour()
     {

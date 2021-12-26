@@ -19,11 +19,14 @@ class CreateTourguideTripsTable extends Migration
             $table->foreign('tourguide_id')
                 ->references('id')
                 ->on('tourguides')
-                ->onUpdate('cascade'); 
-            $table->string('title');
-            $table->string('description');
-            $table->json('activities'); //activities id from the table (array)
-            $table->integer('hours');   //
+                ->onUpdate('cascade');
+            $table->unsignedBigInteger('trip_id')->nullable();
+            $table->foreign('trip_id')
+                ->references('id')
+                ->on('trips')
+                ->onUpdate('cascade');
+            $table->json('activities')->nullable(); //activities id from the table (array)
+            $table->integer('hours')->nullable();   //
             $table->float('fare'); //per person
             $table->timestamps();
         });

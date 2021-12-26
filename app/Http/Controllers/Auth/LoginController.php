@@ -57,7 +57,7 @@ class LoginController extends Controller
             if (Auth::attempt($credentials)) {
                 // if success login => redirect to profile tourguide
 //                return redirect()->route('toruguideProfile',Crypt::encryptString($user->hasType->id));
-                return redirect()->route('toruguideProfile',$user->hasType->id);
+                return redirect()->route('tourguideProfile',$user->hasType->id);
             }
             else{
                 //wait for the admin to verify the tourguide account in admiin dashboard

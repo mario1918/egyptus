@@ -20,11 +20,10 @@
       <div class="row">
           <div class="col-lg-4 col-md-6 col-xs-12 col-sm-12">
               <img width="100%" height="250" width="100"  src="{{asset($tourguide->user->profileImg)}}" alt="user-image">
-              <div class="profile-photo-hovering">
+              <div class="">
                   <i id="edit-profile-photo" class="fa fa-pencil-square-o" aria-hidden="true"></i>
               </div>
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quibusdam ipsa magnam quia, tempore facilis ea, iusto, ratione vel ipsum repellat incidunt culpa iure quam quas. Ipsum quas magnam tenetur illum optio doloribus doloremque porro
-                  nihil temporibus aperiam, nisi exercitationem maiores nesciunt unde sed tempora sapiente corrupti distinctio culpa eius asperiores!
+              <p>Tourguide bio but a add button must be made{{$tourguide->bio}}
               </p>
               <hr>
               <h3>Expertise</h3>
@@ -161,12 +160,9 @@
           <div class="col-lg-8 col-md-6 col-xs-12 col-sm-12">
               <div class="slider-container">
                   <div id="slide-number" class="slide-number"></div>
-                  <img src="{{asset('images/profileimages/Hurghada.jpg')}}" alt="" />
-                  <img src="{{asset('images/profileimages/Sharm.jpg')}}" alt="" />
-                  <img src="{{asset('images/profileimages/Pyrimades.jpg')}}" alt="" />
-                  <img src="{{asset('images/profileimages/SaltyLakes.jpg')}}" alt="" />
-                  <img src="{{asset('images/profileimages/ParoonCastle.jpg')}}" alt="" />
-
+                  @foreach($tourguide->trips as $trip)
+                  <img src="{{asset($trip->photo)}}" alt="" />
+                      @endforeach
               </div>
               <div class="slider-controls">
                   <span style="display: none;" id="prev" class="prev">previous</span>
@@ -176,27 +172,13 @@
                   <span style="display: none;" id="next" class="next">next</span>
               </div>
               <div class="slider-container2">
-                  <div style="display:none;" id="slide-number2" class="slide-number2"></div>
-                  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis, dolorem? Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis tempora asperiores ex dolorem dolorum eveniet corrupti dolor facere! Ab, nam. Lorem
-                      ipsum dolor sit amet consectetur, adipisicing elit. Numquam, molestias Mario!
+                  @foreach($tourguide->trips as $trip)
+                  <div style="display:none;" id="slide-number1" class="slide-number2"></div>
+                  <p> {{$trip->description}}
                       <br>
-                      <a  data-toggle="modal" data-target="#hurgada">Click to view this trip activities</a>
+                      <a  data-toggle="modal" data-target="#{{$trip->name}}">Click to view this trip activities</a>
                   </p>
-                  <p>Lorem ipsum dolor, sit elit. Perspiciatis, dolorem? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, quibusdam, tenetur magnam nam quaerat expedita hic nemo mollitia quod nostrum eius blanditiis quam veniam. Fugit
-                      quasi nobis earum? Veniam a iusto ullam eligendi quos voluptate est quo quibusdam. Libero unde repudiandae dicta cumque porro magnam ratione harum laudantium cum numquam! Lorem ipsum dolor sit amet consectetur, adipisicing
-                      elit. Deserunt, ipsam Ashraf!
-                  </p>
-                  <p>Lorem ipsum dolor, sit amet consecteturconsecteturconsectetur adipisicing elit. Perspiciatis, dolorem? Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis reprehenderit velit, temporibus totam laudantium ipsam!
-                      Nemo suscipit facere libero cum nobis blanditiis illum in fugiat sunt aperiam? Nulla, odit saepe illo at eius commodi nemo molestias voluptate, sed magnam fuga! Lorem, ipsum. Sobhy
-                  </p>
-                  <p>Lorem ipsum dolor, sit amet adipisicing elit. Perspiciatis, dolorem? Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, officia. Deleniti minima possimus officiis facilis quo. Lorem ipsum dolor, sit amet consectetur
-                      adipisicing elit. Officiis unde soluta quod voluptate vel sed nesciunt culpa illo pariatur veritatis ad assumenda odio, nobis eius aspernatur? Ea, eum!
-
-                  </p>
-                  <p>Lorem ipsum dolor, sit amet consectetur . Perspiciatis, dolorem? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iure suscipit adipisci ducimus. Nemo impedit, eius quasi est similique accusamus labore dignissimos amet
-                      fuga nobis facilis ea reiciendis cum nisi molestiae porro! Consequuntur culpa ipsum repellendus. Blanditiis aliquam quasi, voluptate omnis similique voluptates placeat adipisci doloribus impedit dolore et quae dolorum dolorem
-                      culpa, tenetur temporibus voluptatem quia ad explicabo. Accusamus, molestias? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit, porro.
-                  </p>
+                  @endforeach
 
               </div>
 
@@ -212,11 +194,12 @@
         <h2 id="close_edittrips_button"><i class="fa fa-times" aria-hidden="true"></i>
         </h2>
         <h1>Edit Your Trips</h1>
-
+        @foreach($tourguide->trips as $trip)
         <div class="dropdown">
-            <button class="edit-trip"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>
+                <input type="hidden" id="number" value="{{$trip->id}}">
+            <button class="edit-trip" id="edit-trip{{$trip->id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
-                Hrurgada <i class="fa fa-caret-down" aria-hidden="true"></i>
+                {{$trip->name}}<i class="fa fa-caret-down" aria-hidden="true"></i>
 
             </button>
             <button class="delete-trip"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
@@ -224,17 +207,16 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                            <img src="images/Diving.jpg">
+                            <img src="{{asset($trip->photo)}}">
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                            <span>Price 50 $</span>
+                            <span>{{$trip->price}} $</span>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="description">
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque voluptate fugiat vel quisquam ducimus quasi culpa fugit, ipsa hic, doloribus ad, repudiandae repellat aliquam praesentium eveniet totam earum commodi autem.
-                                Eaque cumque dolore nesciunt fugiat aspernatur. Animi omnis, ut nostrum beatae quidem saepe quos, sequi sunt facilis aliquid voluptates aspernatur.
+                            <p> {{$trip->description}}
                             </p>
                         </div>
                     </div>
@@ -243,10 +225,12 @@
 
                         <div class="activities">
                             <ul class="aval-activities">
-                                <li>Local Cuisine 50$</li>
-                                <li>Safary 60$</li>
-                                <li>Nightlife and Bars 150$</li>
-                                <li>Chirstian History 20$</li>
+                                @foreach(json_decode($trip->activities) as $act)
+                                    @php
+                                        $activity = \App\Models\Activity::find($act);
+                                    @endphp
+                                    <li>{{$activity->name}} <strong>{{$activity->price}}$</strong></li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -254,48 +238,7 @@
 
             </div>
         </div>
-
-        <div class="dropdown">
-            <button class="edit-trip"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
-                Pyramids <i class="fa fa-caret-down" aria-hidden="true"></i>
-
-            </button>
-            <button class="delete-trip"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                            <img src="images/Pyramids.jpg">
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                            <span>Price 150 $</span>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="description">
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque voluptate fugiat vel quisquam ducimus quasi culpa fugit, ipsa hic, doloribus ad, repudiandae repellat aliquam praesentium eveniet totam earum commodi autem.
-                                Eaque cumque dolore nesciunt fugiat aspernatur. Animi omnis, ut nostrum beatae quidem saepe quos, sequi sunt facilis aliquid voluptates aspernatur.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <h1>ACTIVITIES</h1><br>
-
-                        <div class="activities">
-                            <ul class="aval-activities">
-                                <li>Local Cuisine 50$</li>
-                                <li>Safary 60$</li>
-                                <li>Nightlife and Bars 150$</li>
-                                <li>Chirstian History 20$</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
+        @endforeach
 
         <button class="add-trip">Add Trip</button>
     </div>
@@ -306,29 +249,26 @@
         <h2 style="text-align: right;" id="close_addtrip_button"><i style="cursor: pointer;" class="fa fa-times" aria-hidden="true"></i>
         </h2>
         <h1 style="text-align: center;">Add Trip</h1>
-        <form>
-            <input type="text" placeholder="Trip Title" value="hurgada">
-            <input type="file" placeholder="Trip Photo">
-            <input type="text" placeholder="Trip Description">
-            <select name="language" class="custom-select" multiple>
-                <option value="Local Cuisine"  >Local Cuisine</option>
-                <option value="Local Culture" >Local Culture</option>
-                <option value="Safary" >Safary</option>
-                <option value="Pick up and Driving Tours">Pick up and Driving Tours</option>
-                <option value="Art and Museums">Art and Museums</option>
-                <option value="Nightlife and Bars">Nightlife and Bars</option>
-                <option value="Exploration and Sightseeing">Exploration and Sightseeing</option>
-                <option value="Islamic Cairo">Islamic Cairo</option>
-                <option value="Pharaonic Cairo">Pharaonic Cairo</option>
-                <option value="Roman Dynasty">Roman Dynasty</option>
-                <option value="Modern History">Modern History</option>
-                <option value="Christian History">Christian History</option>
-                <option value="Christian History" >Biking</option>
-            </select>
+        <form method="POST" action="{{route("trips.store")}}"  id="addTrip" enctype="multipart/form-data">
+            @csrf
+            <input type="text" placeholder="Trip Title" name="tripTitle">
+            <input type="file" placeholder="Trip Photo" name="tripPhoto">
+            <input type="text" placeholder="Trip Description" name="tripDescription">
+            <input type="number" placeholder="Trip Price" name="tripPrice">
+            <hr>
+            <h3 style="margin: 15px">Activities</h3>
+            <div id="act">
+            <input type="text" id="actTitle0" placeholder="Activity Title" name="actTitle[]">
+            <input type="text" id="actDes0" placeholder="Activity Description" name="actDes[]">
+            <input type="number" id="actPrice0" placeholder="Activity Price" name="actPrice[]">
+            </div>
+            <br>
+            <button id="addAct" type="button">Add new Activity</button>
+
 
             <button style="right: 30px;
                 position: absolute;
-                bottom: 30px;
+                bottom: 100px;
                 width: 100px;
                 height: 40px;
                 background-color: #111;
@@ -337,35 +277,20 @@
                 border: none;
                 border-radius: 2px;" type="submit">Save</button>
         </form>
-
     </div>
 </div>
 
-<div class="edit-trip-pop-up">
+@foreach($tourguide->trips as $trip)
+<div class="edit-trip-pop-up" id="edit-trip-pop-up{{$trip->id}}">
     <div class="edit-trip-form">
         <h2 style="text-align: right;" id="close_edittrip_button"><i style="cursor: pointer;" class="fa fa-times" aria-hidden="true"></i>
         </h2>
         <h1 style="text-align: center;">Edit Trip</h1>
-        <form>
-            <input type="text" placeholder="Trip Title" value="hurgada">
-            <input type="file" placeholder="Trip Photo">
-            <input type="text" placeholder="Trip Description">
-            <select name="language" class="custom-select" multiple>
-                <option value="Local Cuisine" selected >Local Cuisine</option>
-                <option value="Local Culture" selected>Local Culture</option>
-                <option value="Safary" selected>Safary</option>
-                <option value="Pick up and Driving Tours">Pick up and Driving Tours</option>
-                <option value="Art and Museums">Art and Museums</option>
-                <option value="Nightlife and Bars">Nightlife and Bars</option>
-                <option value="Exploration and Sightseeing">Exploration and Sightseeing</option>
-                <option value="Islamic Cairo">Islamic Cairo</option>
-                <option value="Pharaonic Cairo">Pharaonic Cairo</option>
-                <option value="Roman Dynasty">Roman Dynasty</option>
-                <option value="Modern History">Modern History</option>
-                <option value="Christian History">Christian History</option>
-                <option value="Christian History" Selected>Biking</option>
-            </select>
-
+        <form method="POST" action="{{route("trips.update",$trip->id)}}" enctype="multipart/form-data">
+            @csrf @method("PATCH")
+            @include("tourguide.form")
+            <input type="hidden" id="count" value="{{count($tourguide->trips)}}">
+            <button  class="btn-success addAct" type="button">Add new Activity</button>
             <button style="right: 30px;
                 position: absolute;
                 bottom: 30px;
@@ -377,18 +302,18 @@
                 border: none;
                 border-radius: 2px;" type="submit">Save</button>
         </form>
-
     </div>
 </div>
-
+@endforeach
 
 <div class="pop-ups-2">
     <div class="edit-profile-photo">
         <h2><i class="close-edit-photo-popup fa fa-times" aria-hidden="true"></i></h2>
-        <img class="editable-photo" src="images/CairoTower.jpg">
+        <img class="editable-photo" src="{{asset($tourguide->user->profileImg)}}">
         <button id="for-edit-photo-input">Edit Photo</button>
-        <form class="edit-profile-photo-input" method="GET">
-            <input id="edit-profile-photo-input" type="file" name="profile-photo" place-holder="profile photo">
+        <form class="edit-profile-photo-input" method="POST" action="{{route("editProfileImg",$tourguide->user->id)}}" enctype="multipart/form-data">
+            @csrf  {{ method_field('PATCH') }}
+            <input id="edit-profile-photo-input" type="file" name="profileImg" place-holder="profile photo">
             <button style="    right: 30px;
                 position: absolute;
                 bottom: 30px;
@@ -435,27 +360,17 @@
       <div class="container">
           <h1>Reviews</h1>
           <div class="row">
+              @if(count($tourguide->reviews) != 0)
+              @foreach($tourguide->reviews as $review)
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                  <h2><span class="bold-black">Josh . </span>Thailand</h2><span>Reivew provided by John</span>
+                  <h2><span class="bold-black">{{$review->user->firstName}} . </span>{{$review->user->nationality}}</h2>
                   <p>
-                      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit, voluptate placeat. Atque fugit expedita repudiandae quibusdam accusantium amet voluptatum fugiat itaque unde saepe, delectus assumenda dignissimos facilis asperiores magnam possimus voluptatibus
-                      tempora perferendis beatae corrupti porro nemo laboriosam quos rerum? Debitis, delectus illum. Quae quia eius neque porro repellat earum!
+                      {{$review->review}}
                   </p>
               </div>
-              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                  <h2><span class="bold-black">Josh . </span>Egypt</h2><span>Reivew provided by John</span>
-                  <p>
-                      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit, voluptate placeat. Atque fugit expedita repudiandae quibusdam accusantium amet voluptatum fugiat itaque unde saepe, delectus assumenda dignissimos facilis asperiores magnam possimus voluptatibus
-                      tempora perferendis beatae corrupti porro nemo laboriosam quos rerum? Debitis, delectus illum. Quae quia eius neque porro repellat earum!
-                  </p>
-              </div>
-              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                  <h2><span class="bold-black">Josh . </span>USA</h2><span>Reivew provided by John</span>
-                  <p>
-                      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit, voluptate placeat. Atque fugit expedita repudiandae quibusdam accusantium amet voluptatum fugiat itaque unde saepe, delectus assumenda dignissimos facilis asperiores magnam possimus voluptatibus
-                      tempora perferendis beatae corrupti porro nemo laboriosam quos rerum? Debitis, delectus illum. Quae quia eius neque porro repellat earum!
-                  </p>
-              </div>
+              @endforeach
+                  @endif
+
           </div>
       </div>
   </section>
@@ -466,11 +381,12 @@
 <!-- End Reviews Section -->
 
     <!-- Start of Activites Modal -->
-        <div class="modal fade" id="hurgada" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+@foreach($tourguide->trips as $trip)
+        <div class="modal fade" id="{{$trip->name}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h3 class="modal-title" id="exampleModalLongTitle">Hurghada Activites Menu</h3>
+                <h3 class="modal-title" id="exampleModalLongTitle">{{$trip->name}} Activites Menu</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -485,23 +401,16 @@
                           </tr>
                         </thead>
                         <tbody>
+                        @foreach(json_decode($trip->activities) as $act)
+                            @php
+                            $activity = \App\Models\Activity::find($act);
+                            @endphp
                           <tr>
-
-                            <td scope="row">Diving</td>
-                            <td>bla bla bla blaaaah</td>
-                            <td>50</td>
+                            <td scope="row">{{$activity->name}}</td>
+                            <td>{{$activity->description}}</td>
+                            <td>{{$activity->price}}</td>
                           </tr>
-                          <tr>
-
-                            <td scope="row">Snorkling</td>
-                            <td>Another bla bla bla blaaahh</td>
-                            <td>30</td>
-                          </tr>
-                          <tr>
-                            <td scope="row">Beach</td>
-                            <td>bla bla bla blaaaah</td>
-                            <td>25</td>
-                          </tr>
+                        @endforeach
                         </tbody>
                       </table>
                 </div>
@@ -511,7 +420,8 @@
             </div>
             </div>
         </div>
-    <!-- End of Activities Modal-->
+@endforeach
+        <!-- End of Activities Modal-->
 
     <!-- Start of Booking Modal-->
             <div class="modal fade" id="book" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

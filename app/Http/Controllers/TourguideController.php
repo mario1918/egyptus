@@ -31,7 +31,6 @@ class TourguideController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('tourguide')->except("create",'store');
     }
 
     public function index()
@@ -82,131 +81,6 @@ class TourguideController extends Controller
         // if(count(explode(' ', $bio)) > 20)
         //     $messages['bio'] = 'maxWords';
 
-        dd($request->post());
-        $validator = $request->validate( [
-
-            //personal info
-            "firstName" => "min:5|max:50|required",
-            "lastName" =>"min:5|max:50|required",
-            "email" => "required|email|",
-            'password' => ['required','confirmed',
-            'regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]){8,}$/'],
-            "phoneNo" => 'required|numeric|digits_between:11,14',
-            "region"=> 'required|string',
-            "country"=> 'required|string',
-            'birthdate' => "required|date_format:Y-m-d|after:2000-01-01",
-        //work experience
-            'work_experience' => "required|min:5",
-            // 'bio' => "required|min:5",
-        //educational background
-            "degree" =>'required|string',
-            "uni" =>'required|string',
-            "gradYear" =>'required|date',
-        //languages fluency array (langName , spoken , wriiten , comprehension)
-            "langName" =>'required',
-            "speaking" => 'required',
-            "writting" => 'required',
-            "comprehension" => 'required',
-
-        //documents upload
-            "frontNation" =>'required|image|mimes:jpg,png,jpeg,gif,svg',
-            "backNation" =>'required|image|mimes:jpg,png,jpeg,gif,svg',
-            "frontLicense" =>'required|image|mimes:jpg,png,jpeg,gif,svg',
-            "backLicense" =>'required|image|mimes:jpg,png,jpeg,gif,svg',
-            'profileImg' => 'image|mimes:jpg,png,jpeg,gif,svg',
-
-        //trips
-        // 'title' => 'required|string',
-        // 'description' => 'required|string',
-        // 'activityName' => 'required|string',
-        // 'activityPrice' => 'required|float',
-        // 'hours' =>'required|numeric',
-        // 'price' =>'required|float',
-
-        ],$messages);
-
-
-        if(User::where('email',$request->post('email'))->first() != null)
-        {
-            $user = User::where('email',$request->post('email'))->first();
-        }
-        else{
-        $user =  new User();
-        $user->firstName = $request->post("firstName");
-        $user->lastName = $request->post("lastName");
-        $user->email = $request->post('email');
-        $user->password =  Hash::make($request->post('password'));
-        $user->profileImg = "";
-        $user->fb_link  = $request->post("fb_link");
-        $user->location= $request->post('region') . "/" . $request->post('country');
-        $user->birthdate= $request->post('birthdate');
-        $user->isAdmin = 0;
-        $user->type = 1;
-        $user->status = "inactive";
-        $user->save();
-        }
-        if($request->hasFile('profileImg')) {
-            $filenameWithExt= $request->file('profileImg')->getClientOriginalName();
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            $extension = $request->file('profileImg')->getClientOriginalExtension();
-            $fileImgName = $filename. '_'.time().'.'.$extension;
-
-            $pathImg = $requestt->file('profileImg')->save('/storage/profileImgs/' . $fileImgName );
-        }
-        else{
-            $pathImg = "images/boy.png";
-        }
-        $user->profileImg = $pathImg;
-        $user->save();
-
-        //eduction background
-        $degrees = $request->post('degree');
-        $uni = $request->post('uni');
-        $gradYear = $request->post('gradYear');
-        $edu = $education =array();
-        if($degrees != null){
-            foreach($degrees as $key => $degree)
-            {
-                array_push($edu, implode(',',[$degree, $uni[$key],$gradYear[$key]]));
-            }
-            $education = implode("|",$edu);
-        }
-        //languages
-        $langs = $request->post('langName');
-        $spoken = $request->post('spoken');
-        $written = $request->post('written');
-        $comperhen = $request->post('comperhension');
-
-        $lang = $languages = array();
-        if($langs != null)
-        {
-            foreach($langs as $key => $l)
-            {
-                $lang[$l] = [$spoken[$key],$written[$key],$comperhen[$key]];
-            }
-            $languages = json_encode($lang);
-        }
-        else{
-            $lang["English"] = ['fluent','fluent','fluent','fluent'];
-        }
-
-        //documents uploads
-        $frontNation = $this->storeImg($request->file('frontNation'),'frontNation',3);
-        $backNation = $this->storeImg($request->file('backNation'),'backNation',3);
-        $frontLicense = $this->storeImg($request->file('frontLicense'),'frontLicense',3);
-        $backLicense = $this->storeImg($request->file('backLicense'),'backLicense',3);
-
-
-        $tourguide = new Tourguide();
-        $tourguide->user_id = $user->id;
-        $tourguide->bio = $request->post('bio');
-        $tourguide->work_experience = $request->post('work_experience');
-        $tourguide->education = $education;
-        $tourguide->langauges = json_encode($lang);
-        $tourguide->nationalId = json_encode([$frontNation,$backNation]);
-        $tourguide->tourLicense = json_encode([$frontLicense,$backLicense]);
-        $tourguide->personalRate = 2;
-        $tourguide->save();
 
         if($request->post('activities') != null)
         {
@@ -219,13 +93,7 @@ class TourguideController extends Controller
                 array_push($activities,$act->id);
             }
         }
-        $trip = new TourguideTrip();
-        $trip->title = $request->post('title');
-        $trip->description = $request->post('description');
-        $trip->activities = json_encode($activities);
-        $trip->hours = date("H:i:s", $request->post('hours')*60*60);
-        $trip->fair = $request->post('fare');
-        $trip->save();
+
 
         return redirect()->route('toruguideProfile',Crypt::encryptString($user->hasType->id))->withErrors(['msg' => "We will send you a mail when the admin
         verify your account"]);
@@ -237,7 +105,8 @@ class TourguideController extends Controller
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $img->getClientOriginalExtension();
             $fileImgName = $name. "_". $user . "_" . time().'.'.$extension;
-            $pathImg = $img->storeAs('public/tourGuideDocuments',$fileImgName);
+            $pathImg =  $img->move('storage/tourGuideDocuments',$fileImgName);
+
 
         return $pathImg;
     }
@@ -275,10 +144,40 @@ class TourguideController extends Controller
      * @param  Tourguide $tourguide
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tourguide $tourguide)
+    public function editPhoto(Request $request , $id)
     {
-        request()->validate(Tourguide::$rules);
+        $user = User::find($id);
+        if($request->hasFile('profileImg')) {
+            $filenameWithExt= $request->file('profileImg')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('profileImg')->getClientOriginalExtension();
+            $fileImgName = $filename. '_'.time().'.'.$extension;
+            $pathImg = $request->file('profileImg')->move('storage/profileImgs',$fileImgName);
 
+        }
+        else{
+            $pathImg = "images/boy.png";
+        }
+        $user->profileImg = $pathImg;
+        $user->save();
+        return redirect()->route('tourguideProfile',$user->hasType->id)->with('success','Profile Photo has been updated');
+    }
+    public function update(Request $request, $id)
+    {
+//        request()->validate(Tourguide::$rules);
+        $tourguide = Tourguide::find($id);
+        $user = User::where("id",Auth::user()->id)->get();
+        if($request->hasFile('profileImg')) {
+            $filenameWithExt= $request->file('profileImg')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('profileImg')->getClientOriginalExtension();
+            $fileImgName = $filename. '_'.time().'.'.$extension;
+            $pathImg = $request->file('profileImg')->move('profileImgs',$fileImgName);
+        }
+        else{
+            $pathImg = "images/boy.png";
+        }
+        $user->profileImg = $pathImg;
         $tourguide->update($request->all());
 
         return redirect()->route('tourguides.index')
@@ -401,7 +300,7 @@ class TourguideController extends Controller
                     $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
                     $extension = $request->file('profileImg')->getClientOriginalExtension();
                     $fileImgName = $filename. '_'.time().'.'.$extension;
-                    $pathImg = $request->file('profileImg')->storeAs('public/profileImgs',$fileImgName);
+                    $pathImg = $request->file('profileImg')->move('storage/profileImgs',$fileImgName);
                 }
                 else{
                     $pathImg = "images/boy.png";
@@ -419,6 +318,7 @@ class TourguideController extends Controller
                 $user->email = Session::get('email');
                 $user->password =  Hash::make(Session::get('password'));
                 $user->profileImg = $pathImg;
+                $user->phoneNo = Session::get('phoneNo');
                 $user->fb_link  = "";
                 $user->location= Session::get('location');
                 $user->birthdate= Session::get('birthdate');
@@ -431,6 +331,7 @@ class TourguideController extends Controller
                 $tourguide = new Tourguide();
                 $tourguide->user_id = $user->id;
                 $tourguide->bio ="";
+                $tourguide->nationality = "Egyptian";
                 $tourguide->work_experience = Session::get("work_experience");
                 $tourguide->education = Session::get('education');
                 $tourguide->languages = Session::get('languages');
@@ -442,8 +343,7 @@ class TourguideController extends Controller
 
                 $mail = new MailController();
                 $mail->verifyMail($user);
-                return redirect()->route('home')
-                ->withErrors(['success'=> 'Please wait for the admin to verify the account.']);
+                return redirect()->route("home")->with('success','Please wait for the admin to verify the account.');
             }
         }
 

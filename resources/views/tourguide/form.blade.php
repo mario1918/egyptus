@@ -1,54 +1,33 @@
 <div class="box box-info padding-1">
     <div class="box-body">
-        
-        <div class="form-group">
-            {{ Form::label('user_id') }}
-            {{ Form::text('user_id', $tourguide->user_id, ['class' => 'form-control' . ($errors->has('user_id') ? ' is-invalid' : ''), 'placeholder' => 'User Id']) }}
-            {!! $errors->first('user_id', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('profileImg') }}
-            {{ Form::text('profileImg', $tourguide->profileImg, ['class' => 'form-control' . ($errors->has('profileImg') ? ' is-invalid' : ''), 'placeholder' => 'Profileimg']) }}
-            {!! $errors->first('profileImg', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('languages') }}
-            {{ Form::text('languages', $tourguide->languages, ['class' => 'form-control' . ($errors->has('languages') ? ' is-invalid' : ''), 'placeholder' => 'Languages']) }}
-            {!! $errors->first('languages', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('bio') }}
-            {{ Form::text('bio', $tourguide->bio, ['class' => 'form-control' . ($errors->has('bio') ? ' is-invalid' : ''), 'placeholder' => 'Bio']) }}
-            {!! $errors->first('bio', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('activities') }}
-            {{ Form::text('activities', $tourguide->activities, ['class' => 'form-control' . ($errors->has('activities') ? ' is-invalid' : ''), 'placeholder' => 'Activities']) }}
-            {!! $errors->first('activities', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('priceRate') }}
-            {{ Form::text('priceRate', $tourguide->priceRate, ['class' => 'form-control' . ($errors->has('priceRate') ? ' is-invalid' : ''), 'placeholder' => 'Pricerate']) }}
-            {!! $errors->first('priceRate', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('video') }}
-            {{ Form::text('video', $tourguide->video, ['class' => 'form-control' . ($errors->has('video') ? ' is-invalid' : ''), 'placeholder' => 'Video']) }}
-            {!! $errors->first('video', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('cities') }}
-            {{ Form::text('cities', $tourguide->cities, ['class' => 'form-control' . ($errors->has('cities') ? ' is-invalid' : ''), 'placeholder' => 'Cities']) }}
-            {!! $errors->first('cities', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('personalRate') }}
-            {{ Form::text('personalRate', $tourguide->personalRate, ['class' => 'form-control' . ($errors->has('personalRate') ? ' is-invalid' : ''), 'placeholder' => 'Personalrate']) }}
-            {!! $errors->first('personalRate', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-
-    </div>
-    <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <input type="text" placeholder="Trip Title" value="{{$trip->name}}" name="tripTitle">
+        @if($trip->photo != null)
+            <img width="200" height="100" style="position: relative;left: 100px" src="{{asset($trip->photo)}}">
+        @endif
+        <input type="text" placeholder="Trip Description" value="{{$trip->description}}" name="tripDescription">
+        <input type="file" placeholder="Trip Photo" value="{{$trip->photo}}"  name="tripPhoto">
+        <input type="number" placeholder="Trip Price" value="{{$trip->price}}" name="tripPrice">
+        <hr>
+        <h3 style="margin: 15px">Activities</h3>
+        @if(json_decode($trip->activities) != [])
+            @foreach(json_decode($trip->activities) as $key=> $act)
+                @php
+                    $activity = \App\Models\Activity::find($act);
+                @endphp
+                <div id="act{{$key}}">
+                    <input type="text" id="actTitle{{$key}}" placeholder="Activity Title" value="{{$activity->name}}" name="actTitle[]">
+                    <input type="text" id="actDes{{$key}}" placeholder="Activity Description" value="{{$activity->description}}" name="actDes[]">
+                    <input type="number" id="actPrice{{$key}}" placeholder="Activity Price" value="{{$activity->price}}" name="actPrice[]">
+                    <input type="hidden" value="{{$act}}" name="actId[]">
+                </div>
+            @endforeach
+        @else
+            <div id="act">
+                <input type="text" id="actTitle0" placeholder="Activity Title" name="actTitle[]">
+                <input type="text" id="actDes0" placeholder="Activity Description" name="actDes[]">
+                <input type="number" id="actPrice0" placeholder="Activity Price" name="actPrice[]">
+            </div>
+            @endif
+        <br>
     </div>
 </div>

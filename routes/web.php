@@ -37,6 +37,8 @@ Route::get("/test",function (){
 
 Route::get('/tourguidesProfiles', [con\TourguideController::class,'tourguidesProfile'])->name("tourguidesProfiles");
 Route::get('/tourguide/{id}/profile', [con\TourguideController::class,'profile'])->name("tourguideProfile");
+Route::patch('/{user_id}/editPhoto', [con\TourguideController::class,'editPhoto'])->name("editProfileImg");
+Route::resource('/trips',App\Http\Controllers\TripController::class);
 
 
 
@@ -45,7 +47,7 @@ Route::middleware(['admin'])->group(function()
 {
 //        Route::get('/admin/dashboard',[con\AdminController::class,'index']);
         Route::resource('/users',App\Http\Controllers\UserController::class);
-        Route::resource("tourguides",con\TourguideController::class)->except('create,store');
+//        Route::resource("tourguides",con\TourguideController::class)->except('create,store');
         // Route::resource("tourists",con\TouristController::class);
 });
 
