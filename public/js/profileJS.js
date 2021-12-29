@@ -87,13 +87,6 @@ $(document).ready(function() {
 
     };
 
-// $('#sendBooking').submit(function(event) {
-// alert("ss");
-//    event .preventDefault(); //this will prevent the default submit
-//     // your code here (But not asynchronous code such as Ajax because it does not wait for a response and move to the next line.)
-//
-//     // $(this).unbind('submit').submit(); // continue the submit unbind preventDefault
-// })
     $("#sendBooking").click(function ()
     {
         $("#errorResult ul").empty();

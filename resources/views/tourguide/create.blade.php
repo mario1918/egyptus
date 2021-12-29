@@ -69,15 +69,26 @@
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
             <input required="required" id="password" name="password" type="password" placeholder="Password" data-toggle="tooltip" data-placement="top" title="password must contain at least one upper letter and one number" required>
+            <span style="padding-top: 12px" id="toggleBtn" toggle="#password" onclick="toggePassword()" class=" fa fa-fw fa-eye field_icon toggle-password p-3"></span>
             <input required="required" id="confirm-password" name="password_confirmation" type="password" placeholder="Repeat Your Password" required>
 
             <div class="btn-box">
                 <button type="button" id="next1">Next</button>
             </div>
         </form>
-<script>
-
-</script>
+        <script>
+            function toggePassword() {
+                var upass = document.getElementById('password');
+                var toggleBtn = document.getElementById('toggleBtn');
+                if (upass.type == "password") {
+                    upass.type = "text";
+                    toggleBtn.value = "Hide password";
+                } else {
+                    upass.type = "Password";
+                    toggleBtn.value = "Show the password";
+                }
+            }
+        </script>
         <form id="form2" method="post" action="{{route('steps')}}">
             @csrf
             <meta name="csrf-token" content="{{ csrf_token() }}">

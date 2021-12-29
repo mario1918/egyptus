@@ -429,6 +429,7 @@
         <!-- End of Activities Modal-->
 
     <!-- Start of Booking Modal-->
+        @auth
             <div class="modal fade" id="book" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -451,7 +452,6 @@
                                 </div>
                             @if($tourguide->trips != null)
                             @foreach($tourguide->trips as $trip)
-                                <input type="hidden" id="tourguideId" name="tourguideId" value="{{$tourguide->id}}">
                             <div class="panel panel-primary">
                                 <div class="panel-heading">
                                     <h4 class="panel-title" data-target="#panel-{{$trip->id}}" data-toggle="collapse" data-parent="#my_accordian">{{$trip->name}}</h4>
@@ -525,8 +525,21 @@
                 </div>
                 </div>
             </div>
-
-
+            @else
+            <div class="modal" id="book" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="alert alert-danger" role="alert">
+                               Please
+                                <a href="{{route('touristSignup')}}">signup</a> or
+                                <a href="{{route('login')}}">login</a> to book a trip with this tourguide
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endauth
             <div class="modal" id="success-book" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
