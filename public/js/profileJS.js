@@ -1,4 +1,107 @@
 $(document).ready(function() {
+
+
+    $("#persons").keyup(function ()
+    {
+        var actTotal= 0;
+        $("input:checkbox[class=activityChecked]:checked").each(function() {
+
+            var split = $(this).val().split("=>");
+            var trip = split[0];
+            var act = split[1];
+            var a = $("#actP"+ trip + act).val();
+
+            actTotal+=parseFloat(a);
+        });
+        var persons = $("#persons").val();
+        actTotal = actTotal * parseInt(persons);
+        $("#total").empty();
+        $("#total").append(actTotal);
+    });
+
+
+    function saveBooking()
+    {
+        var activities = [];
+        $("input:checkbox[class=activityChecked]:checked").each(function(){
+            activities.push($(this).val());
+        });
+        var tourguideId = $("#tourguideId").val();
+        var persons = $("#persons").val();
+        var hotel = $("#hotel-pickup").val();
+        var notes = $("#notes").val();
+        var date = $("#date").val();
+        var priceTotal = $("#total").html();
+
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            type: 'post',
+            data:{
+                tourguideId : tourguideId,
+                activities: activities,
+                persons: persons,
+                hotel:hotel,
+                notes:notes,
+                date:date,
+                priceTotal: priceTotal
+            },
+
+            url: "/booking",
+            success: function(result){
+                $("#book").fadeOut(500);
+                $("#success-book").fadeIn(400);
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                $("#errorResult ul").empty();
+                var result = XMLHttpRequest.responseJSON.errors;
+                $("#errorResult").css('display','block');
+                $.each(result, function( index, value ) {
+                    $('#errorResult ul').append('<li>' + value[0] + '</li>')
+                });
+            }
+        });
+    };
+
+    var date = document.getElementById('date');
+    date.onchange = function ()
+    {
+        //Check whether valid dd/MM/yyyy Date Format.
+        var parts = date.value.split("-");
+        var dtDOB = new Date(parts[0] + "/" + parts[1] + "/" + parts[2]);
+        var todayDate = new Date();
+        if (todayDate > dtDOB) {
+
+            $("#errorResult").empty();
+            $("#errorResult").css("display",'block');
+            $("#errorResult").append('<li>Please select coming date.</li>');
+        }
+        else{
+            $("#errorResult ul").empty();
+            $("#errorResult").css("display",'none');
+        }
+
+    };
+
+// $('#sendBooking').submit(function(event) {
+// alert("ss");
+//    event .preventDefault(); //this will prevent the default submit
+//     // your code here (But not asynchronous code such as Ajax because it does not wait for a response and move to the next line.)
+//
+//     // $(this).unbind('submit').submit(); // continue the submit unbind preventDefault
+// })
+    $("#sendBooking").click(function ()
+    {
+        $("#errorResult ul").empty();
+        saveBooking();
+    });
+
+
+
     var user_image = $(".user-image").attr("src");
     var trip_images_count = $("#trips_images").children('img').length;
     $("#edit_trips").click(function() {

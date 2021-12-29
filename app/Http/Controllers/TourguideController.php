@@ -201,8 +201,18 @@ class TourguideController extends Controller
         $tourguide = Tourguide::findOrFail($id);
         $languages = explode('|',$tourguide->languages);
         $expertises = Expertise::all();
+        $actPrice = array();
+        foreach ($tourguide->trips() as $trip)
+        {
+            $activities = json_decode($trip->activities);
+            foreach ($activities as $act)
+            {
+                array_push($act->price,$actPrice);
+            }
+        }
+//        dd($tourguide->trips());
 
-        return view('tourguide.profile',compact('tourguide','expertises','languages'));
+        return view('tourguide.profile',compact('tourguide','expertises','languages','actPrice'));
     }
 
      public function addReviews(Request $request)
@@ -316,7 +326,7 @@ class TourguideController extends Controller
                 $user->firstName = Session::get('firstName');
                 $user->lastName = Session::get("lastName");
                 $user->email = Session::get('email');
-                $user->password =  Hash::make(Session::get('password'));
+                $user->password =  Session::get('password');
                 $user->profileImg = $pathImg;
                 $user->phoneNo = Session::get('phoneNo');
                 $user->fb_link  = "";

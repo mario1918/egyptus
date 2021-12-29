@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AdminSeeder::class,
             ExpertiseSeeder::class,
+            TouristSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
     }

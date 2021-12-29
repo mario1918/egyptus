@@ -29,7 +29,7 @@
 <body>
 
     <div class="tourguideregpage">
-        <h1 class="backhome"> <a href="index.html"><i class="fa fa-chevron-left" aria-hidden="true"></i> Go Back Home</a></h1>>
+        <h1 class="backhome"> <a href="{{route("home")}}"><i class="fa fa-chevron-left" aria-hidden="true"></i> Go Back Home</a></h1>>
 
 
         <div class="container">

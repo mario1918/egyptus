@@ -20,6 +20,11 @@ class CreateTripsTable extends Migration
             $table->string('photo');
             $table->json('activities');
             $table->float('price');
+            $table->unsignedBigInteger('tourguide_id')->nullable();
+            $table->foreign('tourguide_id')
+                ->references('id')
+                ->on('tourguides')
+                ->onUpdate('cascade');
             $table->timestamps();
         });
     }

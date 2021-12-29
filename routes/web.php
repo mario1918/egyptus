@@ -39,7 +39,8 @@ Route::get('/tourguidesProfiles', [con\TourguideController::class,'tourguidesPro
 Route::get('/tourguide/{id}/profile', [con\TourguideController::class,'profile'])->name("tourguideProfile");
 Route::patch('/{user_id}/editPhoto', [con\TourguideController::class,'editPhoto'])->name("editProfileImg");
 Route::resource('/trips',App\Http\Controllers\TripController::class);
-
+Route::resource("/booking",con\BookingController::class);
+//Route::resource('photos.comments', CommentController::class)->shallow();
 
 
 

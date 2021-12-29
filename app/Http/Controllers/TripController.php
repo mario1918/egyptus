@@ -70,10 +70,10 @@ class TripController extends Controller
         $trip->photo = $pathImg;
         $trip->activities = json_encode($actArray);
         $trip->price = $request->post('tripPrice');
+        $trip->tourguide_id = Auth::user()->hasType->id;
         $trip->save();
 
         $tourguide = Tourguide::find(Auth::user()->hasType->id);
-        $tourguide->trips()->attach([$trip->id => ['fare'=>$trip->price]]);
 
         return redirect()->route("tourguideProfile", $tourguide->id)->with('success', 'Item created successfully!');
 

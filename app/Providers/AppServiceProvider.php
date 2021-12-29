@@ -53,7 +53,7 @@ class AppServiceProvider extends ServiceProvider
             if (Auth::check()) {
                 // check if the user is tourguide
                 $condition = Auth::user()->type;
-            
+
 
             return "<?php if ($condition == 1) { ?>";
             }
@@ -69,6 +69,6 @@ class AppServiceProvider extends ServiceProvider
         Blade::directive('endtourguide', function () {
             return "<?php } ?>";
         });
-        
+
     }
 }

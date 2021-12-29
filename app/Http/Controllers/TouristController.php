@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Validator;
 use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Mail;
@@ -52,15 +53,14 @@ class TouristController extends Controller
     {
 //        request()->validate(Tourist::$rules);
         $validate = $request->validate([
-            "firstName" => "min:5|max:50|required",
-            "lastName" =>"min:5|max:50|required",
-            "username" => "required",
+            "firstName" => "min:4|max:50|required",
+            "lastName" =>"min:4|max:50|required",
             "email" => "required|email|unique:users",
-            'profileImg' => 'image|mimes:jpg,png,jpeg,gif,svg',
-            'password' => 'required_with:confirmpassword|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/',
-           
+//            'profileImg' => 'image|mimes:jpg,png,jpeg,gif,svg',
+//            'password' => 'required_with:confirmpassword|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/',
+
         ]);
-       
+
         if($request->hasFile('profileImg')) {
             $filenameWithExt= $request->file('profileImg')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
@@ -71,25 +71,27 @@ class TouristController extends Controller
         else{
             $pathImg = "images/boy.png";
         }
-        $user =  User::create([
-            'firstName' => $request->post("firstName"),
-            'lastName' => $request->post("lastName"),
-            'username' => $request->post("username"),
-            'email' => $request->post("email"),
-            'password' => Hash::make($request->post("password")),
-            'fb-link' => $request->post("fb-link"),
-            'profileImg' => $pathImg,
-            'isAdmin' => 0,
-            'type' => 2,
-            "status" => "inactive",
-        ]);
+        $user =  new User();
+        $user->firstName = $request->post("firstName");
+        $user->lastName = $request->post("lastName");
+        $user->email = $request->post('email');
+        $user->password =  Hash::make($request->post('password'));
+        $user->profileImg = $pathImg;
+        $user->phoneNo = $request->post('phoneNo');
+        $user->fb_link  = "";
+        $user->location= "Africa/Algeria";
+        $user->birthdate= "1998-06-08";
+        $user->isAdmin = 0;
+        $user->type = 2;
+        $user->status = "active";
+        $user->save();
 
         $tourist = Tourist::create([
             'user_id' => $user->id,
         ]);
         $mail = new MailController;
 
-        $mail->verifyMail($user);
+//        $mail->verifyMail($user);
 
         return redirect()->route('home')
             ->with('success', 'Please check your email for to verify the account.');

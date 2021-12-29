@@ -43,8 +43,6 @@ class TourguideTripController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(TourguideTrip::$rules);
-
         $tourguideTrip = TourguideTrip::create($request->all());
 
         return redirect()->route('tourguide-trips.index')

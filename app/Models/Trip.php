@@ -9,8 +9,8 @@ class Trip extends Model
 {
     use HasFactory;
 
-    public function tourguides()
+    public function tourguide()
     {
-        return $this->belongsToMany(Tourguide::class, 'tourguide_trips');
+        return $this->belongsToOne(Tourguide::class);
     }
 }

@@ -15,13 +15,14 @@
       <div class="info">
           <h1 class="Tourguide-name">{{$tourguide->user->firstName }} {{$tourguide->user->lastName }}</h1>
           <button data-toggle="modal" data-target="#book">Travel With {{$tourguide->user->firstName }}</button>
-          <button id="edit_trips"> Edit Trips </button>
+           @auth @if(Auth::user()->id == $tourguide->user_id) <button id="edit_trips"> Edit Trips </button> @endif @endauth
       </div>
       <div class="row">
           <div class="col-lg-4 col-md-6 col-xs-12 col-sm-12">
               <img width="100%" height="250" width="100"  src="{{asset($tourguide->user->profileImg)}}" alt="user-image">
               <div class="">
-                  <i id="edit-profile-photo" class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                  @auth @if(Auth::user()->id == $tourguide->user_id)
+                      <i id="edit-profile-photo" class="fa fa-pencil-square-o" aria-hidden="true"></i> @endif @endauth
               </div>
               <p>Tourguide bio but a add button must be made{{$tourguide->bio}}
               </p>
@@ -32,9 +33,11 @@
 
                       <span>{{$expertise}}</span>
                   @endforeach
+                      @auth @if(Auth::user()->id == $tourguide->user_id)
                   <div class="Expertise-edit-hovering">
                      <i id="edit-Expertise-btn" class="fa fa-pencil-square-o" aria-hidden="true"></i>
                   </div>
+                      @endif @endauth
               </div>
               <hr>
               <h3>Languages</h3>
@@ -42,9 +45,11 @@
                   @foreach($languages as $language)
                   <span>{{explode(",",$language)[0]}}</span>
                   @endforeach
+                      @auth @if(Auth::user()->id == $tourguide->user_id)
                   <div class="lang-edit-hovering">
                       <i id="edit-langs-btn" class="fa fa-pencil-square-o" aria-hidden="true"></i>
                   </div>
+                      @endif @endauth
 
               </div>
           </div>
@@ -428,19 +433,31 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                    <h2 class="modal-title" id="exampleModalLongTitle">Travel With John</h2>
+                    <h2 class="modal-title" id="exampleModalLongTitle">Travel With {{$tourguide->user->firstName}}</h2>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                     </div>
                     <div class="modal-body">
-                        <h3>Please Select the activites you wish to do</h3>
+                        <h3>Please Select the trips you wish to do</h3>
                         <div class="panel-group" id="my_accordian">
+                            <form method="POST" id="bookingForm"  enctype="multipart/form-data">
+                                @csrf @method('POST')
+                                <meta name="csrf-token" content="{{ csrf_token() }}">
+                                <div id="errorResult" class="alert alert-danger" style="display: none">
+                                    <ul>
+
+                                    </ul>
+                                </div>
+                            @if($tourguide->trips != null)
+                            @foreach($tourguide->trips as $trip)
+                                <input type="hidden" id="tourguideId" name="tourguideId" value="{{$tourguide->id}}">
                             <div class="panel panel-primary">
                                 <div class="panel-heading">
-                                    <h4 class="panel-title" data-target="#panel-hurgada" data-toggle="collapse" data-parent="#my_accordian">Hurgada</h4>
+                                    <h4 class="panel-title" data-target="#panel-{{$trip->id}}" data-toggle="collapse" data-parent="#my_accordian">{{$trip->name}}</h4>
                                 </div>
-                                <div class="panel-collapse collapse" id="panel-hurgada">
+
+                                <div class="panel-collapse collapse" id="panel-{{$trip->id}}">
                                     <table class="table table-hover">
                                         <thead>
                                           <tr>
@@ -452,229 +469,59 @@
                                           </tr>
                                         </thead>
                                         <tbody>
-                                          <tr>
+                                        @foreach(json_decode($trip->activities) as $key => $act)
+                                            @php
+                                                $activity = \App\Models\Activity::find($act);
+                                            @endphp
 
-                                            <td scope="row">Diving</td>
-                                            <td>bla bla bla blaaaah</td>
-                                            <td>50</td>
-                                            <td><input type="checkbox"></td>
-                                          </tr>
-                                          <tr>
-
-                                            <td scope="row">Snorkling</td>
-                                            <td>Another bla bla bla blaaahh</td>
-                                            <td>30</td>
-                                            <td><input type="checkbox"></td>
-                                          </tr>
-                                          <tr>
-                                            <td scope="row">Beach</td>
-                                            <td>bla bla bla blaaaah</td>
-                                            <td>25</td>
-                                            <td><input type="checkbox"></td>
-                                          </tr>
+                                            <tr>
+                                                <td scope="row">{{$activity->name}}</td>
+                                                <td>{{$activity->description}}</td>
+                                                <td>{{$activity->price}}</td>
+                                                <td><input name="activityChecked[{{$trip->id}}][]" class="activityChecked" value="{{$trip->id}}=>{{$activity->id}}" type="checkbox"></td>
+                                            </tr>
+                                            <input type="hidden" id="actP{{$trip->id}}{{$activity->id}}" value="{{$activity->price}}">
+                                        @endforeach
                                         </tbody>
                                       </table>
                                 </div>
                             </div>
-
-                            <div class="panel panel-primary">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title" data-target="#panel-sharm" data-toggle="collapse" data-parent="#my_accordian">Sharm</h4>
-                                </div>
-                                <div class="panel-collapse collapse" id="panel-sharm">
-                                    <table class="table table-hover">
-                                        <thead>
-                                          <tr>
-
-                                            <th scope="col">Title</th>
-                                            <th scope="col">Description</th>
-                                            <th scope="col">Price (USD)</th>
-                                            <th scope="col">Select</th>
-                                          </tr>
-                                        </thead>
-                                        <tbody>
-                                          <tr>
-
-                                            <td scope="row">Diving</td>
-                                            <td>bla bla bla blaaaah</td>
-                                            <td>50</td>
-                                            <td><input type="checkbox"></td>
-                                          </tr>
-                                          <tr>
-
-                                            <td scope="row">Snorkling</td>
-                                            <td>Another bla bla bla blaaahh</td>
-                                            <td>30</td>
-                                            <td><input type="checkbox"></td>
-                                          </tr>
-                                          <tr>
-                                            <td scope="row">Beach</td>
-                                            <td>bla bla bla blaaaah</td>
-                                            <td>25</td>
-                                            <td><input type="checkbox"></td>
-                                          </tr>
-                                        </tbody>
-                                      </table>
-                                </div>
-                            </div>
-
-                            <div class="panel panel-primary">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title" data-target="#panel-pyramids" data-toggle="collapse" data-parent="#my_accordian">Pyramids</h4>
-                                </div>
-                                <div class="panel-collapse collapse" id="panel-pyramids">
-                                    <table class="table table-hover">
-                                        <thead>
-                                          <tr>
-
-                                            <th scope="col">Title</th>
-                                            <th scope="col">Description</th>
-                                            <th scope="col">Price (USD)</th>
-                                            <th scope="col">Select</th>
-                                          </tr>
-                                        </thead>
-                                        <tbody>
-                                          <tr>
-
-                                            <td scope="row">Diving</td>
-                                            <td>bla bla bla blaaaah</td>
-                                            <td>50</td>
-                                            <td><input type="checkbox"></td>
-                                          </tr>
-                                          <tr>
-
-                                            <td scope="row">Snorkling</td>
-                                            <td>Another bla bla bla blaaahh</td>
-                                            <td>30</td>
-                                            <td><input type="checkbox"></td>
-                                          </tr>
-                                          <tr>
-                                            <td scope="row">Beach</td>
-                                            <td>bla bla bla blaaaah</td>
-                                            <td>25</td>
-                                            <td><input type="checkbox"></td>
-                                          </tr>
-                                        </tbody>
-                                      </table>
-                                </div>
-                            </div>
-
-                            <div class="panel panel-primary">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title" data-target="#panel-salty" data-toggle="collapse" data-parent="#my_accordian">Salty Lakes</h4>
-                                </div>
-                                <div class="panel-collapse collapse" id="panel-salty">
-                                    <table class="table table-hover">
-                                        <thead>
-                                          <tr>
-
-                                            <th scope="col">Title</th>
-                                            <th scope="col">Description</th>
-                                            <th scope="col">Price (USD)</th>
-                                            <th scope="col">Select</th>
-                                          </tr>
-                                        </thead>
-                                        <tbody>
-                                          <tr>
-
-                                            <td scope="row">Diving</td>
-                                            <td>bla bla bla blaaaah</td>
-                                            <td>50</td>
-                                            <td><input type="checkbox"></td>
-                                          </tr>
-                                          <tr>
-
-                                            <td scope="row">Snorkling</td>
-                                            <td>Another bla bla bla blaaahh</td>
-                                            <td>30</td>
-                                            <td><input type="checkbox"></td>
-                                          </tr>
-                                          <tr>
-                                            <td scope="row">Beach</td>
-                                            <td>bla bla bla blaaaah</td>
-                                            <td>25</td>
-                                            <td><input type="checkbox"></td>
-                                          </tr>
-                                        </tbody>
-                                      </table>
-                                </div>
-                            </div>
-
-                            <div class="panel panel-primary">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title" data-target="#panel-paroon" data-toggle="collapse" data-parent="#my_accordian">Paroon Palace</h4>
-                                </div>
-                                <div class="panel-collapse collapse" id="panel-paroon">
-                                    <table class="table table-hover">
-                                        <thead>
-                                          <tr>
-
-                                            <th scope="col">Title</th>
-                                            <th scope="col">Description</th>
-                                            <th scope="col">Price (USD)</th>
-                                            <th scope="col">Select</th>
-                                          </tr>
-                                        </thead>
-                                        <tbody>
-                                          <tr>
-
-                                            <td scope="row">Diving</td>
-                                            <td>bla bla bla blaaaah</td>
-                                            <td>50</td>
-                                            <td><input type="checkbox"></td>
-                                          </tr>
-                                          <tr>
-
-                                            <td scope="row">Snorkling</td>
-                                            <td>Another bla bla bla blaaahh</td>
-                                            <td>30</td>
-                                            <td><input type="checkbox"></td>
-                                          </tr>
-                                          <tr>
-                                            <td scope="row">Beach</td>
-                                            <td>bla bla bla blaaaah</td>
-                                            <td>25</td>
-                                            <td><input type="checkbox"></td>
-                                          </tr>
-                                        </tbody>
-                                      </table>
-                                </div>
-                            </div>
+                            @endforeach
+                            @endif
                         </div>
 
-                        <form>
                             <div class="form-group form-inline">
-                              <label for="exampleFormControlInput1">How many persons?</label>
-                              <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="2">
+                              <label for="persons">How many persons?</label>
+
+                                <input type="number" name="persons" id="persons" class="form-control" placeholder="2">
                             </div>
 
                             <div class="form-group form-inline">
                                 <label for="exampleFormControlInput1">Do you need a hotel pickup?</label>
-                                <input type="radio" class="form-control" name="hotel-pickup" > Yes
-                                <input type="radio" class="form-control" name="hotel-pickup"> No
+                                <input type="radio" id="hotel-pickup" class="form-control" value="1" name="hotel-pickup" > Yes
+                                <input type="radio" id="hotel-pickup" class="form-control" value="0" name="hotel-pickup"> No
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Please let us know if need any special request</label>
                                 <br>
-                                <textarea name="special-request" id="" cols="70" rows="5"></textarea>
+                                <textarea name="notes" id="notes" cols="70" rows="5"></textarea>
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Please pickup the desired date</label>
-                                <input type="date">
+                                <input type="date" id="date" name="date">
                             </div>
-
-                        </form>
-
                         <div>
-                            <div class="text-right"><h4>Total: <strong>USD###</strong></h4></div>
+                            <div class="text-right"><h4>Total: <strong>USD <p id="total"></p></strong></h4></div>
                         </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" id="sendBooking" class="btn btn-primary">Send Request</button>
+                        </div>
+                        </form>
                     </div>
-                    <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#success-book" data-dismiss="modal">Send Request</button>
-                    </div>
+
                 </div>
                 </div>
             </div>
