@@ -15,7 +15,7 @@ class TouristSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        $user = DB::table('users')->insertGetId([
 
             'firstName' => "Teta",
             'lastName' => "Toto",
@@ -30,6 +30,9 @@ class TouristSeeder extends Seeder
             'phoneNo' =>  +101287748574,
             'created_at' => now(),
             'updated_at' => now(),
+        ]);
+        DB::table('tourist')->insert([
+            'user_id'=> $user,
         ]);
     }
 }
